@@ -1,0 +1,1848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATS Score Tracker - History</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark app-navbar mb-3">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="/"><i class="bi bi-file-earmark-text me-1"></i>Intelligent Resume Analyzer</a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="/history"><i class="bi bi-graph-up-arrow me-1"></i>ATS Tracker</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container pb-5">
+        
+<div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+    <h2 class="fw-bold mb-0">ATS Score Tracker</h2>
+    <div>
+        <a href="/history/export.csv" class="btn btn-outline-secondary btn-sm me-1">Export CSV</a>
+        <a href="/" class="btn btn-outline-secondary btn-sm">&larr; New Analysis</a>
+    </div>
+</div>
+<p class="text-muted">Every analysis run is tracked here so you can measure how resume and job-description changes move your ATS score over time.</p>
+
+<div class="row g-3 mb-4">
+    <div class="col-md-3 col-6">
+        <div class="score-card text-center">
+            <div class="score-card__label">Analyses run</div>
+            <div class="score-card__value">518</div>
+        </div>
+    </div>
+    <div class="col-md-3 col-6">
+        <div class="score-card text-center">
+            <div class="score-card__label">Average ATS score</div>
+            <div class="score-card__value">61.4</div>
+        </div>
+    </div>
+    <div class="col-md-3 col-6">
+        <div class="score-card text-center">
+            <div class="score-card__label">Best ATS score</div>
+            <div class="score-card__value text-success">97.5</div>
+        </div>
+    </div>
+    <div class="col-md-3 col-6">
+        <div class="score-card text-center">
+            <div class="score-card__label">Avg job match</div>
+            <div class="score-card__value">39.1%</div>
+        </div>
+    </div>
+</div>
+
+
+<div class="card shadow-sm mb-4">
+    <div class="card-body">
+        <h5 class="card-title">Score trend</h5>
+        <p class="text-muted small">ATS score across your last 50 analyzed runs (chronological).</p>
+        <svg viewBox="0 0 640 220" class="chart-svg" role="img" aria-label="ATS score trend over time">
+            
+            <line x1="34" y1="186.0" x2="606" y2="186.0" class="chart-grid" />
+            <text x="4" y="189.0" class="chart-tick">0</text>
+            
+            <line x1="34" y1="148.0" x2="606" y2="148.0" class="chart-grid" />
+            <text x="4" y="151.0" class="chart-tick">25</text>
+            
+            <line x1="34" y1="110.0" x2="606" y2="110.0" class="chart-grid" />
+            <text x="4" y="113.0" class="chart-tick">50</text>
+            
+            <line x1="34" y1="72.0" x2="606" y2="72.0" class="chart-grid" />
+            <text x="4" y="75.0" class="chart-tick">75</text>
+            
+            <line x1="34" y1="34.0" x2="606" y2="34.0" class="chart-grid" />
+            <text x="4" y="37.0" class="chart-tick">100</text>
+            
+            <polyline points="34.0,152.7 45.7,152.5 57.3,128.2 69.0,95.3 80.7,68.2 92.4,119.2 104.0,80.1 115.7,145.2 127.4,68.2 139.1,80.1 150.7,54.9 162.4,79.8 174.1,72.5 185.8,65.8 197.4,59.8 209.1,59.8 220.8,59.8 232.4,62.4 244.1,62.4 255.8,59.8 267.5,48.8 279.1,55.5 290.8,115.2 302.5,70.7 314.2,94.4 325.8,81.2 337.5,90.1 349.2,132.6 360.9,116.7 372.5,125.0 384.2,156.2 395.9,94.2 407.6,112.6 419.2,112.6 430.9,112.6 442.6,111.2 454.2,111.4 465.9,112.6 477.6,98.2 489.3,86.3 500.9,152.7 512.6,152.5 524.3,128.2 536.0,93.4 547.6,81.2 559.3,81.2 571.0,48.8 582.7,98.2 594.3,48.8 606.0,98.2" class="chart-line" />
+            
+            <circle cx="34.0" cy="152.7" r="3.5" class="chart-dot">
+                <title>saranyak_resume.pdf: 21.9</title>
+            </circle>
+            
+            <circle cx="45.7" cy="152.5" r="3.5" class="chart-dot">
+                <title>SRIRAM SIDDHARDHA REDDY PADALA (1).pdf: 22.0</title>
+            </circle>
+            
+            <circle cx="57.3" cy="128.2" r="3.5" class="chart-dot">
+                <title>SWATI PRIYA.pdf: 38.0</title>
+            </circle>
+            
+            <circle cx="69.0" cy="95.3" r="3.5" class="chart-dot">
+                <title>Venkata_Natesh_Nallam_Resume.pdf: 59.7</title>
+            </circle>
+            
+            <circle cx="80.7" cy="68.2" r="3.5" class="chart-dot">
+                <title>Divya_Resume.pdf: 77.5</title>
+            </circle>
+            
+            <circle cx="92.4" cy="119.2" r="3.5" class="chart-dot">
+                <title>Divya_Resume.pdf: 44.0</title>
+            </circle>
+            
+            <circle cx="104.0" cy="80.1" r="3.5" class="chart-dot">
+                <title>Lalitha_Resume.pdf: 69.7</title>
+            </circle>
+            
+            <circle cx="115.7" cy="145.2" r="3.5" class="chart-dot">
+                <title>Lalitha_Resume.pdf: 26.8</title>
+            </circle>
+            
+            <circle cx="127.4" cy="68.2" r="3.5" class="chart-dot">
+                <title>Divya_Resume.pdf: 77.5</title>
+            </circle>
+            
+            <circle cx="139.1" cy="80.1" r="3.5" class="chart-dot">
+                <title>Lalitha_Resume.pdf: 69.7</title>
+            </circle>
+            
+            <circle cx="150.7" cy="54.9" r="3.5" class="chart-dot">
+                <title>Naga_Sathwika_Kovvuri_Google.pdf: 86.2</title>
+            </circle>
+            
+            <circle cx="162.4" cy="79.8" r="3.5" class="chart-dot">
+                <title>resume gnaneswari.pdf: 69.9</title>
+            </circle>
+            
+            <circle cx="174.1" cy="72.5" r="3.5" class="chart-dot">
+                <title>resume_hari (3).pdf: 74.7</title>
+            </circle>
+            
+            <circle cx="185.8" cy="65.8" r="3.5" class="chart-dot">
+                <title>Sadwika_s_Resume_.pdf: 79.1</title>
+            </circle>
+            
+            <circle cx="197.4" cy="59.8" r="3.5" class="chart-dot">
+                <title>Sai Teja Kondapalli (1).docx: 83.0</title>
+            </circle>
+            
+            <circle cx="209.1" cy="59.8" r="3.5" class="chart-dot">
+                <title>Sai Teja Kondapalli (1).pdf: 83.0</title>
+            </circle>
+            
+            <circle cx="220.8" cy="59.8" r="3.5" class="chart-dot">
+                <title>Sai Teja Kondapalli.docx: 83.0</title>
+            </circle>
+            
+            <circle cx="232.4" cy="62.4" r="3.5" class="chart-dot">
+                <title>Sai Teja_Resume.docx: 81.3</title>
+            </circle>
+            
+            <circle cx="244.1" cy="62.4" r="3.5" class="chart-dot">
+                <title>Sai Teja_Resume.pdf: 81.3</title>
+            </circle>
+            
+            <circle cx="255.8" cy="59.8" r="3.5" class="chart-dot">
+                <title>sai_teja_resume (1) (1).pdf: 83.0</title>
+            </circle>
+            
+            <circle cx="267.5" cy="48.8" r="3.5" class="chart-dot">
+                <title>Sai_Teja_Resume(updated) .docx: 90.3</title>
+            </circle>
+            
+            <circle cx="279.1" cy="55.5" r="3.5" class="chart-dot">
+                <title>Sankar Desamsetti ms resume__ 1.pdf: 85.9</title>
+            </circle>
+            
+            <circle cx="290.8" cy="115.2" r="3.5" class="chart-dot">
+                <title>saranyak_resume.pdf: 46.6</title>
+            </circle>
+            
+            <circle cx="302.5" cy="70.7" r="3.5" class="chart-dot">
+                <title>SRIRAM SIDDHARDHA REDDY PADALA (1).pdf: 75.9</title>
+            </circle>
+            
+            <circle cx="314.2" cy="94.4" r="3.5" class="chart-dot">
+                <title>SWATI PRIYA.pdf: 60.2</title>
+            </circle>
+            
+            <circle cx="325.8" cy="81.2" r="3.5" class="chart-dot">
+                <title>Venkata_Natesh_Nallam_Resume.pdf: 68.9</title>
+            </circle>
+            
+            <circle cx="337.5" cy="90.1" r="3.5" class="chart-dot">
+                <title>Divya_Resume.pdf: 63.1</title>
+            </circle>
+            
+            <circle cx="349.2" cy="132.6" r="3.5" class="chart-dot">
+                <title>Lalitha_Resume.pdf: 35.2</title>
+            </circle>
+            
+            <circle cx="360.9" cy="116.7" r="3.5" class="chart-dot">
+                <title>Naga_Sathwika_Kovvuri_Google.pdf: 45.6</title>
+            </circle>
+            
+            <circle cx="372.5" cy="125.0" r="3.5" class="chart-dot">
+                <title>resume gnaneswari.pdf: 40.1</title>
+            </circle>
+            
+            <circle cx="384.2" cy="156.2" r="3.5" class="chart-dot">
+                <title>resume_hari (3).pdf: 19.6</title>
+            </circle>
+            
+            <circle cx="395.9" cy="94.2" r="3.5" class="chart-dot">
+                <title>Sadwika_s_Resume_.pdf: 60.4</title>
+            </circle>
+            
+            <circle cx="407.6" cy="112.6" r="3.5" class="chart-dot">
+                <title>Sai Teja Kondapalli (1).docx: 48.3</title>
+            </circle>
+            
+            <circle cx="419.2" cy="112.6" r="3.5" class="chart-dot">
+                <title>Sai Teja Kondapalli (1).pdf: 48.3</title>
+            </circle>
+            
+            <circle cx="430.9" cy="112.6" r="3.5" class="chart-dot">
+                <title>Sai Teja Kondapalli.docx: 48.3</title>
+            </circle>
+            
+            <circle cx="442.6" cy="111.2" r="3.5" class="chart-dot">
+                <title>Sai Teja_Resume.docx: 49.2</title>
+            </circle>
+            
+            <circle cx="454.2" cy="111.4" r="3.5" class="chart-dot">
+                <title>Sai Teja_Resume.pdf: 49.1</title>
+            </circle>
+            
+            <circle cx="465.9" cy="112.6" r="3.5" class="chart-dot">
+                <title>sai_teja_resume (1) (1).pdf: 48.3</title>
+            </circle>
+            
+            <circle cx="477.6" cy="98.2" r="3.5" class="chart-dot">
+                <title>Sai_Teja_Resume(updated) .docx: 57.8</title>
+            </circle>
+            
+            <circle cx="489.3" cy="86.3" r="3.5" class="chart-dot">
+                <title>Sankar Desamsetti ms resume__ 1.pdf: 65.6</title>
+            </circle>
+            
+            <circle cx="500.9" cy="152.7" r="3.5" class="chart-dot">
+                <title>saranyak_resume.pdf: 21.9</title>
+            </circle>
+            
+            <circle cx="512.6" cy="152.5" r="3.5" class="chart-dot">
+                <title>SRIRAM SIDDHARDHA REDDY PADALA (1).pdf: 22.0</title>
+            </circle>
+            
+            <circle cx="524.3" cy="128.2" r="3.5" class="chart-dot">
+                <title>SWATI PRIYA.pdf: 38.0</title>
+            </circle>
+            
+            <circle cx="536.0" cy="93.4" r="3.5" class="chart-dot">
+                <title>Venkata_Natesh_Nallam_Resume.pdf: 60.9</title>
+            </circle>
+            
+            <circle cx="547.6" cy="81.2" r="3.5" class="chart-dot">
+                <title>Venkata_Natesh_Nallam_Resume.pdf: 68.9</title>
+            </circle>
+            
+            <circle cx="559.3" cy="81.2" r="3.5" class="chart-dot">
+                <title>Venkata_Natesh_Nallam_Resume.pdf: 68.9</title>
+            </circle>
+            
+            <circle cx="571.0" cy="48.8" r="3.5" class="chart-dot">
+                <title>Sai_Teja_Resume.docx: 90.3</title>
+            </circle>
+            
+            <circle cx="582.7" cy="98.2" r="3.5" class="chart-dot">
+                <title>Sai_Teja_Resume.docx: 57.8</title>
+            </circle>
+            
+            <circle cx="594.3" cy="48.8" r="3.5" class="chart-dot">
+                <title>Sai_Teja_Resume.docx: 90.3</title>
+            </circle>
+            
+            <circle cx="606.0" cy="98.2" r="3.5" class="chart-dot">
+                <title>Sai_Teja_Resume.docx: 57.8</title>
+            </circle>
+            
+        </svg>
+    </div>
+</div>
+
+
+
+<div class="card shadow-sm mb-4">
+    <div class="card-body">
+        <h5 class="card-title">Resume progress</h5>
+        <p class="text-muted small">Resumes you analyzed more than once - are your edits improving the score?</p>
+        <div class="table-responsive">
+            <table class="table table-sm align-middle mb-0">
+                <thead>
+                    <tr><th>Resume</th><th>Runs</th><th>First</th><th>Latest</th><th>Best</th><th>History</th><th>Trend</th></tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <td class="text-truncate" style="max-width: 220px;" title="resume_hari (3).pdf">resume_hari (3).pdf</td>
+                        <td>4</td>
+                        <td>74.7</td>
+                        <td>19.6</td>
+                        <td class="text-success">74.7</td>
+                        <td>
+                            
+                            <svg viewBox="0 0 110 30" width="110" height="30" role="img" aria-label="Score history sparkline">
+                                <polyline points="4.0,9.6 38.0,21.7 72.0,9.6 106.0,21.7" class="chart-line" style="stroke-width: 2;" />
+                                <circle cx="4.0" cy="9.6" r="2" class="chart-dot" /><title>74.7</title><circle cx="38.0" cy="21.7" r="2" class="chart-dot" /><title>19.6</title><circle cx="72.0" cy="9.6" r="2" class="chart-dot" /><title>74.7</title><circle cx="106.0" cy="21.7" r="2" class="chart-dot" /><title>19.6</title>
+                            </svg>
+                            
+                        </td>
+                        <td>
+                            <span class="badge text-bg-danger">&darr; -55.0</span>
+                            
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="text-truncate" style="max-width: 220px;" title="SRIRAM SIDDHARDHA REDDY PADALA (1).pdf">SRIRAM SIDDHARDHA REDDY PADALA (1).pdf</td>
+                        <td>4</td>
+                        <td>75.9</td>
+                        <td>22.0</td>
+                        <td class="text-success">75.9</td>
+                        <td>
+                            
+                            <svg viewBox="0 0 110 30" width="110" height="30" role="img" aria-label="Score history sparkline">
+                                <polyline points="4.0,9.3 38.0,21.2 72.0,9.3 106.0,21.2" class="chart-line" style="stroke-width: 2;" />
+                                <circle cx="4.0" cy="9.3" r="2" class="chart-dot" /><title>75.9</title><circle cx="38.0" cy="21.2" r="2" class="chart-dot" /><title>22.0</title><circle cx="72.0" cy="9.3" r="2" class="chart-dot" /><title>75.9</title><circle cx="106.0" cy="21.2" r="2" class="chart-dot" /><title>22.0</title>
+                            </svg>
+                            
+                        </td>
+                        <td>
+                            <span class="badge text-bg-danger">&darr; -53.8</span>
+                            
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="text-truncate" style="max-width: 220px;" title="Naga_Sathwika_Kovvuri_Google.pdf">Naga_Sathwika_Kovvuri_Google.pdf</td>
+                        <td>4</td>
+                        <td>86.2</td>
+                        <td>45.6</td>
+                        <td class="text-success">86.2</td>
+                        <td>
+                            
+                            <svg viewBox="0 0 110 30" width="110" height="30" role="img" aria-label="Score history sparkline">
+                                <polyline points="4.0,7.0 38.0,16.2 72.0,7.0 106.0,16.0" class="chart-line" style="stroke-width: 2;" />
+                                <circle cx="4.0" cy="7.0" r="2" class="chart-dot" /><title>86.2</title><circle cx="38.0" cy="16.2" r="2" class="chart-dot" /><title>44.5</title><circle cx="72.0" cy="7.0" r="2" class="chart-dot" /><title>86.2</title><circle cx="106.0" cy="16.0" r="2" class="chart-dot" /><title>45.6</title>
+                            </svg>
+                            
+                        </td>
+                        <td>
+                            <span class="badge text-bg-danger">&darr; -40.6</span>
+                            
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="text-truncate" style="max-width: 220px;" title="sai_teja_resume (1) (1).pdf">sai_teja_resume (1) (1).pdf</td>
+                        <td>4</td>
+                        <td>83.0</td>
+                        <td>48.3</td>
+                        <td class="text-success">83.0</td>
+                        <td>
+                            
+                            <svg viewBox="0 0 110 30" width="110" height="30" role="img" aria-label="Score history sparkline">
+                                <polyline points="4.0,7.7 38.0,15.4 72.0,7.7 106.0,15.4" class="chart-line" style="stroke-width: 2;" />
+                                <circle cx="4.0" cy="7.7" r="2" class="chart-dot" /><title>83.0</title><circle cx="38.0" cy="15.4" r="2" class="chart-dot" /><title>48.3</title><circle cx="72.0" cy="7.7" r="2" class="chart-dot" /><title>83.0</title><circle cx="106.0" cy="15.4" r="2" class="chart-dot" /><title>48.3</title>
+                            </svg>
+                            
+                        </td>
+                        <td>
+                            <span class="badge text-bg-danger">&darr; -34.7</span>
+                            
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="text-truncate" style="max-width: 220px;" title="Sai Teja Kondapalli.docx">Sai Teja Kondapalli.docx</td>
+                        <td>4</td>
+                        <td>83.0</td>
+                        <td>48.3</td>
+                        <td class="text-success">83.0</td>
+                        <td>
+                            
+                            <svg viewBox="0 0 110 30" width="110" height="30" role="img" aria-label="Score history sparkline">
+                                <polyline points="4.0,7.7 38.0,15.4 72.0,7.7 106.0,15.4" class="chart-line" style="stroke-width: 2;" />
+                                <circle cx="4.0" cy="7.7" r="2" class="chart-dot" /><title>83.0</title><circle cx="38.0" cy="15.4" r="2" class="chart-dot" /><title>48.3</title><circle cx="72.0" cy="7.7" r="2" class="chart-dot" /><title>83.0</title><circle cx="106.0" cy="15.4" r="2" class="chart-dot" /><title>48.3</title>
+                            </svg>
+                            
+                        </td>
+                        <td>
+                            <span class="badge text-bg-danger">&darr; -34.7</span>
+                            
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="text-truncate" style="max-width: 220px;" title="Sai Teja Kondapalli (1).pdf">Sai Teja Kondapalli (1).pdf</td>
+                        <td>4</td>
+                        <td>83.0</td>
+                        <td>48.3</td>
+                        <td class="text-success">83.0</td>
+                        <td>
+                            
+                            <svg viewBox="0 0 110 30" width="110" height="30" role="img" aria-label="Score history sparkline">
+                                <polyline points="4.0,7.7 38.0,15.4 72.0,7.7 106.0,15.4" class="chart-line" style="stroke-width: 2;" />
+                                <circle cx="4.0" cy="7.7" r="2" class="chart-dot" /><title>83.0</title><circle cx="38.0" cy="15.4" r="2" class="chart-dot" /><title>48.3</title><circle cx="72.0" cy="7.7" r="2" class="chart-dot" /><title>83.0</title><circle cx="106.0" cy="15.4" r="2" class="chart-dot" /><title>48.3</title>
+                            </svg>
+                            
+                        </td>
+                        <td>
+                            <span class="badge text-bg-danger">&darr; -34.7</span>
+                            
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="text-truncate" style="max-width: 220px;" title="Sai Teja Kondapalli (1).docx">Sai Teja Kondapalli (1).docx</td>
+                        <td>4</td>
+                        <td>83.0</td>
+                        <td>48.3</td>
+                        <td class="text-success">83.0</td>
+                        <td>
+                            
+                            <svg viewBox="0 0 110 30" width="110" height="30" role="img" aria-label="Score history sparkline">
+                                <polyline points="4.0,7.7 38.0,15.4 72.0,7.7 106.0,15.4" class="chart-line" style="stroke-width: 2;" />
+                                <circle cx="4.0" cy="7.7" r="2" class="chart-dot" /><title>83.0</title><circle cx="38.0" cy="15.4" r="2" class="chart-dot" /><title>48.3</title><circle cx="72.0" cy="7.7" r="2" class="chart-dot" /><title>83.0</title><circle cx="106.0" cy="15.4" r="2" class="chart-dot" /><title>48.3</title>
+                            </svg>
+                            
+                        </td>
+                        <td>
+                            <span class="badge text-bg-danger">&darr; -34.7</span>
+                            
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="text-truncate" style="max-width: 220px;" title="Lalitha_Resume.pdf">Lalitha_Resume.pdf</td>
+                        <td>10</td>
+                        <td>69.7</td>
+                        <td>35.2</td>
+                        <td class="text-success">69.7</td>
+                        <td>
+                            
+                            <svg viewBox="0 0 110 30" width="110" height="30" role="img" aria-label="Score history sparkline">
+                                <polyline points="4.0,10.7 15.3,20.1 26.7,10.7 38.0,20.1 49.3,10.7 60.7,18.3 72.0,10.7 83.3,20.1 94.7,10.7 106.0,18.3" class="chart-line" style="stroke-width: 2;" />
+                                <circle cx="4.0" cy="10.7" r="2" class="chart-dot" /><title>69.7</title><circle cx="15.3" cy="20.1" r="2" class="chart-dot" /><title>26.8</title><circle cx="26.7" cy="10.7" r="2" class="chart-dot" /><title>69.7</title><circle cx="38.0" cy="20.1" r="2" class="chart-dot" /><title>26.8</title><circle cx="49.3" cy="10.7" r="2" class="chart-dot" /><title>69.7</title><circle cx="60.7" cy="18.3" r="2" class="chart-dot" /><title>35.2</title><circle cx="72.0" cy="10.7" r="2" class="chart-dot" /><title>69.7</title><circle cx="83.3" cy="20.1" r="2" class="chart-dot" /><title>26.8</title><circle cx="94.7" cy="10.7" r="2" class="chart-dot" /><title>69.7</title><circle cx="106.0" cy="18.3" r="2" class="chart-dot" /><title>35.2</title>
+                            </svg>
+                            
+                        </td>
+                        <td>
+                            <span class="badge text-bg-danger">&darr; -34.5</span>
+                            
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="text-truncate" style="max-width: 220px;" title="Sai_Teja_Resume.docx">Sai_Teja_Resume.docx</td>
+                        <td>4</td>
+                        <td>90.3</td>
+                        <td>57.8</td>
+                        <td class="text-success">90.3</td>
+                        <td>
+                            
+                            <svg viewBox="0 0 110 30" width="110" height="30" role="img" aria-label="Score history sparkline">
+                                <polyline points="4.0,6.1 38.0,13.3 72.0,6.1 106.0,13.3" class="chart-line" style="stroke-width: 2;" />
+                                <circle cx="4.0" cy="6.1" r="2" class="chart-dot" /><title>90.3</title><circle cx="38.0" cy="13.3" r="2" class="chart-dot" /><title>57.8</title><circle cx="72.0" cy="6.1" r="2" class="chart-dot" /><title>90.3</title><circle cx="106.0" cy="13.3" r="2" class="chart-dot" /><title>57.8</title>
+                            </svg>
+                            
+                        </td>
+                        <td>
+                            <span class="badge text-bg-danger">&darr; -32.5</span>
+                            
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="text-truncate" style="max-width: 220px;" title="Sai_Teja_Resume(updated) .docx">Sai_Teja_Resume(updated) .docx</td>
+                        <td>4</td>
+                        <td>90.3</td>
+                        <td>57.8</td>
+                        <td class="text-success">90.3</td>
+                        <td>
+                            
+                            <svg viewBox="0 0 110 30" width="110" height="30" role="img" aria-label="Score history sparkline">
+                                <polyline points="4.0,6.1 38.0,13.3 72.0,6.1 106.0,13.3" class="chart-line" style="stroke-width: 2;" />
+                                <circle cx="4.0" cy="6.1" r="2" class="chart-dot" /><title>90.3</title><circle cx="38.0" cy="13.3" r="2" class="chart-dot" /><title>57.8</title><circle cx="72.0" cy="6.1" r="2" class="chart-dot" /><title>90.3</title><circle cx="106.0" cy="13.3" r="2" class="chart-dot" /><title>57.8</title>
+                            </svg>
+                            
+                        </td>
+                        <td>
+                            <span class="badge text-bg-danger">&darr; -32.5</span>
+                            
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="text-truncate" style="max-width: 220px;" title="Sai Teja_Resume.pdf">Sai Teja_Resume.pdf</td>
+                        <td>4</td>
+                        <td>81.3</td>
+                        <td>49.1</td>
+                        <td class="text-success">81.3</td>
+                        <td>
+                            
+                            <svg viewBox="0 0 110 30" width="110" height="30" role="img" aria-label="Score history sparkline">
+                                <polyline points="4.0,8.1 38.0,15.2 72.0,8.1 106.0,15.2" class="chart-line" style="stroke-width: 2;" />
+                                <circle cx="4.0" cy="8.1" r="2" class="chart-dot" /><title>81.3</title><circle cx="38.0" cy="15.2" r="2" class="chart-dot" /><title>49.1</title><circle cx="72.0" cy="8.1" r="2" class="chart-dot" /><title>81.3</title><circle cx="106.0" cy="15.2" r="2" class="chart-dot" /><title>49.1</title>
+                            </svg>
+                            
+                        </td>
+                        <td>
+                            <span class="badge text-bg-danger">&darr; -32.2</span>
+                            
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="text-truncate" style="max-width: 220px;" title="Sai Teja_Resume.docx">Sai Teja_Resume.docx</td>
+                        <td>4</td>
+                        <td>81.3</td>
+                        <td>49.2</td>
+                        <td class="text-success">81.3</td>
+                        <td>
+                            
+                            <svg viewBox="0 0 110 30" width="110" height="30" role="img" aria-label="Score history sparkline">
+                                <polyline points="4.0,8.1 38.0,15.2 72.0,8.1 106.0,15.2" class="chart-line" style="stroke-width: 2;" />
+                                <circle cx="4.0" cy="8.1" r="2" class="chart-dot" /><title>81.3</title><circle cx="38.0" cy="15.2" r="2" class="chart-dot" /><title>49.2</title><circle cx="72.0" cy="8.1" r="2" class="chart-dot" /><title>81.3</title><circle cx="106.0" cy="15.2" r="2" class="chart-dot" /><title>49.2</title>
+                            </svg>
+                            
+                        </td>
+                        <td>
+                            <span class="badge text-bg-danger">&darr; -32.1</span>
+                            
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="text-truncate" style="max-width: 220px;" title="resume gnaneswari.pdf">resume gnaneswari.pdf</td>
+                        <td>4</td>
+                        <td>69.9</td>
+                        <td>40.1</td>
+                        <td class="text-success">69.9</td>
+                        <td>
+                            
+                            <svg viewBox="0 0 110 30" width="110" height="30" role="img" aria-label="Score history sparkline">
+                                <polyline points="4.0,10.6 38.0,17.2 72.0,10.6 106.0,17.2" class="chart-line" style="stroke-width: 2;" />
+                                <circle cx="4.0" cy="10.6" r="2" class="chart-dot" /><title>69.9</title><circle cx="38.0" cy="17.2" r="2" class="chart-dot" /><title>40.1</title><circle cx="72.0" cy="10.6" r="2" class="chart-dot" /><title>69.9</title><circle cx="106.0" cy="17.2" r="2" class="chart-dot" /><title>40.1</title>
+                            </svg>
+                            
+                        </td>
+                        <td>
+                            <span class="badge text-bg-danger">&darr; -29.8</span>
+                            
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="text-truncate" style="max-width: 220px;" title="saranyak_resume.pdf">saranyak_resume.pdf</td>
+                        <td>4</td>
+                        <td>46.6</td>
+                        <td>21.9</td>
+                        <td class="text-success">46.6</td>
+                        <td>
+                            
+                            <svg viewBox="0 0 110 30" width="110" height="30" role="img" aria-label="Score history sparkline">
+                                <polyline points="4.0,15.8 38.0,21.2 72.0,15.8 106.0,21.2" class="chart-line" style="stroke-width: 2;" />
+                                <circle cx="4.0" cy="15.8" r="2" class="chart-dot" /><title>46.6</title><circle cx="38.0" cy="21.2" r="2" class="chart-dot" /><title>21.9</title><circle cx="72.0" cy="15.8" r="2" class="chart-dot" /><title>46.6</title><circle cx="106.0" cy="21.2" r="2" class="chart-dot" /><title>21.9</title>
+                            </svg>
+                            
+                        </td>
+                        <td>
+                            <span class="badge text-bg-danger">&darr; -24.6</span>
+                            
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="text-truncate" style="max-width: 220px;" title="SWATI PRIYA.pdf">SWATI PRIYA.pdf</td>
+                        <td>4</td>
+                        <td>60.2</td>
+                        <td>38.0</td>
+                        <td class="text-success">60.2</td>
+                        <td>
+                            
+                            <svg viewBox="0 0 110 30" width="110" height="30" role="img" aria-label="Score history sparkline">
+                                <polyline points="4.0,12.7 38.0,17.6 72.0,12.7 106.0,17.6" class="chart-line" style="stroke-width: 2;" />
+                                <circle cx="4.0" cy="12.7" r="2" class="chart-dot" /><title>60.2</title><circle cx="38.0" cy="17.6" r="2" class="chart-dot" /><title>38.0</title><circle cx="72.0" cy="12.7" r="2" class="chart-dot" /><title>60.2</title><circle cx="106.0" cy="17.6" r="2" class="chart-dot" /><title>38.0</title>
+                            </svg>
+                            
+                        </td>
+                        <td>
+                            <span class="badge text-bg-danger">&darr; -22.2</span>
+                            
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="text-truncate" style="max-width: 220px;" title="Sankar Desamsetti ms resume__ 1.pdf">Sankar Desamsetti ms resume__ 1.pdf</td>
+                        <td>4</td>
+                        <td>85.9</td>
+                        <td>65.6</td>
+                        <td class="text-success">85.9</td>
+                        <td>
+                            
+                            <svg viewBox="0 0 110 30" width="110" height="30" role="img" aria-label="Score history sparkline">
+                                <polyline points="4.0,7.1 38.0,11.6 72.0,7.1 106.0,11.6" class="chart-line" style="stroke-width: 2;" />
+                                <circle cx="4.0" cy="7.1" r="2" class="chart-dot" /><title>85.9</title><circle cx="38.0" cy="11.6" r="2" class="chart-dot" /><title>65.6</title><circle cx="72.0" cy="7.1" r="2" class="chart-dot" /><title>85.9</title><circle cx="106.0" cy="11.6" r="2" class="chart-dot" /><title>65.6</title>
+                            </svg>
+                            
+                        </td>
+                        <td>
+                            <span class="badge text-bg-danger">&darr; -20.3</span>
+                            
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="text-truncate" style="max-width: 220px;" title="Sadwika_s_Resume_.pdf">Sadwika_s_Resume_.pdf</td>
+                        <td>4</td>
+                        <td>79.1</td>
+                        <td>60.4</td>
+                        <td class="text-success">79.1</td>
+                        <td>
+                            
+                            <svg viewBox="0 0 110 30" width="110" height="30" role="img" aria-label="Score history sparkline">
+                                <polyline points="4.0,8.6 38.0,12.7 72.0,8.6 106.0,12.7" class="chart-line" style="stroke-width: 2;" />
+                                <circle cx="4.0" cy="8.6" r="2" class="chart-dot" /><title>79.1</title><circle cx="38.0" cy="12.7" r="2" class="chart-dot" /><title>60.4</title><circle cx="72.0" cy="8.6" r="2" class="chart-dot" /><title>79.1</title><circle cx="106.0" cy="12.7" r="2" class="chart-dot" /><title>60.4</title>
+                            </svg>
+                            
+                        </td>
+                        <td>
+                            <span class="badge text-bg-danger">&darr; -18.7</span>
+                            
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="text-truncate" style="max-width: 220px;" title="Divya_Resume.pdf">Divya_Resume.pdf</td>
+                        <td>12</td>
+                        <td>77.5</td>
+                        <td>63.1</td>
+                        <td class="text-success">77.5</td>
+                        <td>
+                            
+                            <svg viewBox="0 0 110 30" width="110" height="30" role="img" aria-label="Score history sparkline">
+                                <polyline points="4.0,8.9 13.3,16.3 22.5,12.1 31.8,12.1 41.1,8.9 50.4,16.3 59.6,8.9 68.9,12.1 78.2,8.9 87.5,16.3 96.7,8.9 106.0,12.1" class="chart-line" style="stroke-width: 2;" />
+                                <circle cx="4.0" cy="8.9" r="2" class="chart-dot" /><title>77.5</title><circle cx="13.3" cy="16.3" r="2" class="chart-dot" /><title>44.0</title><circle cx="22.5" cy="12.1" r="2" class="chart-dot" /><title>63.1</title><circle cx="31.8" cy="12.1" r="2" class="chart-dot" /><title>63.1</title><circle cx="41.1" cy="8.9" r="2" class="chart-dot" /><title>77.5</title><circle cx="50.4" cy="16.3" r="2" class="chart-dot" /><title>44.0</title><circle cx="59.6" cy="8.9" r="2" class="chart-dot" /><title>77.5</title><circle cx="68.9" cy="12.1" r="2" class="chart-dot" /><title>63.1</title><circle cx="78.2" cy="8.9" r="2" class="chart-dot" /><title>77.5</title><circle cx="87.5" cy="16.3" r="2" class="chart-dot" /><title>44.0</title><circle cx="96.7" cy="8.9" r="2" class="chart-dot" /><title>77.5</title><circle cx="106.0" cy="12.1" r="2" class="chart-dot" /><title>63.1</title>
+                            </svg>
+                            
+                        </td>
+                        <td>
+                            <span class="badge text-bg-danger">&darr; -14.4</span>
+                            
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="text-truncate" style="max-width: 220px;" title="Venkata_Natesh_Nallam_Resume.pdf">Venkata_Natesh_Nallam_Resume.pdf</td>
+                        <td>6</td>
+                        <td>68.9</td>
+                        <td>68.9</td>
+                        <td class="text-success">68.9</td>
+                        <td>
+                            
+                            <svg viewBox="0 0 110 30" width="110" height="30" role="img" aria-label="Score history sparkline">
+                                <polyline points="4.0,10.8 24.4,12.9 44.8,10.8 65.2,12.6 85.6,10.8 106.0,10.8" class="chart-line" style="stroke-width: 2;" />
+                                <circle cx="4.0" cy="10.8" r="2" class="chart-dot" /><title>68.9</title><circle cx="24.4" cy="12.9" r="2" class="chart-dot" /><title>59.7</title><circle cx="44.8" cy="10.8" r="2" class="chart-dot" /><title>68.9</title><circle cx="65.2" cy="12.6" r="2" class="chart-dot" /><title>60.9</title><circle cx="85.6" cy="10.8" r="2" class="chart-dot" /><title>68.9</title><circle cx="106.0" cy="10.8" r="2" class="chart-dot" /><title>68.9</title>
+                            </svg>
+                            
+                        </td>
+                        <td>
+                            <span class="badge text-bg-secondary">&rarr; flat</span>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="text-truncate" style="max-width: 220px;" title="saranyak.pdf">saranyak.pdf</td>
+                        <td>2</td>
+                        <td>21.9</td>
+                        <td>21.9</td>
+                        <td class="text-success">21.9</td>
+                        <td>
+                            
+                            <svg viewBox="0 0 110 30" width="110" height="30" role="img" aria-label="Score history sparkline">
+                                <polyline points="4.0,21.2 106.0,21.2" class="chart-line" style="stroke-width: 2;" />
+                                <circle cx="4.0" cy="21.2" r="2" class="chart-dot" /><title>21.9</title><circle cx="106.0" cy="21.2" r="2" class="chart-dot" /><title>21.9</title>
+                            </svg>
+                            
+                        </td>
+                        <td>
+                            <span class="badge text-bg-secondary">&rarr; flat</span>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="text-truncate" style="max-width: 220px;" title="gnaneswari.pdf">gnaneswari.pdf</td>
+                        <td>2</td>
+                        <td>40.1</td>
+                        <td>40.1</td>
+                        <td class="text-success">40.1</td>
+                        <td>
+                            
+                            <svg viewBox="0 0 110 30" width="110" height="30" role="img" aria-label="Score history sparkline">
+                                <polyline points="4.0,17.2 106.0,17.2" class="chart-line" style="stroke-width: 2;" />
+                                <circle cx="4.0" cy="17.2" r="2" class="chart-dot" /><title>40.1</title><circle cx="106.0" cy="17.2" r="2" class="chart-dot" /><title>40.1</title>
+                            </svg>
+                            
+                        </td>
+                        <td>
+                            <span class="badge text-bg-secondary">&rarr; flat</span>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="text-truncate" style="max-width: 220px;" title="resume_hari.pdf">resume_hari.pdf</td>
+                        <td>2</td>
+                        <td>19.6</td>
+                        <td>19.6</td>
+                        <td class="text-success">19.6</td>
+                        <td>
+                            
+                            <svg viewBox="0 0 110 30" width="110" height="30" role="img" aria-label="Score history sparkline">
+                                <polyline points="4.0,21.7 106.0,21.7" class="chart-line" style="stroke-width: 2;" />
+                                <circle cx="4.0" cy="21.7" r="2" class="chart-dot" /><title>19.6</title><circle cx="106.0" cy="21.7" r="2" class="chart-dot" /><title>19.6</title>
+                            </svg>
+                            
+                        </td>
+                        <td>
+                            <span class="badge text-bg-secondary">&rarr; flat</span>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="text-truncate" style="max-width: 220px;" title="strong.docx">strong.docx</td>
+                        <td>2</td>
+                        <td>86.2</td>
+                        <td>86.2</td>
+                        <td class="text-success">86.2</td>
+                        <td>
+                            
+                            <svg viewBox="0 0 110 30" width="110" height="30" role="img" aria-label="Score history sparkline">
+                                <polyline points="4.0,7.0 106.0,7.0" class="chart-line" style="stroke-width: 2;" />
+                                <circle cx="4.0" cy="7.0" r="2" class="chart-dot" /><title>86.2</title><circle cx="106.0" cy="7.0" r="2" class="chart-dot" /><title>86.2</title>
+                            </svg>
+                            
+                        </td>
+                        <td>
+                            <span class="badge text-bg-secondary">&rarr; flat</span>
+                        </td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Resume</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">ATS score</th>
+                        <th scope="col">Grade</th>
+                        <th scope="col">Job match</th>
+                        <th scope="col">Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <td>549</td>
+                        <td class="text-nowrap">2026-09-28 15:20</td>
+                        <td class="text-truncate" style="max-width: 200px;" title="Sai_Teja_Resume.docx">Sai_Teja_Resume.docx</td>
+                        <td><span class="badge text-bg-primary">vs Job</span></td>
+                        <td>
+                            
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="fw-bold text-warning">57.8</span>
+                                <div class="ats-mini-bar">
+                                    <div class="bg-warning"
+                                         style="width: 57.79%"></div>
+                                </div>
+                            </div>
+                            
+                        </td>
+                        <td>Fair</td>
+                        <td>50.6%</td>
+                        <td><a href="/results/549" class="btn btn-sm btn-outline-primary">JSON</a></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>548</td>
+                        <td class="text-nowrap">2026-09-28 15:20</td>
+                        <td class="text-truncate" style="max-width: 200px;" title="Sai_Teja_Resume.docx">Sai_Teja_Resume.docx</td>
+                        <td><span class="badge text-bg-secondary">Standalone</span></td>
+                        <td>
+                            
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="fw-bold text-success">90.3</span>
+                                <div class="ats-mini-bar">
+                                    <div class="bg-success"
+                                         style="width: 90.29%"></div>
+                                </div>
+                            </div>
+                            
+                        </td>
+                        <td>Excellent</td>
+                        <td>&mdash;</td>
+                        <td><a href="/results/548" class="btn btn-sm btn-outline-primary">JSON</a></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>547</td>
+                        <td class="text-nowrap">2026-09-28 15:19</td>
+                        <td class="text-truncate" style="max-width: 200px;" title="Sai_Teja_Resume.docx">Sai_Teja_Resume.docx</td>
+                        <td><span class="badge text-bg-primary">vs Job</span></td>
+                        <td>
+                            
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="fw-bold text-warning">57.8</span>
+                                <div class="ats-mini-bar">
+                                    <div class="bg-warning"
+                                         style="width: 57.79%"></div>
+                                </div>
+                            </div>
+                            
+                        </td>
+                        <td>Fair</td>
+                        <td>50.6%</td>
+                        <td><a href="/results/547" class="btn btn-sm btn-outline-primary">JSON</a></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>546</td>
+                        <td class="text-nowrap">2026-09-28 15:19</td>
+                        <td class="text-truncate" style="max-width: 200px;" title="Sai_Teja_Resume.docx">Sai_Teja_Resume.docx</td>
+                        <td><span class="badge text-bg-secondary">Standalone</span></td>
+                        <td>
+                            
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="fw-bold text-success">90.3</span>
+                                <div class="ats-mini-bar">
+                                    <div class="bg-success"
+                                         style="width: 90.29%"></div>
+                                </div>
+                            </div>
+                            
+                        </td>
+                        <td>Excellent</td>
+                        <td>&mdash;</td>
+                        <td><a href="/results/546" class="btn btn-sm btn-outline-primary">JSON</a></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>545</td>
+                        <td class="text-nowrap">2026-09-28 15:17</td>
+                        <td class="text-truncate" style="max-width: 200px;" title="Venkata_Natesh_Nallam_Resume.pdf">Venkata_Natesh_Nallam_Resume.pdf</td>
+                        <td><span class="badge text-bg-secondary">Standalone</span></td>
+                        <td>
+                            
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="fw-bold text-warning">68.9</span>
+                                <div class="ats-mini-bar">
+                                    <div class="bg-warning"
+                                         style="width: 68.93%"></div>
+                                </div>
+                            </div>
+                            
+                        </td>
+                        <td>Fair</td>
+                        <td>&mdash;</td>
+                        <td><a href="/results/545" class="btn btn-sm btn-outline-primary">JSON</a></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>544</td>
+                        <td class="text-nowrap">2026-09-28 15:15</td>
+                        <td class="text-truncate" style="max-width: 200px;" title="Venkata_Natesh_Nallam_Resume.pdf">Venkata_Natesh_Nallam_Resume.pdf</td>
+                        <td><span class="badge text-bg-secondary">Standalone</span></td>
+                        <td>
+                            
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="fw-bold text-warning">68.9</span>
+                                <div class="ats-mini-bar">
+                                    <div class="bg-warning"
+                                         style="width: 68.93%"></div>
+                                </div>
+                            </div>
+                            
+                        </td>
+                        <td>Fair</td>
+                        <td>&mdash;</td>
+                        <td><a href="/results/544" class="btn btn-sm btn-outline-primary">JSON</a></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>543</td>
+                        <td class="text-nowrap">2026-09-28 14:45</td>
+                        <td class="text-truncate" style="max-width: 200px;" title="Venkata_Natesh_Nallam_Resume.pdf">Venkata_Natesh_Nallam_Resume.pdf</td>
+                        <td><span class="badge text-bg-primary">vs Job</span></td>
+                        <td>
+                            
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="fw-bold text-warning">60.9</span>
+                                <div class="ats-mini-bar">
+                                    <div class="bg-warning"
+                                         style="width: 60.89%"></div>
+                                </div>
+                            </div>
+                            
+                        </td>
+                        <td>Fair</td>
+                        <td>57.2%</td>
+                        <td><a href="/results/543" class="btn btn-sm btn-outline-primary">JSON</a></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>542</td>
+                        <td class="text-nowrap">2026-09-28 14:45</td>
+                        <td class="text-truncate" style="max-width: 200px;" title="SWATI PRIYA.pdf">SWATI PRIYA.pdf</td>
+                        <td><span class="badge text-bg-primary">vs Job</span></td>
+                        <td>
+                            
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="fw-bold text-danger">38.0</span>
+                                <div class="ats-mini-bar">
+                                    <div class="bg-danger"
+                                         style="width: 38.03%"></div>
+                                </div>
+                            </div>
+                            
+                        </td>
+                        <td>High risk</td>
+                        <td>29.2%</td>
+                        <td><a href="/results/542" class="btn btn-sm btn-outline-primary">JSON</a></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>541</td>
+                        <td class="text-nowrap">2026-09-28 14:45</td>
+                        <td class="text-truncate" style="max-width: 200px;" title="SRIRAM SIDDHARDHA REDDY PADALA (1).pdf">SRIRAM SIDDHARDHA REDDY PADALA (1).pdf</td>
+                        <td><span class="badge text-bg-primary">vs Job</span></td>
+                        <td>
+                            
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="fw-bold text-danger">22.0</span>
+                                <div class="ats-mini-bar">
+                                    <div class="bg-danger"
+                                         style="width: 22.04%"></div>
+                                </div>
+                            </div>
+                            
+                        </td>
+                        <td>High risk</td>
+                        <td>12.2%</td>
+                        <td><a href="/results/541" class="btn btn-sm btn-outline-primary">JSON</a></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>540</td>
+                        <td class="text-nowrap">2026-09-28 14:45</td>
+                        <td class="text-truncate" style="max-width: 200px;" title="saranyak_resume.pdf">saranyak_resume.pdf</td>
+                        <td><span class="badge text-bg-primary">vs Job</span></td>
+                        <td>
+                            
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="fw-bold text-danger">21.9</span>
+                                <div class="ats-mini-bar">
+                                    <div class="bg-danger"
+                                         style="width: 21.94%"></div>
+                                </div>
+                            </div>
+                            
+                        </td>
+                        <td>High risk</td>
+                        <td>16.9%</td>
+                        <td><a href="/results/540" class="btn btn-sm btn-outline-primary">JSON</a></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>539</td>
+                        <td class="text-nowrap">2026-09-28 14:45</td>
+                        <td class="text-truncate" style="max-width: 200px;" title="Sankar Desamsetti ms resume__ 1.pdf">Sankar Desamsetti ms resume__ 1.pdf</td>
+                        <td><span class="badge text-bg-primary">vs Job</span></td>
+                        <td>
+                            
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="fw-bold text-warning">65.6</span>
+                                <div class="ats-mini-bar">
+                                    <div class="bg-warning"
+                                         style="width: 65.56%"></div>
+                                </div>
+                            </div>
+                            
+                        </td>
+                        <td>Fair</td>
+                        <td>63.0%</td>
+                        <td><a href="/results/539" class="btn btn-sm btn-outline-primary">JSON</a></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>538</td>
+                        <td class="text-nowrap">2026-09-28 14:45</td>
+                        <td class="text-truncate" style="max-width: 200px;" title="Sai_Teja_Resume(updated) .docx">Sai_Teja_Resume(updated) .docx</td>
+                        <td><span class="badge text-bg-primary">vs Job</span></td>
+                        <td>
+                            
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="fw-bold text-warning">57.8</span>
+                                <div class="ats-mini-bar">
+                                    <div class="bg-warning"
+                                         style="width: 57.79%"></div>
+                                </div>
+                            </div>
+                            
+                        </td>
+                        <td>Fair</td>
+                        <td>50.6%</td>
+                        <td><a href="/results/538" class="btn btn-sm btn-outline-primary">JSON</a></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>537</td>
+                        <td class="text-nowrap">2026-09-28 14:45</td>
+                        <td class="text-truncate" style="max-width: 200px;" title="sai_teja_resume (1) (1).pdf">sai_teja_resume (1) (1).pdf</td>
+                        <td><span class="badge text-bg-primary">vs Job</span></td>
+                        <td>
+                            
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="fw-bold text-danger">48.3</span>
+                                <div class="ats-mini-bar">
+                                    <div class="bg-danger"
+                                         style="width: 48.26%"></div>
+                                </div>
+                            </div>
+                            
+                        </td>
+                        <td>Needs work</td>
+                        <td>41.9%</td>
+                        <td><a href="/results/537" class="btn btn-sm btn-outline-primary">JSON</a></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>536</td>
+                        <td class="text-nowrap">2026-09-28 14:45</td>
+                        <td class="text-truncate" style="max-width: 200px;" title="Sai Teja_Resume.pdf">Sai Teja_Resume.pdf</td>
+                        <td><span class="badge text-bg-primary">vs Job</span></td>
+                        <td>
+                            
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="fw-bold text-danger">49.1</span>
+                                <div class="ats-mini-bar">
+                                    <div class="bg-danger"
+                                         style="width: 49.08%"></div>
+                                </div>
+                            </div>
+                            
+                        </td>
+                        <td>Needs work</td>
+                        <td>41.9%</td>
+                        <td><a href="/results/536" class="btn btn-sm btn-outline-primary">JSON</a></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>535</td>
+                        <td class="text-nowrap">2026-09-28 14:45</td>
+                        <td class="text-truncate" style="max-width: 200px;" title="Sai Teja_Resume.docx">Sai Teja_Resume.docx</td>
+                        <td><span class="badge text-bg-primary">vs Job</span></td>
+                        <td>
+                            
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="fw-bold text-danger">49.2</span>
+                                <div class="ats-mini-bar">
+                                    <div class="bg-danger"
+                                         style="width: 49.19%"></div>
+                                </div>
+                            </div>
+                            
+                        </td>
+                        <td>Needs work</td>
+                        <td>41.9%</td>
+                        <td><a href="/results/535" class="btn btn-sm btn-outline-primary">JSON</a></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>534</td>
+                        <td class="text-nowrap">2026-09-28 14:45</td>
+                        <td class="text-truncate" style="max-width: 200px;" title="Sai Teja Kondapalli.docx">Sai Teja Kondapalli.docx</td>
+                        <td><span class="badge text-bg-primary">vs Job</span></td>
+                        <td>
+                            
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="fw-bold text-danger">48.3</span>
+                                <div class="ats-mini-bar">
+                                    <div class="bg-danger"
+                                         style="width: 48.32%"></div>
+                                </div>
+                            </div>
+                            
+                        </td>
+                        <td>Needs work</td>
+                        <td>41.9%</td>
+                        <td><a href="/results/534" class="btn btn-sm btn-outline-primary">JSON</a></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>533</td>
+                        <td class="text-nowrap">2026-09-28 14:45</td>
+                        <td class="text-truncate" style="max-width: 200px;" title="Sai Teja Kondapalli (1).pdf">Sai Teja Kondapalli (1).pdf</td>
+                        <td><span class="badge text-bg-primary">vs Job</span></td>
+                        <td>
+                            
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="fw-bold text-danger">48.3</span>
+                                <div class="ats-mini-bar">
+                                    <div class="bg-danger"
+                                         style="width: 48.26%"></div>
+                                </div>
+                            </div>
+                            
+                        </td>
+                        <td>Needs work</td>
+                        <td>41.9%</td>
+                        <td><a href="/results/533" class="btn btn-sm btn-outline-primary">JSON</a></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>532</td>
+                        <td class="text-nowrap">2026-09-28 14:45</td>
+                        <td class="text-truncate" style="max-width: 200px;" title="Sai Teja Kondapalli (1).docx">Sai Teja Kondapalli (1).docx</td>
+                        <td><span class="badge text-bg-primary">vs Job</span></td>
+                        <td>
+                            
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="fw-bold text-danger">48.3</span>
+                                <div class="ats-mini-bar">
+                                    <div class="bg-danger"
+                                         style="width: 48.32%"></div>
+                                </div>
+                            </div>
+                            
+                        </td>
+                        <td>Needs work</td>
+                        <td>41.9%</td>
+                        <td><a href="/results/532" class="btn btn-sm btn-outline-primary">JSON</a></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>531</td>
+                        <td class="text-nowrap">2026-09-28 14:45</td>
+                        <td class="text-truncate" style="max-width: 200px;" title="Sadwika_s_Resume_.pdf">Sadwika_s_Resume_.pdf</td>
+                        <td><span class="badge text-bg-primary">vs Job</span></td>
+                        <td>
+                            
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="fw-bold text-warning">60.4</span>
+                                <div class="ats-mini-bar">
+                                    <div class="bg-warning"
+                                         style="width: 60.39%"></div>
+                                </div>
+                            </div>
+                            
+                        </td>
+                        <td>Fair</td>
+                        <td>61.7%</td>
+                        <td><a href="/results/531" class="btn btn-sm btn-outline-primary">JSON</a></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>530</td>
+                        <td class="text-nowrap">2026-09-28 14:45</td>
+                        <td class="text-truncate" style="max-width: 200px;" title="resume_hari (3).pdf">resume_hari (3).pdf</td>
+                        <td><span class="badge text-bg-primary">vs Job</span></td>
+                        <td>
+                            
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="fw-bold text-danger">19.6</span>
+                                <div class="ats-mini-bar">
+                                    <div class="bg-danger"
+                                         style="width: 19.63%"></div>
+                                </div>
+                            </div>
+                            
+                        </td>
+                        <td>High risk</td>
+                        <td>12.6%</td>
+                        <td><a href="/results/530" class="btn btn-sm btn-outline-primary">JSON</a></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>529</td>
+                        <td class="text-nowrap">2026-09-28 14:45</td>
+                        <td class="text-truncate" style="max-width: 200px;" title="resume gnaneswari.pdf">resume gnaneswari.pdf</td>
+                        <td><span class="badge text-bg-primary">vs Job</span></td>
+                        <td>
+                            
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="fw-bold text-danger">40.1</span>
+                                <div class="ats-mini-bar">
+                                    <div class="bg-danger"
+                                         style="width: 40.1%"></div>
+                                </div>
+                            </div>
+                            
+                        </td>
+                        <td>Needs work</td>
+                        <td>27.8%</td>
+                        <td><a href="/results/529" class="btn btn-sm btn-outline-primary">JSON</a></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>528</td>
+                        <td class="text-nowrap">2026-09-28 14:45</td>
+                        <td class="text-truncate" style="max-width: 200px;" title="Naga_Sathwika_Kovvuri_Google.pdf">Naga_Sathwika_Kovvuri_Google.pdf</td>
+                        <td><span class="badge text-bg-primary">vs Job</span></td>
+                        <td>
+                            
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="fw-bold text-danger">45.6</span>
+                                <div class="ats-mini-bar">
+                                    <div class="bg-danger"
+                                         style="width: 45.58%"></div>
+                                </div>
+                            </div>
+                            
+                        </td>
+                        <td>Needs work</td>
+                        <td>27.5%</td>
+                        <td><a href="/results/528" class="btn btn-sm btn-outline-primary">JSON</a></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>527</td>
+                        <td class="text-nowrap">2026-09-28 14:45</td>
+                        <td class="text-truncate" style="max-width: 200px;" title="Lalitha_Resume.pdf">Lalitha_Resume.pdf</td>
+                        <td><span class="badge text-bg-primary">vs Job</span></td>
+                        <td>
+                            
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="fw-bold text-danger">35.2</span>
+                                <div class="ats-mini-bar">
+                                    <div class="bg-danger"
+                                         style="width: 35.16%"></div>
+                                </div>
+                            </div>
+                            
+                        </td>
+                        <td>High risk</td>
+                        <td>27.2%</td>
+                        <td><a href="/results/527" class="btn btn-sm btn-outline-primary">JSON</a></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>526</td>
+                        <td class="text-nowrap">2026-09-28 14:45</td>
+                        <td class="text-truncate" style="max-width: 200px;" title="Divya_Resume.pdf">Divya_Resume.pdf</td>
+                        <td><span class="badge text-bg-primary">vs Job</span></td>
+                        <td>
+                            
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="fw-bold text-warning">63.1</span>
+                                <div class="ats-mini-bar">
+                                    <div class="bg-warning"
+                                         style="width: 63.11%"></div>
+                                </div>
+                            </div>
+                            
+                        </td>
+                        <td>Fair</td>
+                        <td>62.7%</td>
+                        <td><a href="/results/526" class="btn btn-sm btn-outline-primary">JSON</a></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>525</td>
+                        <td class="text-nowrap">2026-09-28 14:45</td>
+                        <td class="text-truncate" style="max-width: 200px;" title="Venkata_Natesh_Nallam_Resume.pdf">Venkata_Natesh_Nallam_Resume.pdf</td>
+                        <td><span class="badge text-bg-secondary">Standalone</span></td>
+                        <td>
+                            
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="fw-bold text-warning">68.9</span>
+                                <div class="ats-mini-bar">
+                                    <div class="bg-warning"
+                                         style="width: 68.93%"></div>
+                                </div>
+                            </div>
+                            
+                        </td>
+                        <td>Fair</td>
+                        <td>&mdash;</td>
+                        <td><a href="/results/525" class="btn btn-sm btn-outline-primary">JSON</a></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>524</td>
+                        <td class="text-nowrap">2026-09-28 14:45</td>
+                        <td class="text-truncate" style="max-width: 200px;" title="SWATI PRIYA.pdf">SWATI PRIYA.pdf</td>
+                        <td><span class="badge text-bg-secondary">Standalone</span></td>
+                        <td>
+                            
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="fw-bold text-warning">60.2</span>
+                                <div class="ats-mini-bar">
+                                    <div class="bg-warning"
+                                         style="width: 60.25%"></div>
+                                </div>
+                            </div>
+                            
+                        </td>
+                        <td>Fair</td>
+                        <td>&mdash;</td>
+                        <td><a href="/results/524" class="btn btn-sm btn-outline-primary">JSON</a></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>523</td>
+                        <td class="text-nowrap">2026-09-28 14:45</td>
+                        <td class="text-truncate" style="max-width: 200px;" title="SRIRAM SIDDHARDHA REDDY PADALA (1).pdf">SRIRAM SIDDHARDHA REDDY PADALA (1).pdf</td>
+                        <td><span class="badge text-bg-secondary">Standalone</span></td>
+                        <td>
+                            
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="fw-bold text-primary">75.9</span>
+                                <div class="ats-mini-bar">
+                                    <div class="bg-primary"
+                                         style="width: 75.86%"></div>
+                                </div>
+                            </div>
+                            
+                        </td>
+                        <td>Strong</td>
+                        <td>&mdash;</td>
+                        <td><a href="/results/523" class="btn btn-sm btn-outline-primary">JSON</a></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>522</td>
+                        <td class="text-nowrap">2026-09-28 14:45</td>
+                        <td class="text-truncate" style="max-width: 200px;" title="saranyak_resume.pdf">saranyak_resume.pdf</td>
+                        <td><span class="badge text-bg-secondary">Standalone</span></td>
+                        <td>
+                            
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="fw-bold text-danger">46.6</span>
+                                <div class="ats-mini-bar">
+                                    <div class="bg-danger"
+                                         style="width: 46.57%"></div>
+                                </div>
+                            </div>
+                            
+                        </td>
+                        <td>Needs work</td>
+                        <td>&mdash;</td>
+                        <td><a href="/results/522" class="btn btn-sm btn-outline-primary">JSON</a></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>521</td>
+                        <td class="text-nowrap">2026-09-28 14:45</td>
+                        <td class="text-truncate" style="max-width: 200px;" title="Sankar Desamsetti ms resume__ 1.pdf">Sankar Desamsetti ms resume__ 1.pdf</td>
+                        <td><span class="badge text-bg-secondary">Standalone</span></td>
+                        <td>
+                            
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="fw-bold text-success">85.9</span>
+                                <div class="ats-mini-bar">
+                                    <div class="bg-success"
+                                         style="width: 85.86%"></div>
+                                </div>
+                            </div>
+                            
+                        </td>
+                        <td>Excellent</td>
+                        <td>&mdash;</td>
+                        <td><a href="/results/521" class="btn btn-sm btn-outline-primary">JSON</a></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>520</td>
+                        <td class="text-nowrap">2026-09-28 14:45</td>
+                        <td class="text-truncate" style="max-width: 200px;" title="Sai_Teja_Resume(updated) .docx">Sai_Teja_Resume(updated) .docx</td>
+                        <td><span class="badge text-bg-secondary">Standalone</span></td>
+                        <td>
+                            
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="fw-bold text-success">90.3</span>
+                                <div class="ats-mini-bar">
+                                    <div class="bg-success"
+                                         style="width: 90.29%"></div>
+                                </div>
+                            </div>
+                            
+                        </td>
+                        <td>Excellent</td>
+                        <td>&mdash;</td>
+                        <td><a href="/results/520" class="btn btn-sm btn-outline-primary">JSON</a></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>519</td>
+                        <td class="text-nowrap">2026-09-28 14:45</td>
+                        <td class="text-truncate" style="max-width: 200px;" title="sai_teja_resume (1) (1).pdf">sai_teja_resume (1) (1).pdf</td>
+                        <td><span class="badge text-bg-secondary">Standalone</span></td>
+                        <td>
+                            
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="fw-bold text-primary">83.0</span>
+                                <div class="ats-mini-bar">
+                                    <div class="bg-primary"
+                                         style="width: 83.0%"></div>
+                                </div>
+                            </div>
+                            
+                        </td>
+                        <td>Strong</td>
+                        <td>&mdash;</td>
+                        <td><a href="/results/519" class="btn btn-sm btn-outline-primary">JSON</a></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>518</td>
+                        <td class="text-nowrap">2026-09-28 14:45</td>
+                        <td class="text-truncate" style="max-width: 200px;" title="Sai Teja_Resume.pdf">Sai Teja_Resume.pdf</td>
+                        <td><span class="badge text-bg-secondary">Standalone</span></td>
+                        <td>
+                            
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="fw-bold text-primary">81.3</span>
+                                <div class="ats-mini-bar">
+                                    <div class="bg-primary"
+                                         style="width: 81.33%"></div>
+                                </div>
+                            </div>
+                            
+                        </td>
+                        <td>Strong</td>
+                        <td>&mdash;</td>
+                        <td><a href="/results/518" class="btn btn-sm btn-outline-primary">JSON</a></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>517</td>
+                        <td class="text-nowrap">2026-09-28 14:45</td>
+                        <td class="text-truncate" style="max-width: 200px;" title="Sai Teja_Resume.docx">Sai Teja_Resume.docx</td>
+                        <td><span class="badge text-bg-secondary">Standalone</span></td>
+                        <td>
+                            
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="fw-bold text-primary">81.3</span>
+                                <div class="ats-mini-bar">
+                                    <div class="bg-primary"
+                                         style="width: 81.33%"></div>
+                                </div>
+                            </div>
+                            
+                        </td>
+                        <td>Strong</td>
+                        <td>&mdash;</td>
+                        <td><a href="/results/517" class="btn btn-sm btn-outline-primary">JSON</a></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>516</td>
+                        <td class="text-nowrap">2026-09-28 14:45</td>
+                        <td class="text-truncate" style="max-width: 200px;" title="Sai Teja Kondapalli.docx">Sai Teja Kondapalli.docx</td>
+                        <td><span class="badge text-bg-secondary">Standalone</span></td>
+                        <td>
+                            
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="fw-bold text-primary">83.0</span>
+                                <div class="ats-mini-bar">
+                                    <div class="bg-primary"
+                                         style="width: 83.0%"></div>
+                                </div>
+                            </div>
+                            
+                        </td>
+                        <td>Strong</td>
+                        <td>&mdash;</td>
+                        <td><a href="/results/516" class="btn btn-sm btn-outline-primary">JSON</a></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>515</td>
+                        <td class="text-nowrap">2026-09-28 14:45</td>
+                        <td class="text-truncate" style="max-width: 200px;" title="Sai Teja Kondapalli (1).pdf">Sai Teja Kondapalli (1).pdf</td>
+                        <td><span class="badge text-bg-secondary">Standalone</span></td>
+                        <td>
+                            
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="fw-bold text-primary">83.0</span>
+                                <div class="ats-mini-bar">
+                                    <div class="bg-primary"
+                                         style="width: 83.0%"></div>
+                                </div>
+                            </div>
+                            
+                        </td>
+                        <td>Strong</td>
+                        <td>&mdash;</td>
+                        <td><a href="/results/515" class="btn btn-sm btn-outline-primary">JSON</a></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>514</td>
+                        <td class="text-nowrap">2026-09-28 14:45</td>
+                        <td class="text-truncate" style="max-width: 200px;" title="Sai Teja Kondapalli (1).docx">Sai Teja Kondapalli (1).docx</td>
+                        <td><span class="badge text-bg-secondary">Standalone</span></td>
+                        <td>
+                            
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="fw-bold text-primary">83.0</span>
+                                <div class="ats-mini-bar">
+                                    <div class="bg-primary"
+                                         style="width: 83.0%"></div>
+                                </div>
+                            </div>
+                            
+                        </td>
+                        <td>Strong</td>
+                        <td>&mdash;</td>
+                        <td><a href="/results/514" class="btn btn-sm btn-outline-primary">JSON</a></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>513</td>
+                        <td class="text-nowrap">2026-09-28 14:45</td>
+                        <td class="text-truncate" style="max-width: 200px;" title="Sadwika_s_Resume_.pdf">Sadwika_s_Resume_.pdf</td>
+                        <td><span class="badge text-bg-secondary">Standalone</span></td>
+                        <td>
+                            
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="fw-bold text-primary">79.1</span>
+                                <div class="ats-mini-bar">
+                                    <div class="bg-primary"
+                                         style="width: 79.1%"></div>
+                                </div>
+                            </div>
+                            
+                        </td>
+                        <td>Strong</td>
+                        <td>&mdash;</td>
+                        <td><a href="/results/513" class="btn btn-sm btn-outline-primary">JSON</a></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>512</td>
+                        <td class="text-nowrap">2026-09-28 14:45</td>
+                        <td class="text-truncate" style="max-width: 200px;" title="resume_hari (3).pdf">resume_hari (3).pdf</td>
+                        <td><span class="badge text-bg-secondary">Standalone</span></td>
+                        <td>
+                            
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="fw-bold text-primary">74.7</span>
+                                <div class="ats-mini-bar">
+                                    <div class="bg-primary"
+                                         style="width: 74.67%"></div>
+                                </div>
+                            </div>
+                            
+                        </td>
+                        <td>Strong</td>
+                        <td>&mdash;</td>
+                        <td><a href="/results/512" class="btn btn-sm btn-outline-primary">JSON</a></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>511</td>
+                        <td class="text-nowrap">2026-09-28 14:45</td>
+                        <td class="text-truncate" style="max-width: 200px;" title="resume gnaneswari.pdf">resume gnaneswari.pdf</td>
+                        <td><span class="badge text-bg-secondary">Standalone</span></td>
+                        <td>
+                            
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="fw-bold text-warning">69.9</span>
+                                <div class="ats-mini-bar">
+                                    <div class="bg-warning"
+                                         style="width: 69.87%"></div>
+                                </div>
+                            </div>
+                            
+                        </td>
+                        <td>Fair</td>
+                        <td>&mdash;</td>
+                        <td><a href="/results/511" class="btn btn-sm btn-outline-primary">JSON</a></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>510</td>
+                        <td class="text-nowrap">2026-09-28 14:45</td>
+                        <td class="text-truncate" style="max-width: 200px;" title="Naga_Sathwika_Kovvuri_Google.pdf">Naga_Sathwika_Kovvuri_Google.pdf</td>
+                        <td><span class="badge text-bg-secondary">Standalone</span></td>
+                        <td>
+                            
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="fw-bold text-success">86.2</span>
+                                <div class="ats-mini-bar">
+                                    <div class="bg-success"
+                                         style="width: 86.22%"></div>
+                                </div>
+                            </div>
+                            
+                        </td>
+                        <td>Excellent</td>
+                        <td>&mdash;</td>
+                        <td><a href="/results/510" class="btn btn-sm btn-outline-primary">JSON</a></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>509</td>
+                        <td class="text-nowrap">2026-09-28 14:45</td>
+                        <td class="text-truncate" style="max-width: 200px;" title="Lalitha_Resume.pdf">Lalitha_Resume.pdf</td>
+                        <td><span class="badge text-bg-secondary">Standalone</span></td>
+                        <td>
+                            
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="fw-bold text-warning">69.7</span>
+                                <div class="ats-mini-bar">
+                                    <div class="bg-warning"
+                                         style="width: 69.67%"></div>
+                                </div>
+                            </div>
+                            
+                        </td>
+                        <td>Fair</td>
+                        <td>&mdash;</td>
+                        <td><a href="/results/509" class="btn btn-sm btn-outline-primary">JSON</a></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>508</td>
+                        <td class="text-nowrap">2026-09-28 14:45</td>
+                        <td class="text-truncate" style="max-width: 200px;" title="Divya_Resume.pdf">Divya_Resume.pdf</td>
+                        <td><span class="badge text-bg-secondary">Standalone</span></td>
+                        <td>
+                            
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="fw-bold text-primary">77.5</span>
+                                <div class="ats-mini-bar">
+                                    <div class="bg-primary"
+                                         style="width: 77.5%"></div>
+                                </div>
+                            </div>
+                            
+                        </td>
+                        <td>Strong</td>
+                        <td>&mdash;</td>
+                        <td><a href="/results/508" class="btn btn-sm btn-outline-primary">JSON</a></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>507</td>
+                        <td class="text-nowrap">2026-09-28 14:45</td>
+                        <td class="text-truncate" style="max-width: 200px;" title="Lalitha_Resume.pdf">Lalitha_Resume.pdf</td>
+                        <td><span class="badge text-bg-primary">vs Job</span></td>
+                        <td>
+                            
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="fw-bold text-danger">26.8</span>
+                                <div class="ats-mini-bar">
+                                    <div class="bg-danger"
+                                         style="width: 26.84%"></div>
+                                </div>
+                            </div>
+                            
+                        </td>
+                        <td>High risk</td>
+                        <td>19.9%</td>
+                        <td><a href="/results/507" class="btn btn-sm btn-outline-primary">JSON</a></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>506</td>
+                        <td class="text-nowrap">2026-09-28 14:45</td>
+                        <td class="text-truncate" style="max-width: 200px;" title="Lalitha_Resume.pdf">Lalitha_Resume.pdf</td>
+                        <td><span class="badge text-bg-secondary">Standalone</span></td>
+                        <td>
+                            
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="fw-bold text-warning">69.7</span>
+                                <div class="ats-mini-bar">
+                                    <div class="bg-warning"
+                                         style="width: 69.67%"></div>
+                                </div>
+                            </div>
+                            
+                        </td>
+                        <td>Fair</td>
+                        <td>&mdash;</td>
+                        <td><a href="/results/506" class="btn btn-sm btn-outline-primary">JSON</a></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>505</td>
+                        <td class="text-nowrap">2026-09-28 14:45</td>
+                        <td class="text-truncate" style="max-width: 200px;" title="Divya_Resume.pdf">Divya_Resume.pdf</td>
+                        <td><span class="badge text-bg-primary">vs Job</span></td>
+                        <td>
+                            
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="fw-bold text-danger">44.0</span>
+                                <div class="ats-mini-bar">
+                                    <div class="bg-danger"
+                                         style="width: 43.95%"></div>
+                                </div>
+                            </div>
+                            
+                        </td>
+                        <td>Needs work</td>
+                        <td>43.9%</td>
+                        <td><a href="/results/505" class="btn btn-sm btn-outline-primary">JSON</a></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>504</td>
+                        <td class="text-nowrap">2026-09-28 14:45</td>
+                        <td class="text-truncate" style="max-width: 200px;" title="Divya_Resume.pdf">Divya_Resume.pdf</td>
+                        <td><span class="badge text-bg-secondary">Standalone</span></td>
+                        <td>
+                            
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="fw-bold text-primary">77.5</span>
+                                <div class="ats-mini-bar">
+                                    <div class="bg-primary"
+                                         style="width: 77.5%"></div>
+                                </div>
+                            </div>
+                            
+                        </td>
+                        <td>Strong</td>
+                        <td>&mdash;</td>
+                        <td><a href="/results/504" class="btn btn-sm btn-outline-primary">JSON</a></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>503</td>
+                        <td class="text-nowrap">2026-09-28 13:51</td>
+                        <td class="text-truncate" style="max-width: 200px;" title="Venkata_Natesh_Nallam_Resume.pdf">Venkata_Natesh_Nallam_Resume.pdf</td>
+                        <td><span class="badge text-bg-primary">vs Job</span></td>
+                        <td>
+                            
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="fw-bold text-warning">59.7</span>
+                                <div class="ats-mini-bar">
+                                    <div class="bg-warning"
+                                         style="width: 59.67%"></div>
+                                </div>
+                            </div>
+                            
+                        </td>
+                        <td>Fair</td>
+                        <td>57.1%</td>
+                        <td><a href="/results/503" class="btn btn-sm btn-outline-primary">JSON</a></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>502</td>
+                        <td class="text-nowrap">2026-09-28 13:51</td>
+                        <td class="text-truncate" style="max-width: 200px;" title="SWATI PRIYA.pdf">SWATI PRIYA.pdf</td>
+                        <td><span class="badge text-bg-primary">vs Job</span></td>
+                        <td>
+                            
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="fw-bold text-danger">38.0</span>
+                                <div class="ats-mini-bar">
+                                    <div class="bg-danger"
+                                         style="width: 38.03%"></div>
+                                </div>
+                            </div>
+                            
+                        </td>
+                        <td>High risk</td>
+                        <td>29.1%</td>
+                        <td><a href="/results/502" class="btn btn-sm btn-outline-primary">JSON</a></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>501</td>
+                        <td class="text-nowrap">2026-09-28 13:51</td>
+                        <td class="text-truncate" style="max-width: 200px;" title="SRIRAM SIDDHARDHA REDDY PADALA (1).pdf">SRIRAM SIDDHARDHA REDDY PADALA (1).pdf</td>
+                        <td><span class="badge text-bg-primary">vs Job</span></td>
+                        <td>
+                            
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="fw-bold text-danger">22.0</span>
+                                <div class="ats-mini-bar">
+                                    <div class="bg-danger"
+                                         style="width: 22.04%"></div>
+                                </div>
+                            </div>
+                            
+                        </td>
+                        <td>High risk</td>
+                        <td>12.2%</td>
+                        <td><a href="/results/501" class="btn btn-sm btn-outline-primary">JSON</a></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>500</td>
+                        <td class="text-nowrap">2026-09-28 13:51</td>
+                        <td class="text-truncate" style="max-width: 200px;" title="saranyak_resume.pdf">saranyak_resume.pdf</td>
+                        <td><span class="badge text-bg-primary">vs Job</span></td>
+                        <td>
+                            
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="fw-bold text-danger">21.9</span>
+                                <div class="ats-mini-bar">
+                                    <div class="bg-danger"
+                                         style="width: 21.94%"></div>
+                                </div>
+                            </div>
+                            
+                        </td>
+                        <td>High risk</td>
+                        <td>16.9%</td>
+                        <td><a href="/results/500" class="btn btn-sm btn-outline-primary">JSON</a></td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+</div>
+
+    </main>
+
+    <footer class="text-center text-muted py-4 small border-top">
+        NLP + Machine Learning powered resume analysis &middot; fully offline
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/script.js"></script>
+    
+</body>
+</html>

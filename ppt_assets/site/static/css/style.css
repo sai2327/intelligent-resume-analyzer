@@ -1,0 +1,300 @@
+:root {
+  --brand-color: #4f46e5;
+  --brand-dark: #3730a3;
+}
+
+body {
+  background-color: #f5f6fb;
+}
+
+.app-navbar {
+  background: linear-gradient(90deg, var(--brand-color), var(--brand-dark));
+}
+
+.card {
+  border: none;
+  border-radius: 0.75rem;
+}
+
+.overall-score {
+  color: var(--brand-color);
+}
+
+.score-card {
+  background: #fff;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  height: 100%;
+}
+
+.score-card__label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: #6b7280;
+  font-weight: 600;
+}
+
+.score-card__value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0.25rem 0;
+}
+
+.score-card__detail {
+  font-size: 0.75rem;
+  color: #6b7280;
+  margin-top: 0.4rem;
+}
+
+.skill-badge {
+  display: inline-block;
+  margin: 0.15rem;
+  padding: 0.4rem 0.7rem;
+  font-size: 0.85rem;
+  border-radius: 999px;
+  font-weight: 500;
+}
+
+.skill-badge--matched { background-color: #dcfce7; color: #166534; }
+.skill-badge--missing { background-color: #fee2e2; color: #991b1b; }
+.skill-badge--preferred { background-color: #fef9c3; color: #854d0e; }
+.skill-badge--extra { background-color: #e0e7ff; color: #3730a3; }
+
+.drop-zone {
+  border: 2px dashed #c7cadf;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  text-align: center;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.drop-zone--over {
+  background-color: #eef2ff;
+  border-color: var(--brand-color);
+}
+
+.drop-zone__hint {
+  margin: 0.5rem 0 0;
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+/* ---- ATS score tracker ---- */
+
+.ats-gauge {
+  --p: 0;
+  --gauge-color: var(--brand-color);
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  background: conic-gradient(var(--gauge-color) calc(var(--p) * 1%), #e9eaf3 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.ats-gauge::before {
+  content: "";
+  position: absolute;
+  inset: 13px;
+  background: #fff;
+  border-radius: 50%;
+}
+
+.ats-gauge__inner {
+  position: relative;
+  text-align: center;
+  line-height: 1.1;
+}
+
+.ats-gauge__value {
+  font-size: 2.4rem;
+  font-weight: 800;
+}
+
+.ats-gauge__label {
+  font-size: 0.75rem;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.ats-factor__bar {
+  height: 8px;
+  border-radius: 999px;
+  background-color: #eef0f6;
+}
+
+.ats-factor__detail {
+  font-size: 0.75rem;
+  margin-top: 0.2rem;
+}
+
+.ats-mini-bar {
+  flex: 1 1 auto;
+  min-width: 70px;
+  max-width: 160px;
+  height: 7px;
+  border-radius: 999px;
+  background-color: #eef0f6;
+  overflow: hidden;
+}
+
+.ats-mini-bar > div {
+  height: 100%;
+  border-radius: 999px;
+}
+
+/* ---- advanced options ---- */
+
+.advanced-options {
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  padding: 0.6rem 0.9rem;
+  background: #fafbff;
+}
+
+.advanced-options summary {
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--brand-color);
+  user-select: none;
+}
+
+/* ---- potential score + radar chart ---- */
+
+.potential-box {
+  border: 1px dashed #16a34a;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  background: #f0fdf4;
+}
+
+.ats-radar {
+  width: 330px;
+  max-width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.ats-radar__ring {
+  fill: none;
+  stroke: #e2e4f0;
+  stroke-width: 1;
+}
+
+.ats-radar__axis {
+  stroke: #e2e4f0;
+  stroke-width: 1;
+}
+
+.ats-radar__score {
+  fill: rgba(79, 70, 229, 0.18);
+  stroke: var(--brand-color);
+  stroke-width: 2;
+}
+
+.ats-radar__dot {
+  fill: var(--brand-color);
+}
+
+.ats-radar__label {
+  font-size: 8.5px;
+  fill: #4b5563;
+}
+
+/* ---- server-rendered charts ---- */
+
+.chart-svg {
+  width: 100%;
+  max-width: 680px;
+  height: auto;
+}
+
+.chart-svg--full {
+  max-width: 100%;
+}
+
+.chart-grid {
+  stroke: #eceef5;
+  stroke-width: 1;
+}
+
+.chart-tick {
+  font-size: 9px;
+  fill: #9ca3af;
+}
+
+.chart-tick--label {
+  font-size: 10.5px;
+  fill: #4b5563;
+  font-weight: 600;
+}
+
+.chart-line {
+  fill: none;
+  stroke: var(--brand-color);
+  stroke-width: 2.5;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.chart-dot {
+  fill: var(--brand-color);
+  stroke: #fff;
+  stroke-width: 1.5;
+}
+
+.chart-donut-label {
+  font-size: 15px;
+  font-weight: 700;
+  fill: #111827;
+}
+
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-right: 14px;
+  font-size: 0.8rem;
+  color: #4b5563;
+}
+
+.legend-swatch {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+}
+
+.compare-legend {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* ---- UI polish: consistent density and hierarchy ---- */
+
+.card-title {
+  letter-spacing: -0.01em;
+}
+
+.card-body > .card-title + .text-muted,
+.card-body > .card-title + p {
+  margin-top: -0.25rem;
+}
+
+.score-card {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.score-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.list-group-item.bg-transparent {
+  border-color: #f1f2f7;
+}

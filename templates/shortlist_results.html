@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+{% block title %}Shortlist Screening Results &middot; Intelligent Resume Analyzer{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2 dossier-masthead-bar">
+    <div>
+        <div class="d-flex align-items-center gap-2 mb-1">
+            <span class="badge text-bg-dark text-uppercase small px-2 py-1" style="letter-spacing: 0.08em; font-size: 0.7rem;">Batch Protocol</span>
+            <span class="text-muted small">&bull;</span>
+            <span class="text-muted small fw-semibold text-uppercase" style="letter-spacing: 0.05em;">Applicant Pool Shortlist</span>
+        </div>
+        <h2 class="fw-bold mb-0 classic-heading">Shortlist Results</h2>
+        <p class="text-muted small mb-0 mt-1">
+            {{ job.results | length }} candidate{{ 's' if job.results|length != 1 }} screened against the job description
+            &middot; shortlist threshold: <strong>{{ job.threshold }}</strong>
+            &middot; {{ job.strictness | title }} scoring
+            {% if job.finished and job.started %}&middot; completed in {{ (job.finished - job.started) | round(1) }}s{% endif %}
+        </p>
+    </div>
+    <a href="{{ url_for('index') }}" class="btn btn-outline-secondary btn-sm">
+        <i class="bi bi-arrow-left me-1"></i>New Analysis
+    </a>
+</div>
+
+<div class="row g-3 mb-4">
+    <div class="col-md-3 col-6">
+        <div class="score-card text-center border-start border-4 border-success executive-stat-card">
+            <div class="score-card__label"><i class="bi bi-check-circle-fill text-success me-1"></i>Shortlisted</div>
+            <div class="score-card__value text-success">{{ job.shortlisted_count }}</div>
+            <div class="score-card__detail">Score &ge; {{ job.threshold }} threshold</div>
+        </div>
+    </div>
+    <div class="col-md-3 col-6">
+        <div class="score-card text-center border-start border-4 border-warning executive-stat-card">
+            <div class="score-card__label"><i class="bi bi-question-circle-fill text-warning me-1"></i>Maybe</div>
+            <div class="score-card__value text-warning">{{ job.maybe_count }}</div>
+            <div class="score-card__detail">Within {{ job.maybe_band }} pts of threshold</div>
+        </div>
+    </div>
+    <div class="col-md-3 col-6">
+        <div class="score-card text-center border-start border-4 border-danger executive-stat-card">
+            <div class="score-card__label"><i class="bi bi-x-circle-fill text-danger me-1"></i>Rejected</div>
+            <div class="score-card__value text-danger">{{ job.rejected_count }}</div>
+            <div class="score-card__detail">Below qualification cutoff</div>
+        </div>
+    </div>
+    <div class="col-md-3 col-6">
+        <div class="score-card text-center border-start border-4 border-secondary executive-stat-card">
+            <div class="score-card__label"><i class="bi bi-slash-circle me-1"></i>Skipped / errors</div>
+            <div class="score-card__value">{{ (job.skipped | length) + (job.errors | length) }}</div>
+            <div class="score-card__detail">Unscreenable documents</div>
+        </div>
+    </div>
+</div>
+
+{% if job.score_bars %}
+<div class="card shadow-sm mb-4 executive-dossier-card">
+    <div class="card-header bg-white border-bottom py-3 px-4">
+        <h6 class="fw-bold mb-0 d-flex align-items-center gap-2">
+            <i class="bi bi-bar-chart-fill text-primary"></i>
+            Candidate ranking
+        </h6>
+    </div>
+    <div class="card-body p-4">
+        <div class="p-3 bg-light rounded-3 border">
+            <svg viewBox="0 0 {{ job.score_bars.width }} {{ job.score_bars.height }}" class="chart-svg chart-svg--full" role="img" aria-label="Candidate ATS scores">
+                {% for row in job.score_bars.rows %}
+                <text x="0" y="{{ loop.index * job.score_bars.row_height - 12 }}" class="chart-tick chart-tick--label">{{ row.label | truncate(34) }}</text>
+                <rect x="{{ job.score_bars.label_w }}" y="{{ loop.index * job.score_bars.row_height - 22 }}"
+                      width="{{ row.width }}" height="9" rx="4.5" fill="{{ row.color }}">
+                    <title>{{ row.label }}: {{ row.score }}</title>
+                </rect>
+                {% if row.score is not none %}
+                <text x="{{ job.score_bars.label_w + row.width + 6 }}" y="{{ loop.index * job.score_bars.row_height - 14 }}" class="chart-tick">{{ row.score | round(1) }}</text>
+                {% endif %}
+                {% endfor %}
+            </svg>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<div class="card shadow-sm mb-4 executive-dossier-card">
+    <div class="card-header bg-white border-bottom py-3 px-4">
+        <h5 class="card-title mb-0 d-flex align-items-center gap-2">
+            <i class="bi bi-people-fill text-primary"></i>
+            Candidate Screening Ledger
+        </h5>
+    </div>
+    <div class="card-body p-4">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle executive-table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Candidate</th>
+                        <th scope="col">Verdict</th>
+                        <th scope="col">ATS</th>
+                        <th scope="col">Job match</th>
+                        <th scope="col">Years</th>
+                        <th scope="col">Skills</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Top fix</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for c in job.results %}
+                    <tr class="{{ 'table-success' if c.verdict == 'Shortlisted' }}">
+                        <td class="fw-bold text-muted">{{ loop.index }}</td>
+                        <td class="text-truncate fw-semibold" style="max-width: 180px;" title="{{ c.filename }}">{{ c.filename }}</td>
+                        <td>
+                            <span class="badge {{ 'bg-success' if c.verdict == 'Shortlisted' else ('bg-warning text-dark' if c.verdict == 'Maybe' else 'bg-danger') }}">{{ c.verdict }}</span>
+                        </td>
+                        <td><strong class="fs-6">{{ c.ats_total if c.ats_total is not none else "N/A" }}</strong></td>
+                        <td>{% if c.match_overall is not none %}<strong>{{ c.match_overall | round(1) }}%</strong>{% else %}&mdash;{% endif %}</td>
+                        <td>{% if c.years is not none %}~{{ c.years }}{% else %}&mdash;{% endif %}</td>
+                        <td><span class="badge bg-secondary-subtle text-secondary">{{ c.skills_count }}</span></td>
+                        <td class="small">{{ c.category or "—" }}</td>
+                        <td class="small text-truncate text-muted" style="max-width: 240px;" title="{{ c.top_suggestion }}">{{ c.top_suggestion | truncate(60) }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <p class="text-muted small mb-0 mt-3"><i class="bi bi-info-circle me-1"></i>Verdicts: <strong>Shortlisted</strong> = ATS {{ job.threshold }}+ &middot; <strong>Maybe</strong> = {{ job.threshold - job.maybe_band }}&ndash;{{ job.threshold }} &middot; anything lower is <strong>Rejected</strong>. Scores are heuristic estimates of ATS behaviour, not hiring advice.</p>
+    </div>
+</div>
+
+{% if job.skipped or job.errors %}
+<div class="alert alert-warning shadow-sm border-start border-4 border-warning">
+    <strong>{{ (job.skipped | length) + (job.errors | length) }} file(s) not screened:</strong>
+    <ul class="mb-0 small mt-1">
+        {% for s in job.skipped %}<li>{{ s.filename }} - {{ s.reason }}</li>{% endfor %}
+        {% for e in job.errors %}<li>{{ e.filename }} - failed: {{ e.error }}</li>{% endfor %}
+    </ul>
+</div>
+{% endif %}
+{% endblock %}

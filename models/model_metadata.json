@@ -1,0 +1,21 @@
+{
+  "use_ensemble": false,
+  "svm_accuracy": 0.945054945054945,
+  "lr_accuracy": 0.9285714285714286,
+  "mlp_accuracy": 0.9340659340659341,
+  "ensemble_accuracy": 0.9395604395604396,
+  "final_accuracy": 0.945054945054945,
+  "n_train": 1453,
+  "n_test": 364,
+  "categories": [
+    "Business Analyst",
+    "Cloud Engineer",
+    "Data Analyst",
+    "Data Scientist",
+    "DevOps Engineer",
+    "Machine Learning Engineer",
+    "Software Developer",
+    "UI/UX Designer",
+    "Web Developer"
+  ]
+}

@@ -1,0 +1,560 @@
+{
+  "Business Analyst": [
+    {
+      "term": "consultant",
+      "weight": 1.8511
+    },
+    {
+      "term": "business development",
+      "weight": 1.6933
+    },
+    {
+      "term": "business",
+      "weight": 1.0277
+    },
+    {
+      "term": "development",
+      "weight": 0.9526
+    },
+    {
+      "term": "sale",
+      "weight": 0.8309
+    },
+    {
+      "term": "experience consultant",
+      "weight": 0.7213
+    },
+    {
+      "term": "financial",
+      "weight": 0.6439
+    },
+    {
+      "term": "business need technical",
+      "weight": 0.5771
+    },
+    {
+      "term": "account",
+      "weight": 0.5743
+    },
+    {
+      "term": "consultant summary",
+      "weight": 0.563
+    },
+    {
+      "term": "need technical",
+      "weight": 0.5615
+    },
+    {
+      "term": "need technical solution",
+      "weight": 0.5598
+    },
+    {
+      "term": "market",
+      "weight": 0.5539
+    },
+    {
+      "term": "revenue",
+      "weight": 0.5422
+    },
+    {
+      "term": "november",
+      "weight": 0.5339
+    }
+  ],
+  "Cloud Engineer": [
+    {
+      "term": "cloud",
+      "weight": 0.8878
+    },
+    {
+      "term": "operate scalable cloud",
+      "weight": 0.6645
+    },
+    {
+      "term": "operate scalable",
+      "weight": 0.6645
+    },
+    {
+      "term": "scalable cloud",
+      "weight": 0.6645
+    },
+    {
+      "term": "scalable cloud infrastructure",
+      "weight": 0.6645
+    },
+    {
+      "term": "design operate scalable",
+      "weight": 0.6645
+    },
+    {
+      "term": "design operate",
+      "weight": 0.6602
+    },
+    {
+      "term": "cloud engineer",
+      "weight": 0.6084
+    },
+    {
+      "term": "scalable",
+      "weight": 0.5737
+    },
+    {
+      "term": "cloud infrastructure",
+      "weight": 0.5636
+    },
+    {
+      "term": "cloud infrastructure engineer",
+      "weight": 0.5387
+    },
+    {
+      "term": "skillterm_cloud_computing",
+      "weight": 0.5362
+    },
+    {
+      "term": "skillterm_system_design",
+      "weight": 0.5227
+    },
+    {
+      "term": "operate",
+      "weight": 0.5058
+    },
+    {
+      "term": "skillterm_google_cloud_platform",
+      "weight": 0.4813
+    }
+  ],
+  "Data Analyst": [
+    {
+      "term": "data analyst",
+      "weight": 0.6895
+    },
+    {
+      "term": "raw data",
+      "weight": 0.6432
+    },
+    {
+      "term": "raw",
+      "weight": 0.637
+    },
+    {
+      "term": "data actionable business",
+      "weight": 0.5814
+    },
+    {
+      "term": "raw data actionable",
+      "weight": 0.5814
+    },
+    {
+      "term": "transform raw",
+      "weight": 0.5814
+    },
+    {
+      "term": "transform raw data",
+      "weight": 0.5814
+    },
+    {
+      "term": "actionable business insight",
+      "weight": 0.5814
+    },
+    {
+      "term": "actionable business",
+      "weight": 0.5814
+    },
+    {
+      "term": "data actionable",
+      "weight": 0.5792
+    },
+    {
+      "term": "business insight",
+      "weight": 0.5781
+    },
+    {
+      "term": "actionable",
+      "weight": 0.5675
+    },
+    {
+      "term": "transform",
+      "weight": 0.5598
+    },
+    {
+      "term": "insight",
+      "weight": 0.5431
+    },
+    {
+      "term": "analyst",
+      "weight": 0.5383
+    }
+  ],
+  "Data Scientist": [
+    {
+      "term": "data scientist",
+      "weight": 0.8908
+    },
+    {
+      "term": "scientist",
+      "weight": 0.887
+    },
+    {
+      "term": "datasets",
+      "weight": 0.5617
+    },
+    {
+      "term": "build skillterm_machine_learning model",
+      "weight": 0.5583
+    },
+    {
+      "term": "datasets build",
+      "weight": 0.5583
+    },
+    {
+      "term": "build skillterm_machine_learning",
+      "weight": 0.5583
+    },
+    {
+      "term": "analyze complex datasets",
+      "weight": 0.5583
+    },
+    {
+      "term": "complex datasets",
+      "weight": 0.5583
+    },
+    {
+      "term": "complex datasets build",
+      "weight": 0.5583
+    },
+    {
+      "term": "datasets build skillterm_machine_learning",
+      "weight": 0.5583
+    },
+    {
+      "term": "analyze complex",
+      "weight": 0.5534
+    },
+    {
+      "term": "skillterm_machine_learning model",
+      "weight": 0.4737
+    },
+    {
+      "term": "skillterm_machine_learning",
+      "weight": 0.4542
+    },
+    {
+      "term": "complex",
+      "weight": 0.4288
+    },
+    {
+      "term": "data scientist year",
+      "weight": 0.4156
+    }
+  ],
+  "DevOps Engineer": [
+    {
+      "term": "automate deployment",
+      "weight": 0.7166
+    },
+    {
+      "term": "automate",
+      "weight": 0.7108
+    },
+    {
+      "term": "skillterm_shell_scripting",
+      "weight": 0.6722
+    },
+    {
+      "term": "manage cloud infrastructure",
+      "weight": 0.6406
+    },
+    {
+      "term": "deployment manage cloud",
+      "weight": 0.6406
+    },
+    {
+      "term": "automate deployment manage",
+      "weight": 0.6406
+    },
+    {
+      "term": "deployment manage",
+      "weight": 0.639
+    },
+    {
+      "term": "manage cloud",
+      "weight": 0.638
+    },
+    {
+      "term": "deployment",
+      "weight": 0.5628
+    },
+    {
+      "term": "infrastructure",
+      "weight": 0.5617
+    },
+    {
+      "term": "nginx",
+      "weight": 0.5126
+    },
+    {
+      "term": "skillterm_github_actions",
+      "weight": 0.5004
+    },
+    {
+      "term": "devops engineer",
+      "weight": 0.4857
+    },
+    {
+      "term": "devops",
+      "weight": 0.4793
+    },
+    {
+      "term": "prometheus",
+      "weight": 0.4725
+    }
+  ],
+  "Machine Learning Engineer": [
+    {
+      "term": "skillterm_machine_learning",
+      "weight": 0.8114
+    },
+    {
+      "term": "skillterm_machine_learning engineer",
+      "weight": 0.7489
+    },
+    {
+      "term": "deploy",
+      "weight": 0.7398
+    },
+    {
+      "term": "ml",
+      "weight": 0.6683
+    },
+    {
+      "term": "ml engineer",
+      "weight": 0.6683
+    },
+    {
+      "term": "design deploy production",
+      "weight": 0.6551
+    },
+    {
+      "term": "skillterm_machine_learning system",
+      "weight": 0.6551
+    },
+    {
+      "term": "production skillterm_machine_learning system",
+      "weight": 0.6551
+    },
+    {
+      "term": "deploy production",
+      "weight": 0.6551
+    },
+    {
+      "term": "deploy production skillterm_machine_learning",
+      "weight": 0.6551
+    },
+    {
+      "term": "production skillterm_machine_learning",
+      "weight": 0.6551
+    },
+    {
+      "term": "design deploy",
+      "weight": 0.646
+    },
+    {
+      "term": "skillterm_neural_networks",
+      "weight": 0.4663
+    },
+    {
+      "term": "engineer",
+      "weight": 0.4449
+    },
+    {
+      "term": "production",
+      "weight": 0.4367
+    }
+  ],
+  "Software Developer": [
+    {
+      "term": "information technology",
+      "weight": 1.8895
+    },
+    {
+      "term": "information",
+      "weight": 1.0166
+    },
+    {
+      "term": "technology",
+      "weight": 0.8876
+    },
+    {
+      "term": "software",
+      "weight": 0.8666
+    },
+    {
+      "term": "information technology specialist",
+      "weight": 0.8418
+    },
+    {
+      "term": "technology specialist",
+      "weight": 0.8192
+    },
+    {
+      "term": "security",
+      "weight": 0.7427
+    },
+    {
+      "term": "network",
+      "weight": 0.718
+    },
+    {
+      "term": "upgrade",
+      "weight": 0.6933
+    },
+    {
+      "term": "help desk",
+      "weight": 0.6796
+    },
+    {
+      "term": "scalable software",
+      "weight": 0.6441
+    },
+    {
+      "term": "maintain scalable",
+      "weight": 0.6441
+    },
+    {
+      "term": "scalable software application",
+      "weight": 0.6441
+    },
+    {
+      "term": "maintain scalable software",
+      "weight": 0.6441
+    },
+    {
+      "term": "desk",
+      "weight": 0.644
+    }
+  ],
+  "UI/UX Designer": [
+    {
+      "term": "designer",
+      "weight": 2.7672
+    },
+    {
+      "term": "design",
+      "weight": 1.1212
+    },
+    {
+      "term": "graphic",
+      "weight": 0.9679
+    },
+    {
+      "term": "designer summary",
+      "weight": 0.8838
+    },
+    {
+      "term": "graphic designer",
+      "weight": 0.7245
+    },
+    {
+      "term": "3d",
+      "weight": 0.6431
+    },
+    {
+      "term": "drawing",
+      "weight": 0.6418
+    },
+    {
+      "term": "autocad",
+      "weight": 0.6344
+    },
+    {
+      "term": "cad",
+      "weight": 0.6289
+    },
+    {
+      "term": "instructional",
+      "weight": 0.6086
+    },
+    {
+      "term": "interior",
+      "weight": 0.5954
+    },
+    {
+      "term": "skillterm_ux_design",
+      "weight": 0.5458
+    },
+    {
+      "term": "floral",
+      "weight": 0.5225
+    },
+    {
+      "term": "instructional designer",
+      "weight": 0.513
+    },
+    {
+      "term": "construction",
+      "weight": 0.4957
+    }
+  ],
+  "Web Developer": [
+    {
+      "term": "medium",
+      "weight": 1.7139
+    },
+    {
+      "term": "digital",
+      "weight": 1.0889
+    },
+    {
+      "term": "digital medium",
+      "weight": 1.0672
+    },
+    {
+      "term": "social medium",
+      "weight": 0.8442
+    },
+    {
+      "term": "social",
+      "weight": 0.8211
+    },
+    {
+      "term": "responsive",
+      "weight": 0.7798
+    },
+    {
+      "term": "web",
+      "weight": 0.7536
+    },
+    {
+      "term": "video",
+      "weight": 0.7464
+    },
+    {
+      "term": "across",
+      "weight": 0.662
+    },
+    {
+      "term": "digital marketing",
+      "weight": 0.6235
+    },
+    {
+      "term": "tv",
+      "weight": 0.5803
+    },
+    {
+      "term": "user friendly web",
+      "weight": 0.5523
+    },
+    {
+      "term": "friendly web",
+      "weight": 0.5523
+    },
+    {
+      "term": "friendly web application",
+      "weight": 0.5523
+    },
+    {
+      "term": "front end",
+      "weight": 0.5393
+    }
+  ]
+}

@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Results</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark app-navbar mb-3">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="/"><i class="bi bi-file-earmark-text me-1"></i>Intelligent Resume Analyzer</a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="/history"><i class="bi bi-graph-up-arrow me-1"></i>ATS Tracker</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container pb-5">
+        
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="fw-bold mb-0">Analysis Results</h2>
+    <a href="/" class="btn btn-outline-secondary btn-sm">&larr; New Analysis</a>
+</div>
+
+
+
+
+
+
+
+
+
+<div class="card shadow-sm mb-4">
+    <div class="card-body">
+        <h5 class="card-title">Candidate Information</h5>
+        <div class="row">
+            <div class="col-md-4"><strong>Name:</strong> Sai Teja Kondapalli</div>
+            <div class="col-md-4"><strong>Email:</strong> saitejak2327@gmail.com</div>
+            <div class="col-md-4"><strong>Phone:</strong> +918985649779</div>
+        </div>
+        
+        <hr>
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <strong>Predicted Resume Category:</strong>
+                <span class="badge bg-primary fs-6">Software Developer</span>
+            </div>
+            <div class="col-md-6">
+                
+                <small class="text-muted">Top predictions:
+                    Software Developer (55.5%), Data Analyst (8.8%), Machine Learning Engineer (6.4%)
+                </small>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="card shadow-sm mb-4">
+    <div class="card-body">
+        <div class="d-flex justify-content-between align-items-start flex-wrap gap-2">
+            <div>
+                <h5 class="card-title mb-1">ATS Score Tracker</h5>
+                <span class="badge text-bg-light">Resume vs Job Description</span>
+                
+                <span class="badge text-bg-success">Resume detected &middot; 100.0%</span>
+            </div>
+            <div>
+                <a class="btn btn-outline-secondary btn-sm me-1" href="/results/549" download="ats-report.json">JSON</a>
+                <a class="btn btn-outline-secondary btn-sm me-1" href="/report/549.txt">Text report</a>
+                <a class="btn btn-outline-secondary btn-sm" href="/history">Score history &rarr;</a>
+            </div>
+        </div>
+        <div class="row align-items-center mt-3 g-4">
+            <div class="col-md-4 text-center">
+                
+                <div class="ats-gauge mx-auto" style="--p: 57.79; --gauge-color: #d97706;">
+                    <div class="ats-gauge__inner">
+                        <div class="ats-gauge__value" style="color: #d97706;">57.8</div>
+                        <div class="ats-gauge__label">out of 100</div>
+                    </div>
+                </div>
+                <span class="badge mt-3 fs-6" style="background-color: #d97706;">Fair</span>
+                <p class="text-muted small mt-2 mb-0">The resume will parse, but it will likely be outranked by closer matches.</p>
+                
+                <div class="potential-box mt-3">
+                    <div class="small text-muted text-uppercase">Potential score</div>
+                    <div class="fw-bold text-success fs-4">up to 84.93</div>
+                    <div class="small text-muted">+27.1 pts available from the fixes below</div>
+                </div>
+                
+                
+                <div class="text-center mt-3">
+                    <svg viewBox="0 0 200 200" class="ats-radar" role="img" aria-label="Radar chart of ATS factor scores">
+                        <polygon points="100.0,80.5 115.2,87.8 119.0,104.3 108.5,117.6 91.5,117.6 81.0,104.3 84.8,87.8" class="ats-radar__ring"/><polygon points="100.0,61.0 130.5,75.7 138.0,108.7 116.9,135.1 83.1,135.1 62.0,108.7 69.5,75.7" class="ats-radar__ring"/><polygon points="100.0,41.5 145.7,63.5 157.0,113.0 125.4,152.7 74.6,152.7 43.0,113.0 54.3,63.5" class="ats-radar__ring"/><polygon points="100.0,22.0 161.0,51.4 176.0,117.4 133.8,170.3 66.2,170.3 24.0,117.4 39.0,51.4" class="ats-radar__ring"/>
+                        <line x1="100" y1="100" x2="100.0" y2="22.0" class="ats-radar__axis"/><line x1="100" y1="100" x2="161.0" y2="51.4" class="ats-radar__axis"/><line x1="100" y1="100" x2="176.0" y2="117.4" class="ats-radar__axis"/><line x1="100" y1="100" x2="133.8" y2="170.3" class="ats-radar__axis"/><line x1="100" y1="100" x2="66.2" y2="170.3" class="ats-radar__axis"/><line x1="100" y1="100" x2="24.0" y2="117.4" class="ats-radar__axis"/><line x1="100" y1="100" x2="39.0" y2="51.4" class="ats-radar__axis"/>
+                        <polygon points="100.0,56.1 145.7,63.5 108.0,101.8 104.5,109.4 66.2,170.3 31.6,115.6 51.6,61.4" class="ats-radar__score"/>
+                        <circle cx="100.0" cy="56.1" r="2.5" class="ats-radar__dot"/><circle cx="145.7" cy="63.5" r="2.5" class="ats-radar__dot"/><circle cx="108.0" cy="101.8" r="2.5" class="ats-radar__dot"/><circle cx="104.5" cy="109.4" r="2.5" class="ats-radar__dot"/><circle cx="66.2" cy="170.3" r="2.5" class="ats-radar__dot"/><circle cx="31.6" cy="115.6" r="2.5" class="ats-radar__dot"/><circle cx="51.6" cy="61.4" r="2.5" class="ats-radar__dot"/>
+                        <text x="100.0" y="18.0" text-anchor="middle" class="ats-radar__label">Keyword coverage (56)</text><text x="161.0" y="47.4" text-anchor="start" class="ats-radar__label">Skills match (75)</text><text x="176.0" y="127.4" text-anchor="start" class="ats-radar__label">Job title match (11)</text><text x="133.8" y="180.3" text-anchor="start" class="ats-radar__label">Experience match (13)</text><text x="66.2" y="180.3" text-anchor="end" class="ats-radar__label">Education match (100)</text><text x="24.0" y="127.4" text-anchor="end" class="ats-radar__label">Format &amp; parseability (90)</text><text x="39.0" y="47.4" text-anchor="end" class="ats-radar__label">Content quality (79)</text>
+                    </svg>
+                </div>
+                
+            </div>
+            <div class="col-md-8">
+                
+                <div class="ats-factor mb-2">
+                    <div class="d-flex justify-content-between small">
+                        <span class="fw-semibold">Keyword coverage
+                            <span class="text-muted fw-normal">&middot; weight 25%</span>
+                        </span>
+                        <span class="fw-bold">56.2</span>
+                    </div>
+                    <div class="progress ats-factor__bar">
+                        <div class="progress-bar bg-warning"
+                             style="width: 56.25%"></div>
+                    </div>
+                    <div class="text-muted ats-factor__detail">9 of 18 weighted keywords from the job description were found on the resume.</div>
+                    
+                    
+                    
+                    <div class="d-flex align-items-center gap-3 mt-2 mb-1">
+                        
+                        <svg viewBox="0 0 150 150" width="86" height="86" class="flex-shrink-0" role="img" aria-label="Keyword coverage donut">
+                            
+                            <circle cx="75.0" cy="75.0" r="64.0"
+                                    fill="none" stroke="#16a34a" stroke-width="22"
+                                    stroke-dasharray="201.06 201.06" transform="rotate(-90.0 75.0 75.0)">
+                                <title>Matched: 9</title>
+                            </circle>
+                            
+                            <circle cx="75.0" cy="75.0" r="64.0"
+                                    fill="none" stroke="#dc2626" stroke-width="22"
+                                    stroke-dasharray="201.06 201.06" transform="rotate(90.0 75.0 75.0)">
+                                <title>Missing: 9</title>
+                            </circle>
+                            
+                            <text x="75.0" y="80.0" text-anchor="middle" class="chart-donut-label">50%</text>
+                        </svg>
+                        <div class="small flex-grow-1">
+                            <div><span class="legend-swatch" style="background: #16a34a;"></span> Matched: 9</div>
+                            <div><span class="legend-swatch" style="background: #d97706;"></span> Partial/typo: 0</div>
+                            <div><span class="legend-swatch" style="background: #dc2626;"></span> Missing: 9</div>
+                        </div>
+                        
+                    </div>
+                    
+                    
+                    <div class="mt-1 mb-1">
+                        <span class="badge skill-badge skill-badge--matched">Node.js</span><span class="badge skill-badge skill-badge--matched">Python</span><span class="badge skill-badge skill-badge--matched">React</span><span class="badge skill-badge skill-badge--matched">computer</span><span class="badge skill-badge skill-badge--matched">computer science</span><span class="badge skill-badge skill-badge--matched">design</span><span class="badge skill-badge skill-badge--matched">development</span><span class="badge skill-badge skill-badge--matched">implement</span><span class="badge skill-badge skill-badge--matched">science</span>
+                        <span class="badge skill-badge skill-badge--missing">JavaScript</span><span class="badge skill-badge skill-badge--missing">backend</span><span class="badge skill-badge skill-badge--missing">backend services</span><span class="badge skill-badge skill-badge--missing">implement scalable</span><span class="badge skill-badge skill-badge--missing">scalable</span><span class="badge skill-badge skill-badge--missing">scalable backend</span><span class="badge skill-badge skill-badge--missing">services</span><span class="badge skill-badge skill-badge--missing">software</span><span class="badge skill-badge skill-badge--missing">software development</span>
+                    </div>
+                    
+                    
+                </div>
+                
+                <div class="ats-factor mb-2">
+                    <div class="d-flex justify-content-between small">
+                        <span class="fw-semibold">Skills match
+                            <span class="text-muted fw-normal">&middot; weight 25%</span>
+                        </span>
+                        <span class="fw-bold">75.0</span>
+                    </div>
+                    <div class="progress ats-factor__bar">
+                        <div class="progress-bar bg-primary"
+                             style="width: 75.0%"></div>
+                    </div>
+                    <div class="text-muted ats-factor__detail">3 required skill(s) matched. Required: 75.0%, Preferred: n/a%.</div>
+                    
+                    
+                    
+                </div>
+                
+                <div class="ats-factor mb-2">
+                    <div class="d-flex justify-content-between small">
+                        <span class="fw-semibold">Job title match
+                            <span class="text-muted fw-normal">&middot; weight 10%</span>
+                        </span>
+                        <span class="fw-bold">10.5</span>
+                    </div>
+                    <div class="progress ats-factor__bar">
+                        <div class="progress-bar bg-danger"
+                             style="width: 10.53%"></div>
+                    </div>
+                    <div class="text-muted ats-factor__detail">Job title from the posting: &#34;Software Developer&#34;. Closest title on the resume scored 11% similarity.</div>
+                    
+                    
+                    
+                </div>
+                
+                <div class="ats-factor mb-2">
+                    <div class="d-flex justify-content-between small">
+                        <span class="fw-semibold">Experience match
+                            <span class="text-muted fw-normal">&middot; weight 15%</span>
+                        </span>
+                        <span class="fw-bold">13.3</span>
+                    </div>
+                    <div class="progress ats-factor__bar">
+                        <div class="progress-bar bg-danger"
+                             style="width: 13.33%"></div>
+                    </div>
+                    <div class="text-muted ats-factor__detail">Resume shows about 0.4 year(s) of experience; the job requires about 3 year(s).</div>
+                    
+                    
+                    
+                </div>
+                
+                <div class="ats-factor mb-2">
+                    <div class="d-flex justify-content-between small">
+                        <span class="fw-semibold">Education match
+                            <span class="text-muted fw-normal">&middot; weight 5%</span>
+                        </span>
+                        <span class="fw-bold">100.0</span>
+                    </div>
+                    <div class="progress ats-factor__bar">
+                        <div class="progress-bar bg-success"
+                             style="width: 100.0%"></div>
+                    </div>
+                    <div class="text-muted ats-factor__detail">Resume education level meets or exceeds the job requirement.</div>
+                    
+                    
+                    
+                </div>
+                
+                <div class="ats-factor mb-2">
+                    <div class="d-flex justify-content-between small">
+                        <span class="fw-semibold">Format &amp; parseability
+                            <span class="text-muted fw-normal">&middot; weight 10%</span>
+                        </span>
+                        <span class="fw-bold">90</span>
+                    </div>
+                    <div class="progress ats-factor__bar">
+                        <div class="progress-bar bg-success"
+                             style="width: 90%"></div>
+                    </div>
+                    <div class="text-muted ats-factor__detail">8 of 9 parser-friendliness checks passed (382 words).</div>
+                    
+                    
+                    
+                    <div class="mt-1">
+                        
+                        <span class="badge text-bg-success me-1 mb-1 fw-normal">
+                            ✓ Email address
+                        </span>
+                        
+                        <span class="badge text-bg-success me-1 mb-1 fw-normal">
+                            ✓ Phone number
+                        </span>
+                        
+                        <span class="badge text-bg-success me-1 mb-1 fw-normal">
+                            ✓ Name detected
+                        </span>
+                        
+                        <span class="badge text-bg-success me-1 mb-1 fw-normal">
+                            ✓ Experience section
+                        </span>
+                        
+                        <span class="badge text-bg-success me-1 mb-1 fw-normal">
+                            ✓ Education section
+                        </span>
+                        
+                        <span class="badge text-bg-danger me-1 mb-1 fw-normal">
+                            ✗ Skills section
+                        </span>
+                        
+                        <span class="badge text-bg-success me-1 mb-1 fw-normal">
+                            ✓ Dates in experience
+                        </span>
+                        
+                        <span class="badge text-bg-success me-1 mb-1 fw-normal">
+                            ✓ Resume length
+                        </span>
+                        
+                        <span class="badge text-bg-success me-1 mb-1 fw-normal">
+                            ✓ Clean text extraction
+                        </span>
+                        
+                    </div>
+                    
+                </div>
+                
+                <div class="ats-factor mb-2">
+                    <div class="d-flex justify-content-between small">
+                        <span class="fw-semibold">Content quality
+                            <span class="text-muted fw-normal">&middot; weight 10%</span>
+                        </span>
+                        <span class="fw-bold">79.3</span>
+                    </div>
+                    <div class="progress ats-factor__bar">
+                        <div class="progress-bar bg-primary"
+                             style="width: 79.29%"></div>
+                    </div>
+                    <div class="text-muted ats-factor__detail">7/14 bullets quantified (50%); 4/14 start with action verbs (29%); 1 first-person pronoun(s).</div>
+                    
+                    
+                    
+                </div>
+                
+                
+                
+                
+                <h6 class="fw-bold mt-3 mb-1">Score composition</h6>
+                <svg viewBox="0 0 560 40" class="chart-svg chart-svg--full" role="img" aria-label="How the total ATS score is composed">
+                    
+                    <rect x="0.0" y="4" width="136.3" height="28" fill="#4f46e5">
+                        <title>Keyword coverage: 14.1 pts (24.3%)</title>
+                    </rect>
+                    
+                    <rect x="136.3" y="4" width="181.7" height="28" fill="#0ea5e9">
+                        <title>Skills match: 18.8 pts (32.4%)</title>
+                    </rect>
+                    
+                    <rect x="318.0" y="4" width="10.2" height="28" fill="#10b981">
+                        <title>Job title match: 1.1 pts (1.8%)</title>
+                    </rect>
+                    
+                    <rect x="328.2" y="4" width="19.4" height="28" fill="#f59e0b">
+                        <title>Experience match: 2.0 pts (3.5%)</title>
+                    </rect>
+                    
+                    <rect x="347.6" y="4" width="48.4" height="28" fill="#ef4444">
+                        <title>Education match: 5.0 pts (8.7%)</title>
+                    </rect>
+                    
+                    <rect x="396.0" y="4" width="87.2" height="28" fill="#8b5cf6">
+                        <title>Format &amp; parseability: 9.0 pts (15.6%)</title>
+                    </rect>
+                    
+                    <rect x="483.2" y="4" width="76.8" height="28" fill="#ec4899">
+                        <title>Content quality: 7.9 pts (13.7%)</title>
+                    </rect>
+                    
+                </svg>
+                <div class="d-flex flex-wrap small mt-1">
+                    
+                    <span class="legend-item"><span class="legend-swatch" style="background: #4f46e5;"></span>Keyword coverage (14.1)</span>
+                    
+                    <span class="legend-item"><span class="legend-swatch" style="background: #0ea5e9;"></span>Skills match (18.8)</span>
+                    
+                    <span class="legend-item"><span class="legend-swatch" style="background: #10b981;"></span>Job title match (1.1)</span>
+                    
+                    <span class="legend-item"><span class="legend-swatch" style="background: #f59e0b;"></span>Experience match (2.0)</span>
+                    
+                    <span class="legend-item"><span class="legend-swatch" style="background: #ef4444;"></span>Education match (5.0)</span>
+                    
+                    <span class="legend-item"><span class="legend-swatch" style="background: #8b5cf6;"></span>Format &amp; parseability (9.0)</span>
+                    
+                    <span class="legend-item"><span class="legend-swatch" style="background: #ec4899;"></span>Content quality (7.9)</span>
+                    
+                </div>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="card shadow-sm mb-4 border-start border-4" style="border-color: #d97706 !important;">
+    <div class="card-body">
+        <h5 class="card-title">What to change <span class="text-muted fs-6 fw-normal">(highest ATS impact first)</span></h5>
+        <div class="list-group list-group-flush">
+            
+            <div class="list-group-item px-0 bg-transparent">
+                <div class="d-flex gap-2">
+                    <span class="badge text-bg-danger flex-shrink-0" style="height: fit-content;">HIGH</span>
+                    <div>
+                        <div class="small text-muted">Experience match &middot; up to +13.0 pts</div>
+                        <div>The job asks for ~3 year(s) of experience while your resume evidences ~0.4. Lead with your most relevant roles and quantify their impact.</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="list-group-item px-0 bg-transparent">
+                <div class="d-flex gap-2">
+                    <span class="badge text-bg-danger flex-shrink-0" style="height: fit-content;">HIGH</span>
+                    <div>
+                        <div class="small text-muted">Keyword coverage &middot; up to +10.9 pts</div>
+                        <div>The job description mentions &#34;JavaScript&#34; but your resume never does. Work it in where honestly applicable (skills section, bullets, or summary).</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="list-group-item px-0 bg-transparent">
+                <div class="d-flex gap-2">
+                    <span class="badge text-bg-danger flex-shrink-0" style="height: fit-content;">HIGH</span>
+                    <div>
+                        <div class="small text-muted">Keyword coverage &middot; up to +10.9 pts</div>
+                        <div>The job description mentions &#34;backend&#34; but your resume never does. Work it in where honestly applicable (skills section, bullets, or summary).</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="list-group-item px-0 bg-transparent">
+                <div class="d-flex gap-2">
+                    <span class="badge text-bg-danger flex-shrink-0" style="height: fit-content;">HIGH</span>
+                    <div>
+                        <div class="small text-muted">Keyword coverage &middot; up to +10.9 pts</div>
+                        <div>The job description mentions &#34;backend services&#34; but your resume never does. Work it in where honestly applicable (skills section, bullets, or summary).</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="list-group-item px-0 bg-transparent">
+                <div class="d-flex gap-2">
+                    <span class="badge text-bg-danger flex-shrink-0" style="height: fit-content;">HIGH</span>
+                    <div>
+                        <div class="small text-muted">Job title match &middot; up to +8.9 pts</div>
+                        <div>Mirror the exact job title &#34;Software Developer&#34; in your resume headline or most recent role title (only if it honestly describes what you do).</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="list-group-item px-0 bg-transparent">
+                <div class="d-flex gap-2">
+                    <span class="badge text-bg-danger flex-shrink-0" style="height: fit-content;">HIGH</span>
+                    <div>
+                        <div class="small text-muted">Skills match &middot; up to +6.2 pts</div>
+                        <div>Add these required skills to your Skills section (and evidence them in your experience bullets): JavaScript.</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="list-group-item px-0 bg-transparent">
+                <div class="d-flex gap-2">
+                    <span class="badge text-bg-danger flex-shrink-0" style="height: fit-content;">HIGH</span>
+                    <div>
+                        <div class="small text-muted">Format &amp; parseability &middot; up to +1.0 pts</div>
+                        <div>Add a skills section headed &#34;Skills&#34; or &#34;Technical Skills&#34; - many ATS look for that exact header.</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="list-group-item px-0 bg-transparent">
+                <div class="d-flex gap-2">
+                    <span class="badge text-bg-warning flex-shrink-0" style="height: fit-content;">MEDIUM</span>
+                    <div>
+                        <div class="small text-muted">Keyword coverage &middot; up to +10.9 pts</div>
+                        <div>The job description mentions &#34;implement scalable&#34; but your resume never does. Work it in where honestly applicable (skills section, bullets, or summary).</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="list-group-item px-0 bg-transparent">
+                <div class="d-flex gap-2">
+                    <span class="badge text-bg-warning flex-shrink-0" style="height: fit-content;">MEDIUM</span>
+                    <div>
+                        <div class="small text-muted">Keyword coverage &middot; up to +10.9 pts</div>
+                        <div>The job description mentions &#34;scalable&#34; but your resume never does. Work it in where honestly applicable (skills section, bullets, or summary).</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="list-group-item px-0 bg-transparent">
+                <div class="d-flex gap-2">
+                    <span class="badge text-bg-warning flex-shrink-0" style="height: fit-content;">MEDIUM</span>
+                    <div>
+                        <div class="small text-muted">Keyword coverage &middot; up to +10.9 pts</div>
+                        <div>The job description mentions &#34;scalable backend&#34; but your resume never does. Work it in where honestly applicable (skills section, bullets, or summary).</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="list-group-item px-0 bg-transparent">
+                <div class="d-flex gap-2">
+                    <span class="badge text-bg-warning flex-shrink-0" style="height: fit-content;">MEDIUM</span>
+                    <div>
+                        <div class="small text-muted">Content quality &middot; up to +2.1 pts</div>
+                        <div>Start bullets with strong action verbs (led, built, automated, reduced, launched...). Weak openers spotted: Problem, DSA, Teaching.</div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <p class="text-muted small mt-2 mb-0">Only add keywords and skills that genuinely describe your experience - the goal is to be found, not to mislead the parser.</p>
+    </div>
+</div>
+
+
+
+
+<div class="alert alert-warning py-2 mb-4">
+    <strong>Job description check (fair):</strong>
+    The job description is very short; matching will be shallow.
+</div>
+
+
+
+<div class="card shadow-sm mb-4 text-center">
+    <div class="card-body">
+        <h6 class="text-muted text-uppercase">Overall Job Match</h6>
+        
+        <p class="mb-1">
+            <strong>Software Developer</strong>
+            
+        </p>
+        
+        
+            <div class="display-4 fw-bold overall-score">50.65%</div>
+        
+        
+    </div>
+</div>
+
+<div class="row g-3 mb-4">
+    <div class="col-md-3 col-6">
+        <div class="score-card">
+            <div class="score-card__label">Skill Match</div>
+            <div class="score-card__value">75.0%</div>
+            <div class="progress"><div class="progress-bar bg-success" style="width: 75.0%"></div></div>
+        </div>
+    </div>
+    <div class="col-md-3 col-6">
+        <div class="score-card">
+            <div class="score-card__label">Text Similarity</div>
+            <div class="score-card__value">4.6%</div>
+            <div class="progress"><div class="progress-bar bg-info" style="width: 4.6%"></div></div>
+        </div>
+    </div>
+    <div class="col-md-3 col-6">
+        <div class="score-card">
+            <div class="score-card__label">Experience Match</div>
+            <div class="score-card__value">13.33%</div>
+            <div class="progress"><div class="progress-bar bg-warning" style="width: 13.33%"></div></div>
+            <div class="score-card__detail">Resume shows about 0.4 year(s) of experience; the job requires about 3 year(s).</div>
+        </div>
+    </div>
+    <div class="col-md-3 col-6">
+        <div class="score-card">
+            <div class="score-card__label">Education Match</div>
+            <div class="score-card__value">100.0%</div>
+            <div class="progress"><div class="progress-bar bg-secondary" style="width: 100.0%"></div></div>
+            <div class="score-card__detail">Resume education level meets or exceeds the job requirement.</div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-4 mb-4">
+    <div class="col-md-6">
+        <h6 class="fw-bold">Matched Required Skills</h6>
+        <span class="badge skill-badge skill-badge--matched">Node.js</span><span class="badge skill-badge skill-badge--matched">Python</span><span class="badge skill-badge skill-badge--matched">React</span>
+    </div>
+    <div class="col-md-6">
+        <h6 class="fw-bold">Missing Required Skills</h6>
+        <span class="badge skill-badge skill-badge--missing">JavaScript</span>
+    </div>
+    <div class="col-md-6">
+        <h6 class="fw-bold">Missing Preferred Skills</h6>
+        <p class="text-muted small">None.</p>
+    </div>
+    <div class="col-md-6">
+        <h6 class="fw-bold">Additional Candidate Skills</h6>
+        <span class="badge skill-badge skill-badge--extra">C</span><span class="badge skill-badge skill-badge--extra">C++</span><span class="badge skill-badge skill-badge--extra">CSS</span><span class="badge skill-badge skill-badge--extra">Communication</span><span class="badge skill-badge skill-badge--extra">Excel</span><span class="badge skill-badge skill-badge--extra">Generative AI</span><span class="badge skill-badge skill-badge--extra">GitHub</span><span class="badge skill-badge skill-badge--extra">HTML</span><span class="badge skill-badge skill-badge--extra">Java</span><span class="badge skill-badge skill-badge--extra">Leadership</span><span class="badge skill-badge skill-badge--extra">MongoDB</span><span class="badge skill-badge skill-badge--extra">MySQL</span><span class="badge skill-badge skill-badge--extra">Next.js</span><span class="badge skill-badge skill-badge--extra">Object Oriented Programming</span><span class="badge skill-badge skill-badge--extra">Problem Solving</span><span class="badge skill-badge skill-badge--extra">SQL</span><span class="badge skill-badge skill-badge--extra">Teamwork</span>
+    </div>
+</div>
+
+
+<div class="row g-4 mb-4">
+    <div class="col-md-6">
+        <h6 class="fw-bold">Education</h6>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Aditya University, Surampalem	2024-2028</li><li class="list-group-item">Bachelor of Technology in Computer Science and Engineering                         CGPA: 9.00(Till Date)</li><li class="list-group-item">Course work</li><li class="list-group-item">Data Structures and Algorithms, Database Management Systems, Operating Systems, Object Oriented Programming.</li>
+        </ul>
+    </div>
+    <div class="col-md-6">
+        <h6 class="fw-bold">Experience</h6>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Problem Setter – College Coding Competitions	Jan 2025 – June 2025</li><li class="list-group-item">Designed and curated algorithmic problems for college-level coding competitions, focusing on data structures, algorithms, and logical problem-solving.</li><li class="list-group-item">DSA Teaching Assistant – TECHNICALHUB					           March 2025 – May 2025</li><li class="list-group-item">Teaching Data structures and Algorithms, competitive coding for 177 students. I explained Leetcode and Code Chef questions in Class after the completion of the contest.</li><li class="list-group-item">Programming achievements</li><li class="list-group-item">3 Star coder at CODECHEF – MAXIMUM RATING (1728).</li><li class="list-group-item">Solved 1150+ problems in Leetcode – MAXIMUM RATING (2136).</li><li class="list-group-item">5-star badges in C++, SQL and 4-star badges in C, Problem Solving in Hacker Rank.</li><li class="list-group-item">Secured 142 Global Rank in Code chef starters 190D.</li><li class="list-group-item">Secured 385 Global Rank in Leetcode Weekly contest 464.</li><li class="list-group-item">PUPIL at CODEFORCES.</li><li class="list-group-item">1st place in the Monthly Coding Contest at our college, multiple times, outperforming 1200+ participants.</li><li class="list-group-item">Skills and Interests</li><li class="list-group-item">Programming Languages	: C++, C, Java, Python, SQL</li><li class="list-group-item">Technical Knowledge</li><li class="list-group-item">Frontend Development	: HTML, CSS, React</li><li class="list-group-item">Database	: SQL DATABASE (Oracle, MySQL)</li><li class="list-group-item">Proficiencies	: Competitive coding, Data Structures and Algorithms</li><li class="list-group-item">Non-Technical	: Leadership, Teamwork</li>
+        </ul>
+    </div>
+    <div class="col-md-6">
+        <h6 class="fw-bold">Projects</h6>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">AlgoTalk – AI-Powered Collaborative DSA Learning Platform | Next.js, Node.js, MongoDB, Gemini AI</li><li class="list-group-item">Developed an AI-powered collaborative platform for DSA learning with weak area analysis, personalized roadmaps, AI hints, and mock interview evaluation.</li><li class="list-group-item">Implemented real-time collaborative coding using Socket.IO, Yjs (CRDT), and WebRTC voice communication while integrating multiple coding platforms for unified progress tracking and performance analytics.</li><li class="list-group-item">Tic Tac Toe Game with AI Player | C++</li><li class="list-group-item">Developed a console-based Tic Tac Toe game in C++ using object-oriented programming with a class-based design.</li><li class="list-group-item">Implemented an AI player using rule-based logic/minimax to make optimal moves, along with win and draw detection and turn management.</li>
+        </ul>
+    </div>
+    <div class="col-md-6">
+        <h6 class="fw-bold">Certifications</h6>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Red Hat Certified System Administrator (RHCSA - EX200)</li><li class="list-group-item">Microsoft Office Specialist: Excel Associate (Office 2019)</li><li class="list-group-item">Microsoft Power Platform Fundamentals</li>
+        </ul>
+    </div>
+</div>
+
+
+<div class="card shadow-sm mb-4">
+    <div class="card-body">
+        <h5 class="card-title">Recommendations</h5>
+        <h6 class="text-muted">Local NLP/ML analysis</h6>
+        <ul>
+            
+            <li>
+                <span class="badge text-bg-danger me-1">high</span>
+                [ATS - Experience match] The job asks for ~3 year(s) of experience while your resume evidences ~0.4. Lead with your most relevant roles and quantify their impact.
+            </li>
+            
+            <li>
+                <span class="badge text-bg-danger me-1">high</span>
+                [ATS - Keyword coverage] The job description mentions &#34;JavaScript&#34; but your resume never does. Work it in where honestly applicable (skills section, bullets, or summary).
+            </li>
+            
+            <li>
+                <span class="badge text-bg-danger me-1">high</span>
+                [ATS - Keyword coverage] The job description mentions &#34;backend&#34; but your resume never does. Work it in where honestly applicable (skills section, bullets, or summary).
+            </li>
+            
+            <li>
+                <span class="badge text-bg-danger me-1">high</span>
+                [ATS - Keyword coverage] The job description mentions &#34;backend services&#34; but your resume never does. Work it in where honestly applicable (skills section, bullets, or summary).
+            </li>
+            
+            <li>
+                <span class="badge text-bg-danger me-1">high</span>
+                [ATS - Job title match] Mirror the exact job title &#34;Software Developer&#34; in your resume headline or most recent role title (only if it honestly describes what you do).
+            </li>
+            
+            <li>
+                <span class="badge text-bg-danger me-1">high</span>
+                Missing required skills (JavaScript). If you have them under a different name, use the job posting&#39;s exact wording; otherwise consider upskilling - these are hard filters for many ATS.
+            </li>
+            
+            <li>
+                <span class="badge text-bg-danger me-1">high</span>
+                Your evidenced experience is below the job&#39;s requirement. Emphasize relevant accomplishments, internships, and freelance/project work to close the gap.
+            </li>
+            
+            <li>
+                <span class="badge text-bg-warning me-1">medium</span>
+                Overall match is 51% (moderate). Focus on the highest-weight gaps below.
+            </li>
+            
+            <li>
+                <span class="badge text-bg-warning me-1">medium</span>
+                Resume/job wording overlap is low (5%). Mirror the job posting&#39;s terminology where truthful - ATS keyword matching is largely literal.
+            </li>
+            
+            <li>
+                <span class="badge text-bg-secondary me-1">low</span>
+                You already work with C in the same area (Programming Languages) - picking up JavaScript should be a small step, not a new field.
+            </li>
+            
+            <li>
+                <span class="badge text-bg-secondary me-1">low</span>
+                Matched required skills (Node.js, Python, React) - make sure each one appears in a concrete achievement bullet, not just the skills list.
+            </li>
+            
+        </ul>
+
+
+    </div>
+</div>
+
+
+    </main>
+
+    <footer class="text-center text-muted py-4 small border-top">
+        NLP + Machine Learning powered resume analysis &middot; fully offline
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/script.js"></script>
+    
+</body>
+</html>

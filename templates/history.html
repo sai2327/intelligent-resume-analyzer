@@ -1,0 +1,188 @@
+{% extends "base.html" %}
+{% block title %}ATS Score Tracker &middot; Audit Ledger &middot; Intelligent Resume Analyzer{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2 dossier-masthead-bar">
+    <div>
+        <div class="d-flex align-items-center gap-2 mb-1">
+            <span class="badge text-bg-dark text-uppercase small px-2 py-1" style="letter-spacing: 0.08em; font-size: 0.7rem;">Ledger</span>
+            <span class="text-muted small">&bull;</span>
+            <span class="text-muted small fw-semibold text-uppercase" style="letter-spacing: 0.05em;">Historical Audit Registry</span>
+        </div>
+        <h2 class="fw-bold mb-0 classic-heading">ATS Score Tracker</h2>
+        <p class="text-muted small mb-0 mt-1">Every analysis run is tracked here so you can measure how resume and job-description changes move your ATS score over time.</p>
+    </div>
+    <div class="d-flex gap-2">
+        <a href="{{ url_for('export_history_csv') }}" class="btn btn-outline-secondary btn-sm">
+            <i class="bi bi-file-earmark-spreadsheet me-1"></i>Export CSV
+        </a>
+        <a href="{{ url_for('index') }}" class="btn btn-outline-secondary btn-sm">
+            <i class="bi bi-arrow-left me-1"></i>New Analysis
+        </a>
+    </div>
+</div>
+
+<!-- 4 Executive KPI Cards -->
+<div class="row g-3 mb-4">
+    <div class="col-md-3 col-6">
+        <div class="score-card text-center executive-stat-card">
+            <div class="score-card__label"><i class="bi bi-journal-text text-primary me-1"></i>Analyses run</div>
+            <div class="score-card__value">{{ stats.total_runs or 0 }}</div>
+            <div class="score-card__detail">Historical evaluation count</div>
+        </div>
+    </div>
+    <div class="col-md-3 col-6">
+        <div class="score-card text-center executive-stat-card">
+            <div class="score-card__label"><i class="bi bi-speedometer text-info me-1"></i>Average ATS score</div>
+            <div class="score-card__value">{% if stats.avg_ats is not none %}{{ stats.avg_ats | round(1) }}{% else %}&mdash;{% endif %}</div>
+            <div class="score-card__detail">Cumulative mean score</div>
+        </div>
+    </div>
+    <div class="col-md-3 col-6">
+        <div class="score-card text-center executive-stat-card">
+            <div class="score-card__label"><i class="bi bi-trophy text-success me-1"></i>Best ATS score</div>
+            <div class="score-card__value text-success">{% if stats.best_ats is not none %}{{ stats.best_ats | round(1) }}{% else %}&mdash;{% endif %}</div>
+            <div class="score-card__detail">Top performance record</div>
+        </div>
+    </div>
+    <div class="col-md-3 col-6">
+        <div class="score-card text-center executive-stat-card">
+            <div class="score-card__label"><i class="bi bi-bullseye text-warning me-1"></i>Avg job match</div>
+            <div class="score-card__value">{% if stats.avg_match is not none %}{{ stats.avg_match | round(1) }}%{% else %}&mdash;{% endif %}</div>
+            <div class="score-card__detail">Alignment with role specs</div>
+        </div>
+    </div>
+</div>
+
+{% if trend %}
+<div class="card shadow-sm mb-4 executive-dossier-card">
+    <div class="card-header bg-white border-bottom py-3 px-4">
+        <h5 class="card-title mb-0 d-flex align-items-center gap-2">
+            <i class="bi bi-graph-up text-primary"></i>
+            Score trend
+        </h5>
+        <div class="text-muted small mt-1">ATS score across your last {{ trend.dots | length }} analyzed runs (chronological).</div>
+    </div>
+    <div class="card-body p-4">
+        <div class="p-3 bg-light rounded-3 border">
+            <svg viewBox="0 0 {{ trend.width }} {{ trend.height }}" class="chart-svg" role="img" aria-label="ATS score trend over time">
+                {% for g in trend.grid %}
+                <line x1="{{ trend.padding }}" y1="{{ g.y }}" x2="{{ trend.x_axis_end }}" y2="{{ g.y }}" class="chart-grid" />
+                <text x="4" y="{{ g.y + 3 }}" class="chart-tick">{{ g.level }}</text>
+                {% endfor %}
+                <polyline points="{{ trend.polyline }}" class="chart-line" />
+                {% for d in trend.dots %}
+                <circle cx="{{ d.x }}" cy="{{ d.y }}" r="3.5" class="chart-dot">
+                    <title>{{ d.label }}: {{ d.score }}</title>
+                </circle>
+                {% endfor %}
+            </svg>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% if progress %}
+<div class="card shadow-sm mb-4 executive-dossier-card">
+    <div class="card-header bg-white border-bottom py-3 px-4">
+        <h5 class="card-title mb-0 d-flex align-items-center gap-2">
+            <i class="bi bi-arrow-repeat text-primary"></i>
+            Resume progress
+        </h5>
+        <div class="text-muted small mt-1">Resumes you analyzed more than once - are your edits improving the score?</div>
+    </div>
+    <div class="card-body p-4">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0 executive-table">
+                <thead>
+                    <tr><th>Resume</th><th>Runs</th><th>First</th><th>Latest</th><th>Best</th><th>History</th><th>Trend</th></tr>
+                </thead>
+                <tbody>
+                    {% for p in progress %}
+                    <tr>
+                        <td class="text-truncate fw-semibold" style="max-width: 220px;" title="{{ p.filename }}">{{ p.filename }}</td>
+                        <td>{{ p.runs }}</td>
+                        <td>{{ p.first_score | round(1) }}</td>
+                        <td>{{ p.last_score | round(1) }}</td>
+                        <td class="text-success fw-bold">{{ p.best_score | round(1) }}</td>
+                        <td>
+                            {% if p.sparkline %}
+                            <svg viewBox="0 0 {{ p.sparkline.width }} {{ p.sparkline.height }}" width="110" height="30" role="img" aria-label="Score history sparkline">
+                                <polyline points="{{ p.sparkline.polyline }}" class="chart-line" style="stroke-width: 2;" />
+                                {% for d in p.sparkline.dots %}<circle cx="{{ d.x }}" cy="{{ d.y }}" r="2" class="chart-dot" /><title>{{ d.score }}</title>{% endfor %}
+                            </svg>
+                            {% else %}&mdash;{% endif %}
+                        </td>
+                        <td>
+                            {% if p.direction == 'up' %}<span class="badge bg-success-subtle text-success border border-success-subtle">&uarr; +{{ p.delta }}</span>
+                            {% elif p.direction == 'down' %}<span class="badge bg-danger-subtle text-danger border border-danger-subtle">&darr; {{ p.delta }}</span>
+                            {% else %}<span class="badge bg-secondary-subtle text-secondary border">&rarr; flat</span>{% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<!-- Full Audit Ledger Table -->
+<div class="card shadow-sm executive-dossier-card">
+    <div class="card-header bg-white border-bottom py-3 px-4 d-flex justify-content-between align-items-center flex-wrap gap-2">
+        <h5 class="card-title mb-0 d-flex align-items-center gap-2">
+            <i class="bi bi-clock-history text-primary"></i>
+            Audit History
+        </h5>
+        {% if analyses %}
+        <span class="badge text-bg-light border text-muted small">{{ analyses | length }} recorded executions</span>
+        {% endif %}
+    </div>
+    <div class="card-body p-4">
+        {% if analyses %}
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0 executive-table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Resume</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">ATS score</th>
+                        <th scope="col">Grade</th>
+                        <th scope="col">Job match</th>
+                        <th scope="col">Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for a in analyses %}
+                    <tr>
+                        <td class="text-muted fw-bold">{{ a.id }}</td>
+                        <td class="text-nowrap small text-secondary">{{ a.created_at[:16].replace("T", " ") }}</td>
+                        <td class="text-truncate fw-semibold" style="max-width: 200px;" title="{{ a.resume_filename }}">{{ a.resume_filename or "—" }}</td>
+                        <td><span class="badge {{ 'text-bg-primary' if a.ats_mode == 'job_match' else 'text-bg-secondary' }}">{{ "vs Job" if a.ats_mode == "job_match" else "Standalone" }}</span></td>
+                        <td>
+                            {% if a.ats_score is not none %}
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="fw-bold {{ 'text-success' if a.ats_score >= 85 else ('text-primary' if a.ats_score >= 70 else ('text-warning' if a.ats_score >= 55 else 'text-danger')) }}">{{ a.ats_score | round(1) }}</span>
+                                <div class="ats-mini-bar">
+                                    <div class="{{ 'bg-success' if a.ats_score >= 85 else ('bg-primary' if a.ats_score >= 70 else ('bg-warning' if a.ats_score >= 55 else 'bg-danger')) }}"
+                                         style="width: {{ a.ats_score }}%"></div>
+                                </div>
+                            </div>
+                            {% else %}&mdash;{% endif %}
+                        </td>
+                        <td><span class="badge text-bg-light border">{{ a.ats_grade or "—" }}</span></td>
+                        <td>{% if a.overall_score is not none %}<strong>{{ a.overall_score | round(1) }}%</strong>{% else %}&mdash;{% endif %}</td>
+                        <td><a href="{{ url_for('view_result', analysis_id=a.id) }}" class="btn btn-sm btn-outline-primary">JSON</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <p class="text-muted mb-0">No analyses yet. Run one from the <a href="{{ url_for('index') }}">home page</a> and it will appear here.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

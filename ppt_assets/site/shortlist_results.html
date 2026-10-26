@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shortlist Results</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark app-navbar mb-3">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="/"><i class="bi bi-file-earmark-text me-1"></i>Intelligent Resume Analyzer</a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="/history"><i class="bi bi-graph-up-arrow me-1"></i>ATS Tracker</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container pb-5">
+        
+<div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+    <h2 class="fw-bold mb-0">Shortlist Results</h2>
+    <a href="/" class="btn btn-outline-secondary btn-sm">&larr; New Analysis</a>
+</div>
+<p class="text-muted">
+    3 candidates screened against the job description
+    &middot; shortlist threshold: <strong>60.0</strong>
+    &middot; Standard scoring
+    &middot; completed in 0.3s
+</p>
+
+<div class="row g-3 mb-4">
+    <div class="col-md-3 col-6">
+        <div class="score-card text-center border-start border-4 border-success">
+            <div class="score-card__label">Shortlisted</div>
+            <div class="score-card__value text-success">1</div>
+        </div>
+    </div>
+    <div class="col-md-3 col-6">
+        <div class="score-card text-center">
+            <div class="score-card__label">Maybe</div>
+            <div class="score-card__value text-warning">1</div>
+        </div>
+    </div>
+    <div class="col-md-3 col-6">
+        <div class="score-card text-center">
+            <div class="score-card__label">Rejected</div>
+            <div class="score-card__value text-danger">1</div>
+        </div>
+    </div>
+    <div class="col-md-3 col-6">
+        <div class="score-card text-center">
+            <div class="score-card__label">Skipped / errors</div>
+            <div class="score-card__value">1</div>
+        </div>
+    </div>
+</div>
+
+
+<div class="card shadow-sm mb-4">
+    <div class="card-body">
+        <h6 class="fw-bold mb-2">Candidate ranking</h6>
+        <svg viewBox="0 0 640 110" class="chart-svg chart-svg--full" role="img" aria-label="Candidate ATS scores">
+            
+            <text x="0" y="22" class="chart-tick chart-tick--label">Divya_Resume.pdf</text>
+            <rect x="220" y="12"
+                  width="220.3" height="9" rx="4.5" fill="#16a34a">
+                <title>Divya_Resume.pdf: 61.19</title>
+            </rect>
+            
+            <text x="446.3" y="20" class="chart-tick">61.2</text>
+            
+            
+            <text x="0" y="56" class="chart-tick chart-tick--label">Sai_Teja_Resume.docx</text>
+            <rect x="220" y="46"
+                  width="175.2" height="9" rx="4.5" fill="#c7cbe8">
+                <title>Sai_Teja_Resume.docx: 48.67</title>
+            </rect>
+            
+            <text x="401.2" y="54" class="chart-tick">48.7</text>
+            
+            
+            <text x="0" y="90" class="chart-tick chart-tick--label">resume_hari.pdf</text>
+            <rect x="220" y="80"
+                  width="74.6" height="9" rx="4.5" fill="#c7cbe8">
+                <title>resume_hari.pdf: 20.73</title>
+            </rect>
+            
+            <text x="300.6" y="88" class="chart-tick">20.7</text>
+            
+            
+        </svg>
+    </div>
+</div>
+
+
+<div class="card shadow-sm mb-4">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Candidate</th>
+                        <th scope="col">Verdict</th>
+                        <th scope="col">ATS</th>
+                        <th scope="col">Job match</th>
+                        <th scope="col">Years</th>
+                        <th scope="col">Skills</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Top fix</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr class="table-success">
+                        <td>1</td>
+                        <td class="text-truncate" style="max-width: 180px;" title="Divya_Resume.pdf">Divya_Resume.pdf</td>
+                        <td>
+                            <span class="badge bg-success">Shortlisted</span>
+                        </td>
+                        <td><strong>61.19</strong></td>
+                        <td>62.6%</td>
+                        <td>~0.3</td>
+                        <td>21</td>
+                        <td class="small">Software Developer</td>
+                        <td class="small text-truncate" style="max-width: 240px;" title="The job asks for ~3 year(s) of experience while your resume evidences ~0.3. Lead with your most relevant roles and quantify their impact.">The job asks for ~3 year(s) of experience while your...</td>
+                    </tr>
+                    
+                    <tr class="">
+                        <td>2</td>
+                        <td class="text-truncate" style="max-width: 180px;" title="Sai_Teja_Resume.docx">Sai_Teja_Resume.docx</td>
+                        <td>
+                            <span class="badge bg-warning text-dark">Maybe</span>
+                        </td>
+                        <td><strong>48.67</strong></td>
+                        <td>38.0%</td>
+                        <td>~0.4</td>
+                        <td>20</td>
+                        <td class="small">Software Developer</td>
+                        <td class="small text-truncate" style="max-width: 240px;" title="The job description mentions &#34;JavaScript&#34; but your resume never does. Work it in where honestly applicable (skills section, bullets, or summary).">The job description mentions &#34;JavaScript&#34; but your...</td>
+                    </tr>
+                    
+                    <tr class="">
+                        <td>3</td>
+                        <td class="text-truncate" style="max-width: 180px;" title="resume_hari.pdf">resume_hari.pdf</td>
+                        <td>
+                            <span class="badge bg-danger">Rejected</span>
+                        </td>
+                        <td><strong>20.73</strong></td>
+                        <td>12.6%</td>
+                        <td>&mdash;</td>
+                        <td>10</td>
+                        <td class="small">Software Developer</td>
+                        <td class="small text-truncate" style="max-width: 240px;" title="Add these required skills to your Skills section (and evidence them in your experience bullets): JavaScript, Python.">Add these required skills to your Skills section (and...</td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+        <p class="text-muted small mb-0">Verdicts: <strong>Shortlisted</strong> = ATS 60.0+ &middot; <strong>Maybe</strong> = 45.0&ndash;60.0 &middot; anything lower is <strong>Rejected</strong>. Scores are heuristic estimates of ATS behaviour, not hiring advice.</p>
+    </div>
+</div>
+
+
+<div class="alert alert-warning">
+    <strong>1 file(s) not screened:</strong>
+    <ul class="mb-0 small">
+        <li>KKV_letter.docx - This does not look like a resume (resume confidence: 19%). It appears to be a cover letter or formal letter. The document contains characteristic cover letter or formal letter content. Please upload an actual resume (PDF or DOCX).</li>
+        
+    </ul>
+</div>
+
+
+    </main>
+
+    <footer class="text-center text-muted py-4 small border-top">
+        NLP + Machine Learning powered resume analysis &middot; fully offline
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/script.js"></script>
+    
+</body>
+</html>

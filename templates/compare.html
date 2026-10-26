@@ -1,0 +1,155 @@
+{% extends "base.html" %}
+{% block title %}Comparative Evaluation Matrix &middot; Intelligent Resume Analyzer{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2 dossier-masthead-bar">
+    <div>
+        <div class="d-flex align-items-center gap-2 mb-1">
+            <span class="badge text-bg-dark text-uppercase small px-2 py-1" style="letter-spacing: 0.08em; font-size: 0.7rem;">Benchmarking</span>
+            <span class="text-muted small">&bull;</span>
+            <span class="text-muted small fw-semibold text-uppercase" style="letter-spacing: 0.05em;">Multi-Candidate Head-to-Head</span>
+        </div>
+        <h2 class="fw-bold mb-0 classic-heading">Resume Comparison</h2>
+        <p class="text-muted small mb-0 mt-1">
+            {{ comparison | length }} resume{{ 's' if comparison|length != 1 }} compared
+            &middot; {{ "against: " + jd_title if jd_title else "standalone ATS audit" }}
+            &middot; {{ strictness | title }} scoring
+        </p>
+    </div>
+    <a href="{{ url_for('index') }}" class="btn btn-outline-secondary btn-sm">
+        <i class="bi bi-arrow-left me-1"></i>New Analysis
+    </a>
+</div>
+
+{% if winner %}
+<div class="card shadow-sm mb-4 border-success executive-dossier-card">
+    <div class="card-body p-4 bg-success-subtle rounded-3">
+        <div class="d-flex align-items-center gap-3">
+            <span class="brand-emblem bg-success text-white border-0 fs-3" style="width: 48px; height: 48px; box-shadow: 0 4px 10px rgba(4, 120, 87, 0.25);">
+                <i class="bi bi-trophy-fill"></i>
+            </span>
+            <div>
+                <h4 class="card-title mb-1 text-success-emphasis fs-4">
+                    <span class="badge bg-success me-2 px-3 py-1">WINNER</span> {{ winner }}
+                </h4>
+                <p class="text-secondary small mb-0">Highest overall ATS score{% if jd_title %} for this job{% endif %} under {{ strictness }} scoring.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<div class="card shadow-sm mb-4 executive-dossier-card">
+    <div class="card-header bg-white border-bottom py-3 px-4">
+        <h5 class="card-title mb-0 d-flex align-items-center gap-2">
+            <i class="bi bi-table text-primary"></i>
+            Comparative Evaluation Matrix
+        </h5>
+    </div>
+    <div class="card-body p-4">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle executive-table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Resume</th>
+                        <th scope="col">ATS</th>
+                        <th scope="col">Grade</th>
+                        {% if mode == "job_match" %}<th scope="col">Job match</th>{% endif %}
+                        <th scope="col">Years</th>
+                        <th scope="col">Skills</th>
+                        <th scope="col">Potential</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for c in comparison %}
+                    <tr class="{{ 'table-success' if loop.first }}">
+                        <td>
+                            {% if loop.first %}
+                            <span class="badge bg-success"><i class="bi bi-star-fill me-1"></i>1</span>
+                            {% else %}
+                            <span class="text-muted fw-bold">{{ loop.index }}</span>
+                            {% endif %}
+                        </td>
+                        <td class="text-truncate fw-semibold" style="max-width: 200px;" title="{{ c.filename }}">{{ c.filename }}</td>
+                        <td><strong class="fs-6 {{ 'text-success' if loop.first else 'text-dark' }}">{{ c.ats_total if c.ats_total is not none else "N/A" }}</strong></td>
+                        <td><span class="badge text-bg-light border">{{ c.grade or "Unknown" }}</span></td>
+                        {% if mode == "job_match" %}<td>{% if c.match_overall is not none %}<strong>{{ c.match_overall }}%</strong>{% else %}N/A{% endif %}</td>{% endif %}
+                        <td>{% if c.years is not none %}~{{ c.years }}{% else %}&mdash;{% endif %}</td>
+                        <td><span class="badge bg-secondary-subtle text-secondary">{{ c.skills | length }}</span></td>
+                        <td>{% if c.potential %}<span class="text-success fw-bold">up to {{ c.potential }}</span>{% else %}&mdash;{% endif %}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        {% if factor_bars %}
+        <div class="mt-4 pt-3 border-top">
+            <h6 class="fw-bold mb-2">Factor-by-factor comparison</h6>
+            <div class="compare-legend mb-3">
+                {% for item in factor_bars.legend %}
+                <span class="legend-item"><span class="legend-swatch" style="background: {{ item.color }};"></span>{{ item.filename }}</span>
+                {% endfor %}
+            </div>
+            <div class="p-3 bg-light rounded-3 border">
+                <svg viewBox="0 0 {{ factor_bars.width }} {{ factor_bars.height }}" class="chart-svg chart-svg--full"
+                     role="img" aria-label="Factor-by-factor comparison bars">
+                    {% for row in factor_bars.rows %}
+                    <text x="0" y="{{ loop.index * factor_bars.row_height - 10 }}" class="chart-tick chart-tick--label">{{ row.label }}</text>
+                    {% for bar in row.bars %}
+                    <rect x="{{ factor_bars.label_w + loop.index * 2 }}" y="{{ loop.index * factor_bars.row_height - 20 }}"
+                          width="{{ bar.width }}" height="7" rx="3.5" fill="{{ bar.color }}" opacity="0.85">
+                        <title>{{ bar.title }}</title>
+                    </rect>
+                    {% endfor %}
+                    {% endfor %}
+                </svg>
+            </div>
+        </div>
+        {% endif %}
+
+        {% if comparison | length > 1 and winner %}
+        <div class="mt-4 pt-3 border-top">
+            <h6 class="fw-bold mb-2">Factor gaps vs the winner ({{ winner }})</h6>
+            <div class="table-responsive">
+                <table class="table table-sm table-hover align-middle executive-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Resume</th>
+                            {% for key, delta in comparison[0].factor_deltas.items() %}
+                            <th scope="col" class="small">{{ key }}</th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for c in comparison %}
+                        <tr>
+                            <td class="text-truncate fw-semibold small" style="max-width: 160px;">{{ c.filename }}</td>
+                            {% for key, delta in c.factor_deltas.items() %}
+                            <td>
+                                {% if delta > 0 %}<span class="badge bg-success-subtle text-success border border-success-subtle">+{{ delta }}</span>
+                                {% elif delta < 0 %}<span class="badge bg-danger-subtle text-danger border border-danger-subtle">{{ delta }}</span>
+                                {% else %}<span class="text-muted">&mdash;</span>{% endif %}
+                            </td>
+                            {% endfor %}
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <p class="text-muted small mb-0"><i class="bi bi-info-circle me-1"></i>Deltas are from each resume's perspective: green means it beats the winner on that factor, red means it trails.</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+{% if rejected %}
+<div class="alert alert-warning shadow-sm border-start border-4 border-warning">
+    <strong>{{ rejected | length }} file(s) were not analyzed:</strong>
+    <ul class="mb-0 small mt-1">
+        {% for r in rejected %}<li>{{ r.filename }} - {{ r.reason }}</li>{% endfor %}
+    </ul>
+</div>
+{% endif %}
+{% endblock %}

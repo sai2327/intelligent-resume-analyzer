@@ -1,0 +1,45 @@
+RESUME CLASSIFIER - MAXIMUM CAPABILITY TRAINING REPORT
+=================================================================
+Model: Multi-scale TF-IDF (1-3 ngrams, sublinear TF) + Calibrated LinearSVC
+Ensemble: Soft-Voting blend of Calibrated LinearSVC + Deep MLP + Logistic Regression
+Training rows: 1453   Test rows: 364
+Categories (9): Business Analyst, Cloud Engineer, Data Analyst, Data Scientist, DevOps Engineer, Machine Learning Engineer, Software Developer, UI/UX Designer, Web Developer
+
+Calibrated LinearSVC Holdout Accuracy: 0.9451
+Logistic Regression Holdout Accuracy:   0.9286
+Deep MLP Neural Net Holdout Accuracy:  0.9341
+Tri-Model Soft-Voting Ensemble Acc:    0.9396
+Final Selected Production Accuracy:    0.9451
+
+Classification report (precision / recall / f1-score per category):
+                           precision    recall  f1-score   support
+
+         Business Analyst       0.87      0.87      0.87        75
+           Cloud Engineer       1.00      1.00      1.00        28
+             Data Analyst       1.00      1.00      1.00        28
+           Data Scientist       1.00      1.00      1.00        28
+          DevOps Engineer       1.00      1.00      1.00        28
+Machine Learning Engineer       1.00      1.00      1.00        28
+       Software Developer       0.89      0.96      0.93        52
+           UI/UX Designer       1.00      0.94      0.97        50
+            Web Developer       0.91      0.89      0.90        47
+
+                 accuracy                           0.95       364
+                macro avg       0.96      0.96      0.96       364
+             weighted avg       0.95      0.95      0.95       364
+
+Confusion matrix (rows = actual, columns = predicted):
+actual \ predicted            Business A  Cloud Engi  Data Analy  Data Scien  DevOps Eng  Machine Le  Software D  UI/UX Desi  Web Develo
+Business Analyst                      65           0           0           0           0           0           6           0           4
+Cloud Engineer                         0          28           0           0           0           0           0           0           0
+Data Analyst                           0           0          28           0           0           0           0           0           0
+Data Scientist                         0           0           0          28           0           0           0           0           0
+DevOps Engineer                        0           0           0           0          28           0           0           0           0
+Machine Learning Engineer              0           0           0           0           0          28           0           0           0
+Software Developer                     2           0           0           0           0           0          50           0           0
+UI/UX Designer                         3           0           0           0           0           0           0          47           0
+Web Developer                          5           0           0           0           0           0           0           0          42
+
+ML ATTRIBUTION CAPABILITIES:
+- Exported calibrated discriminative feature attribution matrices per role category.
+- Provides real-time ML mathematical gap analysis, action verb scoring, and bullet quantification.

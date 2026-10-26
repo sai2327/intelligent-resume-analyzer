@@ -1,0 +1,315 @@
+{% extends "base.html" %}
+{% block title %}Resume Analyzer{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="hero-header text-center mb-4">
+    <h1 class="hero-title display-6 fw-bold">Resume Analyzer</h1>
+    <p class="hero-subtitle text-muted">AI-powered resume analysis and job matching</p>
+    
+    <div class="hero-badge-strip d-flex justify-content-center align-items-center gap-2 flex-wrap">
+        {% if model_available %}
+            <span class="badge bg-success"><i class="bi bi-check-circle me-1"></i>ML Model Ready</span>
+        {% else %}
+            <span class="badge bg-danger"><i class="bi bi-exclamation-triangle me-1"></i>ML Model Not Trained</span>
+        {% endif %}
+        <span class="badge bg-info"><i class="bi bi-graph-up me-1"></i>ATS Tracker Active</span>
+    </div>
+</div>
+
+<!-- Main Console Card -->
+<div class="row justify-content-center">
+    <div class="col-lg-10 col-xl-9">
+        <div class="card shadow-sm executive-console-card">
+            <div class="card-header executive-card-header bg-white border-bottom py-3 px-4 d-flex justify-content-between align-items-center flex-wrap gap-2">
+                <span class="fw-bold text-uppercase small text-secondary">Analysis Console</span>
+            </div>
+            
+            <div class="card-body p-4">
+                <!-- Navigation Tabs -->
+                <ul class="nav nav-tabs nav-fill mb-4 executive-nav-tabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#analyze-pane" type="button">
+                            <i class="bi bi-file-earmark-person me-1"></i>Analyze Resume Only
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#match-pane" type="button">
+                            <i class="bi bi-input-text me-1"></i>Compare with Job Description
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#rank-pane" type="button">
+                            <i class="bi bi-bar-chart-line me-1"></i>Rank Multiple Jobs
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#compare-pane" type="button">
+                            <i class="bi bi-people me-1"></i>Compare Resumes
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#shortlist-pane" type="button">
+                            <i class="bi bi-funnel me-1"></i>Screen Candidates
+                        </button>
+                    </li>
+                </ul>
+
+                <div class="tab-content pt-2">
+                    <!-- Tab 1: Analyze Resume Only -->
+                    <div class="tab-pane fade show active" id="analyze-pane">
+                        <form action="{{ url_for('analyze') }}" method="post" enctype="multipart/form-data" class="upload-form">
+                            <label class="form-label fw-semibold">Upload Resume (PDF or DOCX)</label>
+                            <div class="drop-zone mb-3">
+                                <div class="drop-zone__content">
+                                    <div class="drop-zone__icon-wrapper mb-2">
+                                        <i class="bi bi-file-earmark-arrow-up drop-zone__icon"></i>
+                                    </div>
+                                    <div class="drop-zone__title">Select candidate resume file or drag & drop</div>
+                                    <p class="drop-zone__hint">Supports PDF and DOCX documents (up to 10 MB)</p>
+                                </div>
+                                <input class="form-control" type="file" name="resume_file" accept=".pdf,.docx" required>
+                            </div>
+
+                            <details class="advanced-options mb-3">
+                                <summary>Advanced options</summary>
+                                <div class="advanced-options-content mt-3">
+                                    <label class="form-label small fw-semibold">ATS strictness</label>
+                                    <div class="btn-group btn-group-sm w-100 mb-2" role="group" aria-label="ATS strictness">
+                                        <input type="radio" class="btn-check" name="strictness" id="an-lenient" value="lenient" autocomplete="off">
+                                        <label class="btn btn-outline-primary" for="an-lenient">Lenient</label>
+                                        <input type="radio" class="btn-check" name="strictness" id="an-standard" value="standard" autocomplete="off" checked>
+                                        <label class="btn btn-outline-primary" for="an-standard">Standard</label>
+                                        <input type="radio" class="btn-check" name="strictness" id="an-strict" value="strict" autocomplete="off">
+                                        <label class="btn btn-outline-primary" for="an-strict">Strict</label>
+                                    </div>
+                                </div>
+                            </details>
+
+                            <button type="submit" class="btn btn-primary w-100 py-2 fs-6">
+                                <i class="bi bi-shield-check me-1"></i>Analyze Resume
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Tab 2: Compare with Job Description -->
+                    <div class="tab-pane fade" id="match-pane">
+                        <form action="{{ url_for('match_job') }}" method="post" enctype="multipart/form-data" class="upload-form">
+                            <label class="form-label fw-semibold">Upload Resume (PDF or DOCX)</label>
+                            <div class="drop-zone mb-3">
+                                <div class="drop-zone__content">
+                                    <div class="drop-zone__icon-wrapper mb-2">
+                                        <i class="bi bi-file-earmark-person drop-zone__icon"></i>
+                                    </div>
+                                    <div class="drop-zone__title">Select candidate resume file</div>
+                                    <p class="drop-zone__hint">Supports PDF or DOCX</p>
+                                </div>
+                                <input class="form-control" type="file" name="resume_file" accept=".pdf,.docx" required>
+                            </div>
+
+                            <label class="form-label fw-semibold mt-2">Job Description</label>
+                            <ul class="nav nav-pills mb-2 small" role="tablist">
+                                <li class="nav-item">
+                                    <button type="button" class="nav-link active" data-bs-toggle="pill" data-bs-target="#jd-upload">
+                                        <i class="bi bi-upload me-1"></i>Upload File
+                                    </button>
+                                </li>
+                                <li class="nav-item">
+                                    <button type="button" class="nav-link" data-bs-toggle="pill" data-bs-target="#jd-paste">
+                                        <i class="bi bi-file-text me-1"></i>Paste Text
+                                    </button>
+                                </li>
+                            </ul>
+                            <div class="tab-content mb-3">
+                                <div class="tab-pane fade show active" id="jd-upload">
+                                    <div class="drop-zone">
+                                        <div class="drop-zone__content">
+                                            <div class="drop-zone__icon-wrapper mb-2">
+                                                <i class="bi bi-briefcase drop-zone__icon"></i>
+                                            </div>
+                                            <div class="drop-zone__title">Upload job description file</div>
+                                            <p class="drop-zone__hint">PDF or DOCX format</p>
+                                        </div>
+                                        <input class="form-control" type="file" name="jd_file" accept=".pdf,.docx">
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="jd-paste">
+                                    <textarea class="form-control" name="jd_text" rows="6" placeholder="Paste the job description text here..."></textarea>
+                                </div>
+                            </div>
+
+                            <details class="advanced-options mb-3">
+                                <summary>Advanced options</summary>
+                                <div class="advanced-options-content mt-3">
+                                    <label for="target_title" class="form-label small fw-semibold">Target job title (optional)</label>
+                                    <input type="text" class="form-control form-control-sm mb-1" id="target_title" name="target_title"
+                                           maxlength="80" placeholder="e.g. Senior Data Analyst">
+
+                                    <label class="form-label small fw-semibold">ATS strictness</label>
+                                    <div class="btn-group btn-group-sm w-100 mb-2" role="group" aria-label="ATS strictness">
+                                        <input type="radio" class="btn-check" name="strictness" id="mt-lenient" value="lenient" autocomplete="off">
+                                        <label class="btn btn-outline-primary" for="mt-lenient">Lenient</label>
+                                        <input type="radio" class="btn-check" name="strictness" id="mt-standard" value="standard" autocomplete="off" checked>
+                                        <label class="btn btn-outline-primary" for="mt-standard">Standard</label>
+                                        <input type="radio" class="btn-check" name="strictness" id="mt-strict" value="strict" autocomplete="off">
+                                        <label class="btn btn-outline-primary" for="mt-strict">Strict</label>
+                                    </div>
+                                    <p class="text-muted small mb-0">Strict models a rigid keyword parser (no typo forgiveness, tighter length rules); lenient forgives more.</p>
+                                </div>
+                            </details>
+
+                            <button type="submit" class="btn btn-primary w-100 py-2 fs-6">
+                                <i class="bi bi-arrow-left-right me-1"></i>Compare with Job
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Tab 3: Rank Multiple Jobs -->
+                    <div class="tab-pane fade" id="rank-pane">
+                        <form action="{{ url_for('rank_jobs') }}" method="post" enctype="multipart/form-data" class="upload-form">
+                            <label class="form-label fw-semibold">Upload Resume (PDF or DOCX)</label>
+                            <div class="drop-zone mb-3">
+                                <div class="drop-zone__content">
+                                    <div class="drop-zone__icon-wrapper mb-2">
+                                        <i class="bi bi-file-earmark-person drop-zone__icon"></i>
+                                    </div>
+                                    <div class="drop-zone__title">Select candidate resume</div>
+                                    <p class="drop-zone__hint">PDF or DOCX format</p>
+                                </div>
+                                <input class="form-control" type="file" name="resume_file" accept=".pdf,.docx" required>
+                            </div>
+
+                            <label for="jds_text" class="form-label fw-semibold mt-2">Job descriptions (up to 10)</label>
+                            <textarea class="form-control font-monospace" name="jds_text" id="jds_text" rows="8"
+                                      placeholder="Paste the first job description here...&#10;&#10;---&#10;&#10;Paste the second job description after the separator line..."></textarea>
+                            <p class="text-muted small mt-1">Separate each job description with a line of <code>---</code>. Each one needs at least 30 characters.</p>
+
+                            <details class="advanced-options mb-3 mt-2">
+                                <summary>Advanced options</summary>
+                                <div class="advanced-options-content mt-3">
+                                    <label for="rank_target_title" class="form-label small fw-semibold">Target job title (optional)</label>
+                                    <input type="text" class="form-control form-control-sm mb-3" id="rank_target_title" name="target_title" maxlength="80">
+
+                                    <label class="form-label small fw-semibold">ATS strictness</label>
+                                    <div class="btn-group btn-group-sm w-100" role="group">
+                                        <input type="radio" class="btn-check" name="strictness" id="rk-lenient" value="lenient" autocomplete="off">
+                                        <label class="btn btn-outline-primary" for="rk-lenient">Lenient</label>
+                                        <input type="radio" class="btn-check" name="strictness" id="rk-standard" value="standard" autocomplete="off" checked>
+                                        <label class="btn btn-outline-primary" for="rk-standard">Standard</label>
+                                        <input type="radio" class="btn-check" name="strictness" id="rk-strict" value="strict" autocomplete="off">
+                                        <label class="btn btn-outline-primary" for="rk-strict">Strict</label>
+                                    </div>
+                                </div>
+                            </details>
+
+                            <button type="submit" class="btn btn-primary w-100 py-2 fs-6">
+                                <i class="bi bi-bar-chart-fill me-1"></i>Rank Jobs
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Tab 4: Compare Resumes -->
+                    <div class="tab-pane fade" id="compare-pane">
+                        <form action="{{ url_for('compare') }}" method="post" enctype="multipart/form-data" class="upload-form">
+                            <label class="form-label fw-semibold">Upload 2-5 Resumes (PDF or DOCX)</label>
+                            <div class="drop-zone mb-3">
+                                <div class="drop-zone__content">
+                                    <div class="drop-zone__icon-wrapper mb-2">
+                                        <i class="bi bi-files drop-zone__icon"></i>
+                                    </div>
+                                    <div class="drop-zone__title">Select candidate resumes for comparative benchmarking</div>
+                                    <p class="drop-zone__hint">Select two or more files - hold Ctrl to pick several</p>
+                                </div>
+                                <input class="form-control" type="file" name="resume_files" accept=".pdf,.docx" multiple required>
+                            </div>
+
+                            <label class="form-label fw-semibold mt-2">Job description (optional)</label>
+                            <textarea class="form-control" name="jd_text" rows="4" placeholder="Paste a job description to compare the resumes against it. Leave empty for a standalone quality comparison."></textarea>
+
+                            <details class="advanced-options mb-3 mt-3">
+                                <summary>Advanced options</summary>
+                                <div class="advanced-options-content mt-3">
+                                    <label for="cmp_target_title" class="form-label small fw-semibold">Target job title (optional)</label>
+                                    <input type="text" class="form-control form-control-sm mb-3" id="cmp_target_title" name="target_title" maxlength="80">
+
+                                    <label class="form-label small fw-semibold">ATS strictness</label>
+                                    <div class="btn-group btn-group-sm w-100" role="group">
+                                        <input type="radio" class="btn-check" name="strictness" id="cp-lenient" value="lenient" autocomplete="off">
+                                        <label class="btn btn-outline-primary" for="cp-lenient">Lenient</label>
+                                        <input type="radio" class="btn-check" name="strictness" id="cp-standard" value="standard" autocomplete="off" checked>
+                                        <label class="btn btn-outline-primary" for="cp-standard">Standard</label>
+                                        <input type="radio" class="btn-check" name="strictness" id="cp-strict" value="strict" autocomplete="off">
+                                        <label class="btn btn-outline-primary" for="cp-strict">Strict</label>
+                                    </div>
+                                </div>
+                            </details>
+
+                            <button type="submit" class="btn btn-primary w-100 py-2 fs-6">
+                                <i class="bi bi-people me-1"></i>Compare Resumes
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Tab 5: Screen Candidates (Batch Shortlist) -->
+                    <div class="tab-pane fade" id="shortlist-pane">
+                        <form action="{{ url_for('shortlist') }}" method="post" enctype="multipart/form-data" class="upload-form">
+                            <label class="form-label fw-semibold">Upload Resumes to Screen</label>
+                            <div class="drop-zone mb-3">
+                                <div class="drop-zone__content">
+                                    <div class="drop-zone__icon-wrapper mb-2">
+                                        <i class="bi bi-folder-check drop-zone__icon"></i>
+                                    </div>
+                                    <div class="drop-zone__title">Select candidate batch for automated screening</div>
+                                    <p class="drop-zone__hint">Select all the candidate resumes at once</p>
+                                </div>
+                                <input class="form-control" type="file" name="resume_files" accept=".pdf,.docx" multiple required>
+                            </div>
+
+                            <label class="form-label fw-semibold mt-2">Job description</label>
+                            <textarea class="form-control" name="jd_text" rows="5" placeholder="Paste the job description - every resume will be screened against it..."></textarea>
+
+                            <div class="row align-items-center mt-3">
+                                <div class="col-sm-6">
+                                    <label class="form-label small fw-semibold">Shortlist threshold (ATS score)</label>
+                                    <input type="number" class="form-control form-control-sm" name="threshold" min="0" max="100" value="60">
+                                </div>
+                                <div class="col-sm-6 text-muted small mt-2 mt-sm-4">
+                                    Candidates at or above this score are shortlisted; 15 points below counts as Maybe.
+                                </div>
+                            </div>
+
+                            <details class="advanced-options mb-3 mt-3">
+                                <summary>Advanced options</summary>
+                                <div class="advanced-options-content mt-3">
+                                    <label for="sl_target_title" class="form-label small fw-semibold">Target job title (optional)</label>
+                                    <input type="text" class="form-control form-control-sm mb-3" id="sl_target_title" name="target_title" maxlength="80">
+
+                                    <label class="form-label small fw-semibold">ATS strictness</label>
+                                    <div class="btn-group btn-group-sm w-100" role="group">
+                                        <input type="radio" class="btn-check" name="strictness" id="sl-lenient" value="lenient" autocomplete="off">
+                                        <label class="btn btn-outline-primary" for="sl-lenient">Lenient</label>
+                                        <input type="radio" class="btn-check" name="strictness" id="sl-standard" value="standard" autocomplete="off" checked>
+                                        <label class="btn btn-outline-primary" for="sl-standard">Standard</label>
+                                        <input type="radio" class="btn-check" name="strictness" id="sl-strict" value="strict" autocomplete="off">
+                                        <label class="btn btn-outline-primary" for="sl-strict">Strict</label>
+                                    </div>
+                                </div>
+                            </details>
+
+                            <button type="submit" class="btn btn-primary w-100 py-2 fs-6">
+                                <i class="bi bi-funnel me-1"></i>Screen Candidates
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <div id="loadingIndicator" class="text-center mt-4 p-4 rounded-3 d-none executive-loading-box">
+                    <div class="spinner-border text-primary" role="status"></div>
+                    <p class="mt-3 fw-bold text-dark mb-0 fs-6">Running analysis...</p>
+                </div>
+                <div id="clientError" class="alert alert-danger mt-3 d-none"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

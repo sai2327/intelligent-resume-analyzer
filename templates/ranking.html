@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% block title %}Best-Fit Job Ranking &middot; Intelligent Resume Analyzer{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2 dossier-masthead-bar">
+    <div>
+        <div class="d-flex align-items-center gap-2 mb-1">
+            <span class="badge text-bg-dark text-uppercase small px-2 py-1" style="letter-spacing: 0.08em; font-size: 0.7rem;">Alignment</span>
+            <span class="text-muted small">&bull;</span>
+            <span class="text-muted small fw-semibold text-uppercase" style="letter-spacing: 0.05em;">Multi-Opening Candidate Ranking</span>
+        </div>
+        <h2 class="fw-bold mb-0 classic-heading">Best-Fit Job Ranking</h2>
+        <p class="text-muted small mb-0 mt-1">
+            <strong>{{ filename }}</strong> ranked against {{ ranking | length }} job description{{ 's' if ranking|length != 1 }}
+            &middot; {{ strictness | title }} scoring
+            {% if category %} &middot; predicted category: <span class="badge bg-primary">{{ category }}</span>{% endif %}
+            &middot; {{ resume_skills_count }} skills detected
+        </p>
+    </div>
+    <a href="{{ url_for('index') }}" class="btn btn-outline-secondary btn-sm">
+        <i class="bi bi-arrow-left me-1"></i>New Analysis
+    </a>
+</div>
+
+{% if score_bars %}
+<div class="card shadow-sm mb-4 executive-dossier-card">
+    <div class="card-header bg-white border-bottom py-3 px-4">
+        <h6 class="fw-bold mb-0 d-flex align-items-center gap-2">
+            <i class="bi bi-bar-chart-fill text-primary"></i>
+            ATS score by job description
+        </h6>
+    </div>
+    <div class="card-body p-4">
+        <div class="p-3 bg-light rounded-3 border">
+            <svg viewBox="0 0 {{ score_bars.width }} {{ score_bars.height }}" class="chart-svg chart-svg--full" role="img" aria-label="ATS score per job description">
+                {% for row in score_bars.rows %}
+                <text x="0" y="{{ loop.index * score_bars.row_height - 12 }}" class="chart-tick chart-tick--label">{{ row.label }}</text>
+                <rect x="{{ score_bars.label_w }}" y="{{ loop.index * score_bars.row_height - 22 }}"
+                      width="{{ row.width }}" height="9" rx="4.5" fill="{{ row.color }}">
+                    <title>{{ row.label }}: {{ row.score }}</title>
+                </rect>
+                {% if row.score is not none %}
+                <text x="{{ score_bars.label_w + row.width + 6 }}" y="{{ loop.index * score_bars.row_height - 14 }}" class="chart-tick">{{ row.score | round(1) }}</text>
+                {% endif %}
+                {% endfor %}
+            </svg>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% if detection and detection.verdict != "resume" %}
+<div class="alert alert-warning shadow-sm mb-4 border-start border-4 border-warning">
+    <strong>Document check:</strong> this looks {{ detection.verdict | replace("_", " ") }} as a resume
+    ({{ detection.confidence }}% confidence) — rankings may not be meaningful.
+</div>
+{% endif %}
+
+{% for job in ranking %}
+<div class="card shadow-sm mb-3 {% if loop.first %}border-success{% endif %} executive-dossier-card">
+    <div class="card-body p-4">
+        <div class="d-flex justify-content-between align-items-start flex-wrap gap-2">
+            <div>
+                <h5 class="card-title mb-1 d-flex align-items-center gap-2">
+                    {% if loop.first %}<span class="badge bg-success me-1 px-3 py-1"><i class="bi bi-star-fill me-1"></i>BEST FIT</span>{% else %}<span class="badge text-bg-light border me-1">#{{ loop.index }}</span>{% endif %}
+                    {{ job.job_title }}
+                    {% if job.seniority %}<span class="badge text-bg-light border">{{ job.seniority | title }} level</span>{% endif %}
+                </h5>
+                <div class="text-muted small mb-2">{{ job.excerpt }}&hellip;</div>
+            </div>
+            <div class="text-end">
+                <div class="display-6 fw-bold overall-score">{{ job.ats_total if job.ats_total is not none else "N/A" }}<span class="fs-6 text-muted">/100</span></div>
+                <span class="badge {{ {'Excellent': 'bg-success', 'Strong': 'bg-primary', 'Fair': 'bg-warning text-dark', 'Needs work': 'bg-danger', 'High risk': 'bg-danger'}.get(job.grade, 'bg-secondary') }}">{{ job.grade or "Unknown" }}</span>
+            </div>
+        </div>
+        <div class="row g-3 mt-1">
+            <div class="col-md-4">
+                <div class="score-card">
+                    <div class="score-card__label">Overall job match</div>
+                    <div class="score-card__value">{% if job.match_overall is not none %}{{ job.match_overall }}%{% else %}N/A{% endif %}</div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="score-card h-100">
+                    <div class="score-card__label">Required skills ({{ job.required_skills | length }} shown)</div>
+                    <div class="mt-1">
+                        {% for s in job.required_skills %}<span class="badge skill-badge skill-badge--matched">{{ s }}</span>{% else %}<span class="text-muted small">None detected</span>{% endfor %}
+                        {% if job.missing_required_count %}<span class="badge skill-badge skill-badge--missing">{{ job.missing_required_count }} missing</span>{% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% if job.top_suggestions %}
+        <div class="mt-3 pt-2 border-top">
+            <ul class="mb-0 small list-unstyled">
+                {% for s in job.top_suggestions %}
+                <li class="py-1"><span class="badge {{ 'text-bg-danger' if s.priority == 'high' else ('text-bg-warning' if s.priority == 'medium' else 'text-bg-secondary') }} me-1">{{ s.priority }}</span> {{ s.text }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

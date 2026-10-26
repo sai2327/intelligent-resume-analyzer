@@ -1,0 +1,506 @@
+{% extends "base.html" %}
+{% block title %}Analysis Results{% endblock %}
+
+{% block content %}
+<!-- Header Bar -->
+<div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2 dossier-masthead-bar">
+    <div>
+        <h2 class="fw-bold mb-0 classic-heading">Analysis Results</h2>
+    </div>
+    <div class="d-flex gap-2">
+        <a href="{{ url_for('index') }}" class="btn btn-outline-secondary btn-sm">
+            <i class="bi bi-arrow-left me-1"></i>New Analysis
+        </a>
+    </div>
+</div>
+
+{% set gauge_colors = {"Excellent": "#047857", "Strong": "#0f233a", "Fair": "#b45309", "Needs work": "#c2410c", "High risk": "#b91c1c"} %}
+{% set grade_color = gauge_colors.get(ats_result.grade, "#0f233a") if ats_result else "#0f233a" %}
+{% set bar_colors = {"Excellent": "bg-success", "Strong": "bg-primary", "Fair": "bg-warning", "Needs work": "bg-danger", "High risk": "bg-danger"} %}
+{% set priority_classes = {"high": "text-bg-danger", "medium": "text-bg-warning", "low": "text-bg-secondary"} %}
+{% macro factor_bar_class(score) -%}
+{%- if score is none -%}bg-secondary
+{%- elif score >= 85 -%}bg-success
+{%- elif score >= 70 -%}bg-primary
+{%- elif score >= 55 -%}bg-warning
+{%- else -%}bg-danger
+{%- endif -%}
+{%- endmacro %}
+
+{% macro ats_panel(ats, changes) %}
+{% if detection and detection.verdict != "resume" %}
+<div class="alert alert-warning d-flex justify-content-between align-items-center flex-wrap gap-2 shadow-sm mb-4 border-start border-4 border-warning">
+    <span>
+        <strong>Document check:</strong> this looks {{ detection.verdict | replace("_", " ") }} as a resume
+        ({{ detection.confidence }}% confidence){% if detection.document_type %} &mdash; it resembles a {{ detection.document_type }}{% endif %}.
+        The scores below may not be meaningful for this kind of document.
+    </span>
+</div>
+{% endif %}
+
+<!-- ATS Score Tracker Card -->
+<div class="card shadow-sm mb-4 executive-dossier-card">
+    <div class="card-header bg-white border-bottom py-3 px-4 d-flex justify-content-between align-items-center flex-wrap gap-2">
+        <div>
+            <h5 class="card-title mb-0 d-flex align-items-center gap-2">
+                <i class="bi bi-speedometer2 text-primary"></i>
+                ATS Score Tracker
+            </h5>
+            <div class="d-flex gap-2 align-items-center flex-wrap mt-1">
+                <span class="badge text-bg-light border">{{ "Resume vs Job Description" if ats.mode == "job_match" else "Standalone Resume Audit" }}</span>
+                {% if strictness and strictness != "standard" %}<span class="badge text-bg-dark">{{ strictness | title }} scoring</span>{% endif %}
+                {% if detection and detection.verdict == "resume" %}<span class="badge text-bg-success"><i class="bi bi-check-circle me-1"></i>Resume detected &middot; {{ detection.confidence }}%</span>{% endif %}
+            </div>
+        </div>
+        <div class="btn-group btn-group-sm">
+            <a class="btn btn-outline-secondary" href="{{ url_for('view_result', analysis_id=analysis_id) }}" download="ats-report.json">
+                <i class="bi bi-download me-1"></i>JSON
+            </a>
+            <a class="btn btn-outline-secondary" href="{{ url_for('report_txt', analysis_id=analysis_id) }}">
+                <i class="bi bi-file-text me-1"></i>Text report
+            </a>
+            <a class="btn btn-outline-secondary" href="{{ url_for('history') }}">
+                <i class="bi bi-clock-history me-1"></i>Score history &rarr;
+            </a>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <div class="row align-items-center g-4">
+            <!-- Left: Chronometer Gauge & Radar -->
+            <div class="col-md-4 text-center">
+                {% if ats.jd_warning %}
+                <div class="alert alert-warning small p-2 mb-2">{{ ats.jd_warning }}</div>
+                {% endif %}
+                
+                <div class="gauge-container p-3 rounded-4 bg-light border d-inline-block shadow-sm">
+                    <div class="ats-gauge mx-auto" style="--p: {{ ats.total or 0 }}; --gauge-color: {{ grade_color }};">
+                        <div class="ats-gauge__inner">
+                            <div class="ats-gauge__value" style="color: {{ grade_color }};">{{ (ats.total or 0) | round(1) }}</div>
+                            <div class="ats-gauge__label">out of 100</div>
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <span class="badge fs-6 px-3 py-1 shadow-sm" style="background-color: {{ grade_color }}; color: #ffffff;">{{ ats.grade }}</span>
+                    </div>
+                    <p class="text-muted small mb-0 px-2">{{ ats.grade_detail }}</p>
+                </div>
+
+                {% if ats.potential %}
+                <div class="potential-box mt-3 text-center shadow-sm">
+                    <div class="small text-muted fw-bold">Potential Score</div>
+                    <div class="fw-bold text-success fs-3">up to {{ ats.potential.total }}</div>
+                    <div class="small text-muted">+{{ (ats.potential.total - ats.potential.current) | round(1) }} pts available</div>
+                </div>
+                {% endif %}
+
+                {% if ats.radar %}
+                <div class="text-center mt-3 p-3 bg-light rounded-3 border">
+                    <div class="small fw-bold text-muted mb-2">Factor Balance</div>
+                    <svg viewBox="0 0 200 200" class="ats-radar" role="img" aria-label="Radar chart of ATS factor scores">
+                        {% for ring in ats.radar.rings %}<polygon points="{{ ring }}" class="ats-radar__ring"/>{% endfor %}
+                        {% for axis in ats.radar.axes %}<line x1="100" y1="100" x2="{{ axis.x }}" y2="{{ axis.y }}" class="ats-radar__axis"/>{% endfor %}
+                        <polygon points="{{ ats.radar.score_polygon }}" class="ats-radar__score"/>
+                        {% for pair in ats.radar.score_polygon.split(' ') %}{% set xy = pair.split(',') %}<circle cx="{{ xy[0] }}" cy="{{ xy[1] }}" r="2.5" class="ats-radar__dot"/>{% endfor %}
+                        {% for axis in ats.radar.axes %}<text x="{{ axis.x }}" y="{{ axis.y + axis.dy }}" text-anchor="{{ axis.anchor }}" class="ats-radar__label">{{ axis.label }} ({{ axis.score | round(0) | int }})</text>{% endfor %}
+                    </svg>
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- Right: Factor Breakdown Matrix -->
+            <div class="col-md-8">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h6 class="fw-bold text-secondary small mb-0">ATS Scoring Factors</h6>
+                </div>
+                
+                {% for factor in ats.factors %}
+                <div class="ats-factor mb-3 p-3 rounded-3 bg-white border shadow-sm">
+                    <div class="d-flex justify-content-between align-items-center small mb-1">
+                        <span class="fw-bold text-dark fs-6">{{ factor.label }}
+                            <span class="text-muted fw-normal small ms-1">&middot; weight {{ (factor.weight * 100) | round(0) | int }}%</span>
+                        </span>
+                        <span class="fw-bold fs-6 text-secondary">{% if factor.score is not none %}{{ factor.score | round(1) }}%{% else %}N/A{% endif %}</span>
+                    </div>
+                    <div class="progress ats-factor__bar my-2" style="height: 10px;">
+                        <div class="progress-bar {{ factor_bar_class(factor.score) }}"
+                             style="width: {{ factor.score or 0 }}%"></div>
+                    </div>
+                    <div class="text-muted ats-factor__detail small">{{ factor.detail }}</div>
+                    
+                    {% if factor.coverage_counts %}
+                    {% set cc = factor.coverage_counts %}
+                    {% set donut_chart = donut([
+                        {'label': 'Matched', 'value': cc.matched, 'color': '#047857'},
+                        {'label': 'Partial', 'value': cc.partial, 'color': '#b45309'},
+                        {'label': 'Missing', 'value': cc.missing, 'color': '#b91c1c'},
+                    ]) %}
+                    <div class="d-flex align-items-center gap-3 mt-2 p-2 bg-light rounded-2 border">
+                        {% if donut_chart %}
+                        <svg viewBox="0 0 {{ donut_chart.size }} {{ donut_chart.size }}" width="84" height="84" class="flex-shrink-0" role="img" aria-label="Keyword coverage donut">
+                            {% for arc in donut_chart.arcs %}
+                            <circle cx="{{ donut_chart.center }}" cy="{{ donut_chart.center }}" r="{{ donut_chart.radius }}"
+                                    fill="none" stroke="{{ arc.color }}" stroke-width="{{ donut_chart.thickness }}"
+                                    stroke-dasharray="{{ arc.dash }} {{ arc.gap }}" transform="rotate({{ arc.rotation }} {{ donut_chart.center }} {{ donut_chart.center }})">
+                                <title>{{ arc.label }}: {{ arc.value }}</title>
+                            </circle>
+                            {% endfor %}
+                            <text x="{{ donut_chart.center }}" y="{{ donut_chart.center + 5 }}" text-anchor="middle" class="chart-donut-label">{{ donut_chart.center_label }}</text>
+                        </svg>
+                        <div class="small flex-grow-1">
+                            <div><span class="legend-swatch" style="background: #047857;"></span> <strong>Matched:</strong> {{ cc.matched }} keywords</div>
+                            <div><span class="legend-swatch" style="background: #b45309;"></span> <strong>Partial / typo:</strong> {{ cc.partial + cc.typo }} keywords</div>
+                            <div><span class="legend-swatch" style="background: #b91c1c;"></span> <strong>Missing:</strong> {{ cc.missing }} keywords</div>
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                    
+                    {% if factor.matched_keywords or factor.missing_keywords %}
+                    <div class="mt-2 pt-2 border-top">
+                        {% for kw in factor.matched_keywords %}<span class="badge skill-badge skill-badge--matched">{{ kw }}</span>{% endfor %}
+                        {% for kw in factor.missing_keywords %}<span class="badge skill-badge skill-badge--missing">{{ kw }}</span>{% endfor %}
+                    </div>
+                    {% endif %}
+                    
+                    {% if factor.checks %}
+                    <div class="mt-2 pt-1">
+                        {% for check in factor.checks %}
+                        <span class="badge {{ 'text-bg-success' if check.passed else 'text-bg-danger' }} me-1 mb-1 fw-normal">
+                            {{ "✓" if check.passed else "✗" }} {{ check.name }}
+                        </span>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+
+                {% if ats.composition and ats.composition | length > 1 %}
+                {% set stacked = stacked_bar(ats.composition, width=560) %}
+                {% if stacked %}
+                <div class="p-3 bg-light rounded-3 border mt-3">
+                    <h6 class="fw-bold mb-2 small text-uppercase text-muted" style="letter-spacing: 0.05em;">Score composition</h6>
+                    <svg viewBox="0 0 {{ stacked.width }} {{ stacked.height }}" class="chart-svg chart-svg--full" role="img" aria-label="How the total ATS score is composed">
+                        {% for part in stacked.parts %}
+                        <rect x="{{ part.x }}" y="4" width="{{ part.width }}" height="{{ stacked.height - 12 }}" fill="{{ part.color }}" rx="2">
+                            <title>{{ part.label }}: {{ part.points }} pts ({{ part.share }}%)</title>
+                        </rect>
+                        {% endfor %}
+                    </svg>
+                    <div class="d-flex flex-wrap small mt-2">
+                        {% for part in stacked.parts %}
+                        <span class="legend-item"><span class="legend-swatch" style="background: {{ part.color }};"></span>{{ part.label }} ({{ part.points }})</span>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+                {% endif %}
+
+                {% if ats.excluded_factors %}
+                <p class="text-muted small mt-2 mb-0"><i class="bi bi-info-circle me-1"></i>Excluded (insufficient information, weight redistributed): {{ ats.excluded_factors | join(", ") }}.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Remediation Plan Card -->
+{% if changes %}
+<div class="card shadow-sm mb-4 border-start border-4" style="border-left-color: {{ grade_color }} !important;">
+    <div class="card-body p-4">
+        <div class="d-flex justify-content-between align-items-center mb-1">
+            <h5 class="card-title mb-0 d-flex align-items-center gap-2">
+                <i class="bi bi-signpost-split text-primary"></i>
+                Recommendations
+            </h5>
+            <span class="badge text-bg-light border small text-muted">{{ changes | length }} steps</span>
+        </div>
+        <p class="text-muted small mb-3">Priority improvements to maximize ATS score.</p>
+        
+        <div class="list-group list-group-flush border-top">
+            {% for item in changes %}
+            <div class="list-group-item px-0 py-3 bg-transparent">
+                <div class="d-flex gap-3 align-items-start">
+                    <span class="badge {{ priority_classes.get(item.priority, 'text-bg-secondary') }} flex-shrink-0 mt-1 px-2 py-1" style="font-size: 0.72rem; letter-spacing: 0.05em;">
+                        {{ item.priority | upper }}
+                    </span>
+                    <div class="flex-grow-1">
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                            <span class="fw-bold text-dark">{{ item.factor }}</span>
+                            <span class="badge bg-success-subtle text-success border border-success-subtle fw-semibold">+{{ item.potential_gain }} pts</span>
+                        </div>
+                        <div class="text-secondary small">{{ item.text }}</div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="alert alert-light border small mt-3 mb-0 text-muted">
+            <i class="bi bi-shield-check me-1 text-primary"></i>Only add skills you genuinely have.
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endmacro %}
+
+<!-- Candidate Dossier Profile Card -->
+<div class="card shadow-sm mb-4 executive-dossier-card">
+    <div class="card-body p-4">
+        <div class="row align-items-center gy-3">
+            <div class="col-md-7">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="candidate-avatar">
+                        {{ (resume_data.name[0] if resume_data.name else "C") | upper }}
+                    </div>
+                    <div>
+                        <h3 class="card-title mb-0 fs-3">{{ resume_data.name or "Candidate Profile" }}</h3>
+                    </div>
+                </div>
+                
+                <div class="d-flex flex-wrap gap-2 mt-3">
+                    <div class="candidate-contact-pill">
+                        <i class="bi bi-envelope text-primary"></i>
+                        <span>{{ resume_data.email or "Email not detected" }}</span>
+                    </div>
+                    <div class="candidate-contact-pill">
+                        <i class="bi bi-telephone text-primary"></i>
+                        <span>{{ resume_data.phone or "Phone not detected" }}</span>
+                    </div>
+                    {% if resume_data.profiles and resume_data.profiles.linkedin %}
+                    <a href="https://{{ resume_data.profiles.linkedin | replace('https://', '') | replace('http://', '') }}" target="_blank" rel="noopener" class="candidate-contact-pill text-decoration-none">
+                        <i class="bi bi-linkedin text-primary"></i>
+                        <span>LinkedIn profile</span>
+                    </a>
+                    {% endif %}
+                    {% if resume_data.profiles and resume_data.profiles.github %}
+                    <a href="https://{{ resume_data.profiles.github | replace('https://', '') | replace('http://', '') }}" target="_blank" rel="noopener" class="candidate-contact-pill text-decoration-none">
+                        <i class="bi bi-github text-dark"></i>
+                        <span>GitHub profile</span>
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="col-md-5">
+                <div class="p-3 bg-light rounded-3 border">
+                    <div class="mb-2">
+                        <span class="text-muted small d-block">Resume Category</span>
+                        <span class="badge bg-primary fs-6 px-3 py-1 mt-1">{{ category or "Unavailable" }}</span>
+                    </div>
+                    {% if top_predictions %}
+                    <div class="pt-2 border-top">
+                        <span class="text-muted small d-block mb-1">Top predictions:</span>
+                        <div class="small text-secondary">
+                            {% for p in top_predictions %}
+                            <span class="d-inline-block me-2"><strong>{{ p.category }}</strong> ({{ (p.confidence * 100) | round(1) }}%){% if not loop.last %}, {% endif %}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if ats_result %}{{ ats_panel(ats_result, ats_changes) }}{% endif %}
+
+{% if mode == "match" and jd_quality and jd_quality.quality != "good" %}
+<div class="alert alert-warning py-3 mb-4 shadow-sm border-start border-4 border-warning">
+    <strong>Job description check ({{ jd_quality.quality }}):</strong>
+    {{ jd_quality.warnings | join(" ") }}
+</div>
+{% endif %}
+
+{% if mode == "match" %}
+<!-- Job Match Card -->
+<div class="card shadow-sm mb-4 text-center executive-dossier-card">
+    <div class="card-body p-4">
+        <div class="d-flex justify-content-center align-items-center gap-2 mb-1">
+            <span class="badge text-bg-light border small">Job Match Score</span>
+        </div>
+        {% if job_description.job_title %}
+        <p class="mb-2">
+            <strong class="fs-4 text-dark">{{ job_description.job_title }}</strong>
+            {% if job_description.seniority %}<span class="badge text-bg-light border ms-1">{{ job_description.seniority | title }} level</span>{% endif %}
+        </p>
+        {% endif %}
+        {% if match.overall.overall_score is not none %}
+            <div class="display-3 fw-bold overall-score my-2 text-primary">{{ match.overall.overall_score }}%</div>
+        {% endif %}
+        {% if match.overall.note %}<p class="text-muted small mb-0">{{ match.overall.note }}</p>{% endif %}
+    </div>
+</div>
+
+<!-- 4 Core Alignment Metric Cards -->
+<div class="row g-3 mb-4">
+    <div class="col-md-3 col-6">
+        <div class="score-card">
+            <div class="score-card__label"><i class="bi bi-check2-circle text-success me-1"></i>Skill Match</div>
+            <div class="score-card__value">{% if match.skill_match.required_skill_score is not none %}{{ match.skill_match.required_skill_score }}%{% else %}N/A{% endif %}</div>
+            <div class="progress mt-2" style="height: 6px;"><div class="progress-bar bg-success" style="width: {{ match.skill_match.required_skill_score or 0 }}%"></div></div>
+        </div>
+    </div>
+    <div class="col-md-3 col-6">
+        <div class="score-card">
+            <div class="score-card__label"><i class="bi bi-fonts text-primary me-1"></i>Text Similarity</div>
+            <div class="score-card__value">{{ match.text_similarity }}%</div>
+            <div class="progress mt-2" style="height: 6px;"><div class="progress-bar bg-info" style="width: {{ match.text_similarity }}%"></div></div>
+        </div>
+    </div>
+    <div class="col-md-3 col-6">
+        <div class="score-card">
+            <div class="score-card__label"><i class="bi bi-clock-history text-warning me-1"></i>Experience Match</div>
+            <div class="score-card__value">{% if match.experience_match.score is not none %}{{ match.experience_match.score }}%{% else %}N/A{% endif %}</div>
+            <div class="progress mt-2" style="height: 6px;"><div class="progress-bar bg-warning" style="width: {{ match.experience_match.score or 0 }}%"></div></div>
+            <div class="score-card__detail">{{ match.experience_match.detail }}</div>
+        </div>
+    </div>
+    <div class="col-md-3 col-6">
+        <div class="score-card">
+            <div class="score-card__label"><i class="bi bi-mortarboard text-secondary me-1"></i>Education Match</div>
+            <div class="score-card__value">{% if match.education_match.score is not none %}{{ match.education_match.score }}%{% else %}N/A{% endif %}</div>
+            <div class="progress mt-2" style="height: 6px;"><div class="progress-bar bg-secondary" style="width: {{ match.education_match.score or 0 }}%"></div></div>
+            <div class="score-card__detail">{{ match.education_match.detail }}</div>
+        </div>
+    </div>
+</div>
+
+<!-- Skill Inventory Grid -->
+<div class="card shadow-sm mb-4 executive-dossier-card">
+    <div class="card-header bg-white border-bottom py-3 px-4">
+        <h5 class="card-title mb-0 d-flex align-items-center gap-2">
+            <i class="bi bi-card-checklist text-primary"></i>
+            Job Description Skill Alignment
+        </h5>
+    </div>
+    <div class="card-body p-4">
+        <div class="row g-4">
+            <div class="col-md-6">
+                <h6 class="fw-bold small text-uppercase text-success mb-2"><i class="bi bi-check-circle me-1"></i>Matched Required Skills</h6>
+                {% for s in match.skill_match.matched_required %}<span class="badge skill-badge skill-badge--matched">{{ s }}</span>{% else %}<p class="text-muted small">None detected.</p>{% endfor %}
+            </div>
+            <div class="col-md-6">
+                <h6 class="fw-bold small text-uppercase text-danger mb-2"><i class="bi bi-x-circle me-1"></i>Missing Required Skills</h6>
+                {% for s in match.skill_match.missing_required %}<span class="badge skill-badge skill-badge--missing">{{ s }}</span>{% else %}<p class="text-muted small">None &mdash; great match!</p>{% endfor %}
+            </div>
+            <div class="col-md-6">
+                <h6 class="fw-bold small text-uppercase text-warning mb-2"><i class="bi bi-star me-1"></i>Missing Preferred Skills</h6>
+                {% for s in match.skill_match.missing_preferred %}<span class="badge skill-badge skill-badge--preferred">{{ s }}</span>{% else %}<p class="text-muted small">None.</p>{% endfor %}
+            </div>
+            <div class="col-md-6">
+                <h6 class="fw-bold small text-uppercase text-primary mb-2"><i class="bi bi-plus-circle me-1"></i>Additional Candidate Skills</h6>
+                {% for s in match.skill_match.additional_skills %}<span class="badge skill-badge skill-badge--extra">{{ s }}</span>{% else %}<p class="text-muted small">None beyond the job's listed skills.</p>{% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% else %}
+<div class="card shadow-sm mb-4 executive-dossier-card">
+    <div class="card-header bg-white border-bottom py-3 px-4">
+        <h5 class="card-title mb-0 d-flex align-items-center gap-2">
+            <i class="bi bi-stars text-primary"></i>
+            Candidate Skills Inventory
+        </h5>
+    </div>
+    <div class="card-body p-4">
+        <div class="row g-4">
+            <div class="col-md-6">
+                <h6 class="fw-bold mb-3">Detected Skills ({{ skill_total or 0 }})</h6>
+                {% for s in resume_data.skills %}<span class="badge skill-badge skill-badge--matched">{{ s }}</span>{% else %}<p class="text-muted small">No recognized skills detected.</p>{% endfor %}
+            </div>
+            {% if skill_bars %}
+            <div class="col-md-6">
+                <h6 class="fw-bold mb-3">Skills by category</h6>
+                <div class="p-3 bg-light rounded-3 border">
+                    <svg viewBox="0 0 {{ skill_bars.width }} {{ skill_bars.height }}" class="chart-svg chart-svg--full" role="img" aria-label="Detected skills by category">
+                        {% for row in skill_bars.rows %}
+                        <text x="0" y="{{ loop.index * skill_bars.row_height - 12 }}" class="chart-tick chart-tick--label">{{ row.label }}</text>
+                        <rect x="{{ skill_bars.label_w }}" y="{{ loop.index * skill_bars.row_height - 22 }}"
+                              width="{{ row.width }}" height="9" rx="4.5" fill="{{ row.color }}">
+                            <title>{{ row.label }}</title>
+                        </rect>
+                        {% endfor %}
+                    </svg>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<!-- Candidate Background Sections -->
+<div class="row g-4 mb-4">
+    <div class="col-md-6">
+        <div class="card shadow-sm h-100 executive-dossier-card">
+            <div class="card-header bg-white border-bottom py-3 px-4">
+                <h6 class="fw-bold mb-0 text-dark"><i class="bi bi-mortarboard text-primary me-2"></i>Education</h6>
+            </div>
+            <div class="card-body p-4">
+                <ul class="list-group list-group-flush">
+                    {% for item in resume_data.education %}<li class="list-group-item px-0">{{ item }}</li>{% else %}<li class="list-group-item px-0 text-muted">No education section detected.</li>{% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card shadow-sm h-100 executive-dossier-card">
+            <div class="card-header bg-white border-bottom py-3 px-4">
+                <h6 class="fw-bold mb-0 text-dark"><i class="bi bi-briefcase text-primary me-2"></i>Experience</h6>
+            </div>
+            <div class="card-body p-4">
+                <ul class="list-group list-group-flush">
+                    {% for item in resume_data.experience %}<li class="list-group-item px-0">{{ item }}</li>{% else %}<li class="list-group-item px-0 text-muted">No experience section detected.</li>{% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card shadow-sm h-100 executive-dossier-card">
+            <div class="card-header bg-white border-bottom py-3 px-4">
+                <h6 class="fw-bold mb-0 text-dark"><i class="bi bi-folder text-primary me-2"></i>Projects</h6>
+            </div>
+            <div class="card-body p-4">
+                <ul class="list-group list-group-flush">
+                    {% for item in resume_data.projects %}<li class="list-group-item px-0">{{ item }}</li>{% else %}<li class="list-group-item px-0 text-muted">No projects section detected.</li>{% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card shadow-sm h-100 executive-dossier-card">
+            <div class="card-header bg-white border-bottom py-3 px-4">
+                <h6 class="fw-bold mb-0 text-dark"><i class="bi bi-award text-primary me-2"></i>Certifications</h6>
+            </div>
+            <div class="card-body p-4">
+                <ul class="list-group list-group-flush">
+                    {% for item in resume_data.certifications %}<li class="list-group-item px-0">{{ item }}</li>{% else %}<li class="list-group-item px-0 text-muted">No certifications section detected.</li>{% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if mode == "match" %}
+<!-- Recommendations Card -->
+<div class="card shadow-sm mb-4 executive-dossier-card">
+    <div class="card-header bg-white border-bottom py-3 px-4">
+        <h5 class="card-title mb-0 d-flex align-items-center gap-2">
+            <i class="bi bi-lightbulb text-warning"></i>
+            Recommendations
+        </h5>
+    </div>
+    <div class="card-body p-4">
+        <h6 class="text-muted small mb-3">Local NLP/ML analysis</h6>
+        <div class="list-group list-group-flush">
+            {% for rec in recommendations.offline %}
+            <div class="list-group-item px-0 py-2 bg-transparent">
+                <span class="badge {{ priority_classes.get(rec.priority, 'text-bg-secondary') }} me-2">{{ rec.priority }}</span>
+                <span class="text-secondary">{{ rec.text }}</span>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

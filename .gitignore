@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+.pytest_cache/
+*.log
+instance/
+uploads/
+*.db
+*.sqlite
+*.sqlite3
+data/external/real_Darshan.csv
+models/resume_mlp.pkl

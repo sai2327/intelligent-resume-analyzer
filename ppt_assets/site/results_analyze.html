@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Results</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark app-navbar mb-3">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="/"><i class="bi bi-file-earmark-text me-1"></i>Intelligent Resume Analyzer</a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="/history"><i class="bi bi-graph-up-arrow me-1"></i>ATS Tracker</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container pb-5">
+        
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="fw-bold mb-0">Analysis Results</h2>
+    <a href="/" class="btn btn-outline-secondary btn-sm">&larr; New Analysis</a>
+</div>
+
+
+
+
+
+
+
+
+
+<div class="card shadow-sm mb-4">
+    <div class="card-body">
+        <h5 class="card-title">Candidate Information</h5>
+        <div class="row">
+            <div class="col-md-4"><strong>Name:</strong> Sai Teja Kondapalli</div>
+            <div class="col-md-4"><strong>Email:</strong> saitejak2327@gmail.com</div>
+            <div class="col-md-4"><strong>Phone:</strong> +918985649779</div>
+        </div>
+        
+        <hr>
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <strong>Predicted Resume Category:</strong>
+                <span class="badge bg-primary fs-6">Software Developer</span>
+            </div>
+            <div class="col-md-6">
+                
+                <small class="text-muted">Top predictions:
+                    Software Developer (55.5%), Data Analyst (8.8%), Machine Learning Engineer (6.4%)
+                </small>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="card shadow-sm mb-4">
+    <div class="card-body">
+        <div class="d-flex justify-content-between align-items-start flex-wrap gap-2">
+            <div>
+                <h5 class="card-title mb-1">ATS Score Tracker</h5>
+                <span class="badge text-bg-light">Standalone Resume Audit</span>
+                
+                <span class="badge text-bg-success">Resume detected &middot; 100.0%</span>
+            </div>
+            <div>
+                <a class="btn btn-outline-secondary btn-sm me-1" href="/results/548" download="ats-report.json">JSON</a>
+                <a class="btn btn-outline-secondary btn-sm me-1" href="/report/548.txt">Text report</a>
+                <a class="btn btn-outline-secondary btn-sm" href="/history">Score history &rarr;</a>
+            </div>
+        </div>
+        <div class="row align-items-center mt-3 g-4">
+            <div class="col-md-4 text-center">
+                
+                <div class="ats-gauge mx-auto" style="--p: 90.29; --gauge-color: #16a34a;">
+                    <div class="ats-gauge__inner">
+                        <div class="ats-gauge__value" style="color: #16a34a;">90.3</div>
+                        <div class="ats-gauge__label">out of 100</div>
+                    </div>
+                </div>
+                <span class="badge mt-3 fs-6" style="background-color: #16a34a;">Excellent</span>
+                <p class="text-muted small mt-2 mb-0">Ready to submit - the ATS should parse and rank this resume well.</p>
+                
+                <div class="potential-box mt-3">
+                    <div class="small text-muted text-uppercase">Potential score</div>
+                    <div class="fw-bold text-success fs-4">up to 93.79</div>
+                    <div class="small text-muted">+3.5 pts available from the fixes below</div>
+                </div>
+                
+                
+                <div class="text-center mt-3">
+                    <svg viewBox="0 0 200 200" class="ats-radar" role="img" aria-label="Radar chart of ATS factor scores">
+                        <polygon points="100.0,80.5 119.5,100.0 100.0,119.5 80.5,100.0" class="ats-radar__ring"/><polygon points="100.0,61.0 139.0,100.0 100.0,139.0 61.0,100.0" class="ats-radar__ring"/><polygon points="100.0,41.5 158.5,100.0 100.0,158.5 41.5,100.0" class="ats-radar__ring"/><polygon points="100.0,22.0 178.0,100.0 100.0,178.0 22.0,100.0" class="ats-radar__ring"/>
+                        <line x1="100" y1="100" x2="100.0" y2="22.0" class="ats-radar__axis"/><line x1="100" y1="100" x2="178.0" y2="100.0" class="ats-radar__axis"/><line x1="100" y1="100" x2="100.0" y2="178.0" class="ats-radar__axis"/><line x1="100" y1="100" x2="22.0" y2="100.0" class="ats-radar__axis"/>
+                        <polygon points="100.0,29.8 161.8,100.0 100.0,178.0 22.0,100.0" class="ats-radar__score"/>
+                        <circle cx="100.0" cy="29.8" r="2.5" class="ats-radar__dot"/><circle cx="161.8" cy="100.0" r="2.5" class="ats-radar__dot"/><circle cx="100.0" cy="178.0" r="2.5" class="ats-radar__dot"/><circle cx="22.0" cy="100.0" r="2.5" class="ats-radar__dot"/>
+                        <text x="100.0" y="18.0" text-anchor="middle" class="ats-radar__label">Format &amp; parseability (90)</text><text x="178.0" y="104.0" text-anchor="start" class="ats-radar__label">Content quality (79)</text><text x="100.0" y="188.0" text-anchor="middle" class="ats-radar__label">Skill breadth (100)</text><text x="22.0" y="104.0" text-anchor="end" class="ats-radar__label">Education present (100)</text>
+                    </svg>
+                </div>
+                
+            </div>
+            <div class="col-md-8">
+                
+                <div class="ats-factor mb-2">
+                    <div class="d-flex justify-content-between small">
+                        <span class="fw-semibold">Format &amp; parseability
+                            <span class="text-muted fw-normal">&middot; weight 35%</span>
+                        </span>
+                        <span class="fw-bold">90</span>
+                    </div>
+                    <div class="progress ats-factor__bar">
+                        <div class="progress-bar bg-success"
+                             style="width: 90%"></div>
+                    </div>
+                    <div class="text-muted ats-factor__detail">8 of 9 parser-friendliness checks passed (382 words).</div>
+                    
+                    
+                    
+                    <div class="mt-1">
+                        
+                        <span class="badge text-bg-success me-1 mb-1 fw-normal">
+                            ✓ Email address
+                        </span>
+                        
+                        <span class="badge text-bg-success me-1 mb-1 fw-normal">
+                            ✓ Phone number
+                        </span>
+                        
+                        <span class="badge text-bg-success me-1 mb-1 fw-normal">
+                            ✓ Name detected
+                        </span>
+                        
+                        <span class="badge text-bg-success me-1 mb-1 fw-normal">
+                            ✓ Experience section
+                        </span>
+                        
+                        <span class="badge text-bg-success me-1 mb-1 fw-normal">
+                            ✓ Education section
+                        </span>
+                        
+                        <span class="badge text-bg-danger me-1 mb-1 fw-normal">
+                            ✗ Skills section
+                        </span>
+                        
+                        <span class="badge text-bg-success me-1 mb-1 fw-normal">
+                            ✓ Dates in experience
+                        </span>
+                        
+                        <span class="badge text-bg-success me-1 mb-1 fw-normal">
+                            ✓ Resume length
+                        </span>
+                        
+                        <span class="badge text-bg-success me-1 mb-1 fw-normal">
+                            ✓ Clean text extraction
+                        </span>
+                        
+                    </div>
+                    
+                </div>
+                
+                <div class="ats-factor mb-2">
+                    <div class="d-flex justify-content-between small">
+                        <span class="fw-semibold">Content quality
+                            <span class="text-muted fw-normal">&middot; weight 30%</span>
+                        </span>
+                        <span class="fw-bold">79.3</span>
+                    </div>
+                    <div class="progress ats-factor__bar">
+                        <div class="progress-bar bg-primary"
+                             style="width: 79.29%"></div>
+                    </div>
+                    <div class="text-muted ats-factor__detail">7/14 bullets quantified (50%); 4/14 start with action verbs (29%); 1 first-person pronoun(s).</div>
+                    
+                    
+                    
+                </div>
+                
+                <div class="ats-factor mb-2">
+                    <div class="d-flex justify-content-between small">
+                        <span class="fw-semibold">Skill breadth
+                            <span class="text-muted fw-normal">&middot; weight 20%</span>
+                        </span>
+                        <span class="fw-bold">100.0</span>
+                    </div>
+                    <div class="progress ats-factor__bar">
+                        <div class="progress-bar bg-success"
+                             style="width: 100.0%"></div>
+                    </div>
+                    <div class="text-muted ats-factor__detail">20 recognized skills across 9 area(s).</div>
+                    
+                    
+                    
+                </div>
+                
+                <div class="ats-factor mb-2">
+                    <div class="d-flex justify-content-between small">
+                        <span class="fw-semibold">Education present
+                            <span class="text-muted fw-normal">&middot; weight 15%</span>
+                        </span>
+                        <span class="fw-bold">100.0</span>
+                    </div>
+                    <div class="progress ats-factor__bar">
+                        <div class="progress-bar bg-success"
+                             style="width: 100.0%"></div>
+                    </div>
+                    <div class="text-muted ats-factor__detail">Education section present with a recognizable degree.</div>
+                    
+                    
+                    
+                </div>
+                
+                
+                
+                
+                <h6 class="fw-bold mt-3 mb-1">Score composition</h6>
+                <svg viewBox="0 0 560 40" class="chart-svg chart-svg--full" role="img" aria-label="How the total ATS score is composed">
+                    
+                    <rect x="0.0" y="4" width="195.4" height="28" fill="#4f46e5">
+                        <title>Format &amp; parseability: 31.5 pts (34.9%)</title>
+                    </rect>
+                    
+                    <rect x="195.4" y="4" width="147.5" height="28" fill="#0ea5e9">
+                        <title>Content quality: 23.8 pts (26.3%)</title>
+                    </rect>
+                    
+                    <rect x="342.9" y="4" width="124.0" height="28" fill="#10b981">
+                        <title>Skill breadth: 20.0 pts (22.2%)</title>
+                    </rect>
+                    
+                    <rect x="466.9" y="4" width="93.0" height="28" fill="#f59e0b">
+                        <title>Education present: 15.0 pts (16.6%)</title>
+                    </rect>
+                    
+                </svg>
+                <div class="d-flex flex-wrap small mt-1">
+                    
+                    <span class="legend-item"><span class="legend-swatch" style="background: #4f46e5;"></span>Format &amp; parseability (31.5)</span>
+                    
+                    <span class="legend-item"><span class="legend-swatch" style="background: #0ea5e9;"></span>Content quality (23.8)</span>
+                    
+                    <span class="legend-item"><span class="legend-swatch" style="background: #10b981;"></span>Skill breadth (20.0)</span>
+                    
+                    <span class="legend-item"><span class="legend-swatch" style="background: #f59e0b;"></span>Education present (15.0)</span>
+                    
+                </div>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="card shadow-sm mb-4 border-start border-4" style="border-color: #16a34a !important;">
+    <div class="card-body">
+        <h5 class="card-title">What to change <span class="text-muted fs-6 fw-normal">(highest ATS impact first)</span></h5>
+        <div class="list-group list-group-flush">
+            
+            <div class="list-group-item px-0 bg-transparent">
+                <div class="d-flex gap-2">
+                    <span class="badge text-bg-danger flex-shrink-0" style="height: fit-content;">HIGH</span>
+                    <div>
+                        <div class="small text-muted">Format &amp; parseability &middot; up to +3.5 pts</div>
+                        <div>Add a skills section headed &#34;Skills&#34; or &#34;Technical Skills&#34; - many ATS look for that exact header.</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="list-group-item px-0 bg-transparent">
+                <div class="d-flex gap-2">
+                    <span class="badge text-bg-warning flex-shrink-0" style="height: fit-content;">MEDIUM</span>
+                    <div>
+                        <div class="small text-muted">Content quality &middot; up to +6.2 pts</div>
+                        <div>Start bullets with strong action verbs (led, built, automated, reduced, launched...). Weak openers spotted: Problem, DSA, Teaching.</div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <p class="text-muted small mt-2 mb-0">Only add keywords and skills that genuinely describe your experience - the goal is to be found, not to mislead the parser.</p>
+    </div>
+</div>
+
+
+
+
+
+
+<div class="row g-4 mb-4">
+    <div class="col-md-6">
+        <h6 class="fw-bold">Detected Skills (20)</h6>
+        <span class="badge skill-badge skill-badge--matched">C</span><span class="badge skill-badge skill-badge--matched">C++</span><span class="badge skill-badge skill-badge--matched">CSS</span><span class="badge skill-badge skill-badge--matched">Communication</span><span class="badge skill-badge skill-badge--matched">Excel</span><span class="badge skill-badge skill-badge--matched">Generative AI</span><span class="badge skill-badge skill-badge--matched">GitHub</span><span class="badge skill-badge skill-badge--matched">HTML</span><span class="badge skill-badge skill-badge--matched">Java</span><span class="badge skill-badge skill-badge--matched">Leadership</span><span class="badge skill-badge skill-badge--matched">MongoDB</span><span class="badge skill-badge skill-badge--matched">MySQL</span><span class="badge skill-badge skill-badge--matched">Next.js</span><span class="badge skill-badge skill-badge--matched">Node.js</span><span class="badge skill-badge skill-badge--matched">Object Oriented Programming</span><span class="badge skill-badge skill-badge--matched">Problem Solving</span><span class="badge skill-badge skill-badge--matched">Python</span><span class="badge skill-badge skill-badge--matched">React</span><span class="badge skill-badge skill-badge--matched">SQL</span><span class="badge skill-badge skill-badge--matched">Teamwork</span>
+    </div>
+    
+    <div class="col-md-6">
+        <h6 class="fw-bold">Skills by category</h6>
+        <svg viewBox="0 0 640 314" class="chart-svg chart-svg--full" role="img" aria-label="Detected skills by category">
+            
+            <text x="0" y="22" class="chart-tick chart-tick--label">Programming Languages</text>
+            <rect x="220" y="12"
+                  width="360.0" height="9" rx="4.5" fill="#10b981">
+                <title>Programming Languages</title>
+            </rect>
+            
+            <text x="0" y="56" class="chart-tick chart-tick--label">Frontend Development</text>
+            <rect x="220" y="46"
+                  width="360.0" height="9" rx="4.5" fill="#c7cbe8">
+                <title>Frontend Development</title>
+            </rect>
+            
+            <text x="0" y="90" class="chart-tick chart-tick--label">Soft Skills &amp; Methodologies</text>
+            <rect x="220" y="80"
+                  width="360.0" height="9" rx="4.5" fill="#c7cbe8">
+                <title>Soft Skills &amp; Methodologies</title>
+            </rect>
+            
+            <text x="0" y="124" class="chart-tick chart-tick--label">Databases</text>
+            <rect x="220" y="114"
+                  width="270.0" height="9" rx="4.5" fill="#c7cbe8">
+                <title>Databases</title>
+            </rect>
+            
+            <text x="0" y="158" class="chart-tick chart-tick--label">Data &amp; Analytics</text>
+            <rect x="220" y="148"
+                  width="90.0" height="9" rx="4.5" fill="#c7cbe8">
+                <title>Data &amp; Analytics</title>
+            </rect>
+            
+            <text x="0" y="192" class="chart-tick chart-tick--label">AI &amp; Machine Learning</text>
+            <rect x="220" y="182"
+                  width="90.0" height="9" rx="4.5" fill="#c7cbe8">
+                <title>AI &amp; Machine Learning</title>
+            </rect>
+            
+            <text x="0" y="226" class="chart-tick chart-tick--label">Tools &amp; Platforms</text>
+            <rect x="220" y="216"
+                  width="90.0" height="9" rx="4.5" fill="#c7cbe8">
+                <title>Tools &amp; Platforms</title>
+            </rect>
+            
+            <text x="0" y="260" class="chart-tick chart-tick--label">Backend Development</text>
+            <rect x="220" y="250"
+                  width="90.0" height="9" rx="4.5" fill="#c7cbe8">
+                <title>Backend Development</title>
+            </rect>
+            
+            <text x="0" y="294" class="chart-tick chart-tick--label">Other</text>
+            <rect x="220" y="284"
+                  width="90.0" height="9" rx="4.5" fill="#c7cbe8">
+                <title>Other</title>
+            </rect>
+            
+        </svg>
+    </div>
+    
+</div>
+
+
+<div class="row g-4 mb-4">
+    <div class="col-md-6">
+        <h6 class="fw-bold">Education</h6>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Aditya University, Surampalem	2024-2028</li><li class="list-group-item">Bachelor of Technology in Computer Science and Engineering                         CGPA: 9.00(Till Date)</li><li class="list-group-item">Course work</li><li class="list-group-item">Data Structures and Algorithms, Database Management Systems, Operating Systems, Object Oriented Programming.</li>
+        </ul>
+    </div>
+    <div class="col-md-6">
+        <h6 class="fw-bold">Experience</h6>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Problem Setter – College Coding Competitions	Jan 2025 – June 2025</li><li class="list-group-item">Designed and curated algorithmic problems for college-level coding competitions, focusing on data structures, algorithms, and logical problem-solving.</li><li class="list-group-item">DSA Teaching Assistant – TECHNICALHUB					           March 2025 – May 2025</li><li class="list-group-item">Teaching Data structures and Algorithms, competitive coding for 177 students. I explained Leetcode and Code Chef questions in Class after the completion of the contest.</li><li class="list-group-item">Programming achievements</li><li class="list-group-item">3 Star coder at CODECHEF – MAXIMUM RATING (1728).</li><li class="list-group-item">Solved 1150+ problems in Leetcode – MAXIMUM RATING (2136).</li><li class="list-group-item">5-star badges in C++, SQL and 4-star badges in C, Problem Solving in Hacker Rank.</li><li class="list-group-item">Secured 142 Global Rank in Code chef starters 190D.</li><li class="list-group-item">Secured 385 Global Rank in Leetcode Weekly contest 464.</li><li class="list-group-item">PUPIL at CODEFORCES.</li><li class="list-group-item">1st place in the Monthly Coding Contest at our college, multiple times, outperforming 1200+ participants.</li><li class="list-group-item">Skills and Interests</li><li class="list-group-item">Programming Languages	: C++, C, Java, Python, SQL</li><li class="list-group-item">Technical Knowledge</li><li class="list-group-item">Frontend Development	: HTML, CSS, React</li><li class="list-group-item">Database	: SQL DATABASE (Oracle, MySQL)</li><li class="list-group-item">Proficiencies	: Competitive coding, Data Structures and Algorithms</li><li class="list-group-item">Non-Technical	: Leadership, Teamwork</li>
+        </ul>
+    </div>
+    <div class="col-md-6">
+        <h6 class="fw-bold">Projects</h6>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">AlgoTalk – AI-Powered Collaborative DSA Learning Platform | Next.js, Node.js, MongoDB, Gemini AI</li><li class="list-group-item">Developed an AI-powered collaborative platform for DSA learning with weak area analysis, personalized roadmaps, AI hints, and mock interview evaluation.</li><li class="list-group-item">Implemented real-time collaborative coding using Socket.IO, Yjs (CRDT), and WebRTC voice communication while integrating multiple coding platforms for unified progress tracking and performance analytics.</li><li class="list-group-item">Tic Tac Toe Game with AI Player | C++</li><li class="list-group-item">Developed a console-based Tic Tac Toe game in C++ using object-oriented programming with a class-based design.</li><li class="list-group-item">Implemented an AI player using rule-based logic/minimax to make optimal moves, along with win and draw detection and turn management.</li>
+        </ul>
+    </div>
+    <div class="col-md-6">
+        <h6 class="fw-bold">Certifications</h6>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Red Hat Certified System Administrator (RHCSA - EX200)</li><li class="list-group-item">Microsoft Office Specialist: Excel Associate (Office 2019)</li><li class="list-group-item">Microsoft Power Platform Fundamentals</li>
+        </ul>
+    </div>
+</div>
+
+
+
+    </main>
+
+    <footer class="text-center text-muted py-4 small border-top">
+        NLP + Machine Learning powered resume analysis &middot; fully offline
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/script.js"></script>
+    
+</body>
+</html>

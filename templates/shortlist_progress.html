@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Screening candidates... &middot; Intelligent Resume Analyzer{% endblock %}
+
+{% block head %}
+{% if job.state != "done" %}<meta http-equiv="refresh" content="2">{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+    <div>
+        <h2 class="fw-bold mb-0 classic-heading">Candidate Screening</h2>
+        <p class="text-muted small mb-0">Batch evaluation against target job requirements</p>
+    </div>
+    <a href="{{ url_for('index') }}" class="btn btn-outline-secondary btn-sm">
+        <i class="bi bi-arrow-left me-1"></i>New Analysis
+    </a>
+</div>
+
+{% if job.state != "done" %}
+<div class="card shadow-sm">
+    <div class="card-body text-center py-5 px-4">
+        <div class="spinner-border text-primary mb-3" role="status"></div>
+        <h4 class="fw-bold text-dark">Screening {{ job.total }} resume{{ 's' if job.total != 1 }} against the job description...</h4>
+        <div class="progress my-4 mx-auto" style="max-width: 520px; height: 16px; border-radius: 999px;">
+            {% set percent = (job.processed / job.total * 100) | round | int if job.total else 0 %}
+            <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary"
+                 style="width: {{ percent }}%"></div>
+        </div>
+        <p class="fw-semibold text-secondary mb-1">{{ job.processed }} of {{ job.total }} processed ({{ percent }}%)</p>
+        <p class="text-muted small mb-0">Budget: up to 7 seconds per resume. This page refreshes automatically.</p>
+    </div>
+</div>
+{% else %}
+<div class="alert alert-success shadow-sm p-4 text-center">
+    <div class="fs-4 fw-bold mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Screening complete!</div>
+    <p class="mb-3 text-secondary">All candidate resumes have been evaluated and scored against the job requirements.</p>
+    <a href="{{ url_for('shortlist_view', job_id=job.id) }}" class="btn btn-primary px-4">
+        View the Shortlist &rarr;
+    </a>
+</div>
+{% endif %}
+{% endblock %}
